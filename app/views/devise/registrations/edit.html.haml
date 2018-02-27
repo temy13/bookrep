@@ -1,0 +1,54 @@
+%div.white-back
+  = simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
+    = f.error_notification
+    .form-inputs
+      %div
+      //= f.input :screen_name, required: true
+      %div
+        = "名前"
+        = f.text_field :name, :class=>"profile-input-field"
+
+      - if devise_mapping.confirmable? && resource.pending_reconfirmation?
+        %p
+          Currently waiting confirmation for: #{resource.unconfirmed_email}
+      %div
+        = f.label :password
+        %i (もし変更しないなら空のままで)
+        %br/
+        = f.password_field :password, autocomplete: "off", :class=>"profile-input-field"
+      -# %div
+      -#   = f.label :password_confirmation
+      -#   %br/
+      -#   = f.password_field :password_confirmation, autocomplete: "off"
+      -# - if f.object.encrypted_password.present?
+      -#   %div
+      -#     = f.label :current_password
+      -#     %i (we need your current password to confirm your changes)
+      -#     %br/
+      -#     = f.password_field :current_password, autocomplete: "off"
+    %div
+      = "プロフィール"
+      = f.text_area :profile, :class=>"profile-input-field profile-input-textarea"
+
+    %div
+      = "Email"
+      - if resource[:provider].nil?
+        = f.text_field :email, required: true, :class=>"profile-input-field"
+      - else
+        = f.text_field :email, :class=>"profile-input-field"
+
+    %div.profile-checkbox
+      = "Emailで通知を受け取る"
+      %div.checkbox
+        = f.check_box :is_email_notice, :id =>"checkbox1", :class=>"ios-toggle"
+        = label "", "checkbox1", :class=>"checkbox-label"#, :data=>{:off=>"off" , :on=>"on"}
+
+
+    .form-actions
+      = f.button :submit, "設定を保存する", :class => "btn blue btn-base"
+  /
+    <h3>Cancel my account</h3>
+
+    <p>Unhappy? <haml_loud> link_to &quot;Cancel my account&quot;, registration_path(resource_name), data: { confirm: &quot;Are you sure?&quot; }, method: :delete </haml_loud></p>
+
+    <haml_loud> link_to &quot;Back&quot;, :back </haml_loud>

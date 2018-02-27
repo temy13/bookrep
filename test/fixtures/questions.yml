@@ -1,0 +1,27 @@
+# == Schema Information
+#
+# Table name: questions
+#
+#  id           :integer          not null, primary key
+#  user_id      :integer
+#  content      :string           not null
+#  is_anonymous :boolean          default(FALSE)
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#  is_tweet     :boolean          default(FALSE)
+#  image        :string
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 1
+  content: MyString
+  twitter_share_count: 1
+  is_anonymous: false
+
+two:
+  user_id: 1
+  content: MyString
+  twitter_share_count: 1
+  is_anonymous: false

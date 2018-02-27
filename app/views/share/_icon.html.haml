@@ -1,0 +1,8 @@
+//質問と回答のみ
+
+- if obj.is_anonymous
+  = image_tag obj.user_icon
+
+- else
+  = link_to profile_path(obj.user) do
+    = image_tag obj.user_icon

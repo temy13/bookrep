@@ -1,0 +1,65 @@
+%div.top
+  =image_tag("top_large.png", :class => "top-image")
+  %div.top-description="おすすめの本を教えてもらう匿名Q&Aサイト"
+  -# %div.top-content
+  -#   ="つぎのほん"
+
+%div.white-back.top-inputs
+  %div.middle-content
+    %div.middle-first="最近同じような本ばかり..."
+    %div.middle-second="オススメの本が知りたい..."
+    %div.middle-third="まずは3秒でログイン"
+
+  %div.twitter-login
+    = link_to "Twitterで登録/ログイン", user_twitter_omniauth_authorize_path, class: "btn blue btn-base"
+
+
+
+  = simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+    - if flash[:error].present?
+      #error_explanation
+        -# %h2= "#{pluralize(@answer.errors.count, "error")} prohibited this answer from being saved:"
+        %ul.list-group
+          - flash[:error].each do |message|
+            %li.list-group-item.list-group-item-danger= message
+
+    -# = f.error_notification
+
+    .form-inputs
+      = f.text_field :email, required: true, placeholder: "Email", class: "login-input-field"
+      = f.password_field :password, autocomplete: "off", required: true, placeholder: "Password", class: "login-input-field"
+      -# = f.input :remember_me, as: :boolean if devise_mapping.rememberable?
+    .form-actions
+      = f.button :submit, "メールアドレスで登録", class: "btn orange btn-base"
+
+
+  %div.normal-link.mail-login-link= link_to "メールアドレスでログイン", new_user_session_path
+
+
+  %div.question-item
+    %div.question-item-main.explain
+      %div.large="「ブクリプ」でできること"
+      %div.middle= "① オススメの本を聞いてみる"
+      %div.middle= "② オススメの本を教える"
+      %div.bottom="匿名もしくはTwitterアカウントで投稿できます"
+
+    %div.question-item-footer
+      -# %div.question-item-footer-left
+      -#   = "つぎのほん"
+
+
+-# = simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+-#   .form-inputs
+-#     = f.text_field :email, required: true, placeholder: "Email", class: "login-input-field"
+-#     = f.password_field :password, required: true, autocomplete: "off", placeholder: "Password", class: "login-input-field"
+-#     -# = f.input :remember_me, as: :boolean if devise_mapping.rememberable?
+-#   .form-actions
+-#     = f.button :submit, "メールアドレスでログイン", class: "btn orange btn-base"
+-#
+-# %div.forgot-password
+-#   = link_to "パスワードを忘れてしまった場合", new_password_path(resource_name)
+
+
+
+-# error => devise/registrations/new.html.haml
+-# userとprofile分けるべきか？

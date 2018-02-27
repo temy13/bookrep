@@ -1,0 +1,11 @@
+
+= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+  .form-inputs
+    = f.text_field :email, required: true, placeholder: "Email", class: "login-input-field"
+    = f.password_field :password, required: true, autocomplete: "off", placeholder: "Password", class: "login-input-field"
+    -# = f.input :remember_me, as: :boolean if devise_mapping.rememberable?
+  .form-actions
+    = f.button :submit, "メールアドレスでログイン", class: "btn orange btn-base"
+
+%div.normal-link.forgot-password
+  = link_to "パスワードを忘れてしまった場合", new_password_path(resource_name)

@@ -1,0 +1,96 @@
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %title ブクリプ
+    = csrf_meta_tags
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = include_gon
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+    %link{ rel:  "stylesheet", href: "https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" }
+    %script{ type: 'text/javascript', src: 'https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js'}
+
+    - if @question.present? && @question.try(:id).present?  && @question.try(:content).present? && @question.try(:image_url).present?
+      %meta{:name => "twitter:card", :content=>"summary_large_image"}
+      %meta{:name => "twitter:site", :content=>"@bookreptokyo"}
+      %meta{:property => "og:url", :content=>"https://nextbooks.herokuapp.com/questions/" + @question.id.to_s}
+      %meta{:property => "og:title", :content=>@question.content}
+      %meta{:property => "og:desctiption", :content=>@question.content}
+      %meta{:property => "og:image", :content=>"https://nextbooks.herokuapp.com/" + @question.image.sns.url}
+
+  %body
+    - if notice
+      %p.notice.bg-blue
+        - if flash[:notice_link]
+          = link_to notice, flash[:notice_link]
+        - else
+          = notice
+        %a#notice-close= "×"
+    - if alert
+      %p.notice.bg-red
+        - if flash[:notice_link]
+          = link_to alert, flash[:notice_link]
+        - else
+          = alert
+        %a#notice-close= "×"
+
+    %div.container.max-height
+      %div.row.max-height
+        %div.d-lg-block.col-lg-2.d-none
+        %div.col-12.col-lg-8.max-height.padding-zero
+          %div#center.max-height
+            %div.header
+              %nav
+                - if user_signed_in?
+                  -# %div.d-inline-block= link_to current_user.name, pages_show_path
+                  -# %div.d-inline-block= link_to 'プロフィール変更', edit_user_registration_path
+
+                  %div.d-block.logo
+                    = link_to image_tag('TitleLogo_2_Blue.png', { :border => '0', :alt => 'ロゴ'}), root_path
+                  %div.d-inline-block.right.header-button
+                    = link_to 'ログアウト', destroy_user_session_path, method: :delete
+                - else
+                  %div.d-block.logo
+                    = link_to image_tag('TitleLogo_2_Blue.png', { :border => '0', :alt => 'ロゴ'}), root_path
+                  -# %div.d-inline-block= link_to 'サインアップ', new_user_registration_path
+                  -# %div.d-inline-block= link_to 'ログイン', new_user_session_path
+                  %div.d-inline-block.right.header-button
+                    = link_to user_twitter_omniauth_authorize_path do
+                      %i.fa.fa-twitter="登録/ログイン"
+
+            %div#main-contents.max-height
+              = yield
+
+            %div.footer
+              %ul
+                %li= link_to "プライバシーポリシー", home_policy_path
+                %li= link_to "利用規約", home_terms_path
+                %li.copyright
+                  = "© 2018 bookrep"
+
+
+        %div.d-lg-block.col-lg-2.d-none
+
+    - if user_signed_in?
+      %div#fix-footer
+        %div.container
+          %div.row
+            %div.d-lg-block.col-lg-2.d-none
+            %div.col-sm-12.col-lg-8
+              %div.footer-icons.footer-center
+                %div.d-inline-block.footer-item.left
+                  - if request.fullpath == new_question_path
+                    = link_to image_tag('blue_icon_post.jpg', { :border => '0', :alt => '質問投稿'}), new_question_path
+                  - else
+                    = link_to image_tag('icon_post.jpg', { :border => '0', :alt => '質問投稿'}), new_question_path
+                %div.d-inline-block.footer-item
+                  - if request.fullpath == questions_path
+                    = link_to image_tag('blue_icon_home.jpg', { :border => '0', :alt => '質問一覧'}), questions_path
+                  - else
+                    = link_to image_tag('icon_home.jpg', { :border => '0', :alt => '質問一覧'}), questions_path
+                %div.d-inline-block.footer-item.right
+                  - if request.fullpath == profile_path(current_user)
+                    = link_to image_tag('blue_icon_profile.jpg', { :border => '0', :alt => 'プロフィール'}), profile_path(current_user)
+                  - else
+                    = link_to image_tag('icon_profile.jpg', { :border => '0', :alt => 'プロフィール'}), profile_path(current_user)
+            %div.d-lg-block.col-lg-2.d-none

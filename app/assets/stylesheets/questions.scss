@@ -1,0 +1,140 @@
+// Place all the styles related to the questions controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+$blue: #5299ff;
+$white: white;
+$gray: #F2F2F2;
+$dark-gray: #D8D8D8;
+$orange: #F5A623;
+$font-color: #4A4A4A;
+$bg-color: #F2F2F2;
+$red: red;
+$block: 48px;
+$height: 48px;
+$animation: .25s ease-in-out;
+
+.profile-checkbox{
+  margin:16px 0;
+}
+
+.tweet, .profile-checkbox{
+.checkbox{
+  height: 100%;
+  position: absolute;
+  right:0;
+  display: inline-block;
+  padding-right: 32px;
+}
+
+*,*:before,*:after{
+box-sizing:border-box;
+margin:0;
+padding:0;
+/*transition*/
+-webkit-transition:$animation;
+   -moz-transition:$animation;
+     -o-transition:$animation;
+        transition:$animation;
+outline:none;
+font-family:Helvetica Neue,helvetica,arial,verdana,sans-serif;
+}
+
+.ios-toggle,.ios-toggle:active{
+position:absolute;
+height:0;
+width:0;
+opacity:0;
+border:none;
+outline:none;
+}
+.checkbox-label{
+  vertical-align: middle;
+color: transparent;
+display:inline-block;
+position:relative;
+font-size:12px;
+line-height:16px;
+width:$block*2;
+height:$height;
+/*border-radius*/
+-webkit-border-radius:$height/2;
+   -moz-border-radius:$height/2;
+        border-radius:$height/2;
+background:$gray;
+cursor:pointer;
+}
+.checkbox-label:before{
+content:'';
+display:block;
+position:absolute;
+z-index:1;
+line-height:34px;
+text-indent:40px;
+height:$height;
+width:$height;
+/*border-radius*/
+-webkit-border-radius:100%;
+   -moz-border-radius:100%;
+        border-radius:100%;
+top:0px;
+left:0px;
+right:auto;
+background:white;
+/*box-shadow*/
+-webkit-box-shadow:0 3px 3px rgba(0,0,0,.2),0 0 0 2px #cccccc;
+   -moz-box-shadow:0 3px 3px rgba(0,0,0,.2),0 0 0 2px #cccccc;
+        box-shadow:0 3px 3px rgba(0,0,0,.2),0 0 0 2px #cccccc;
+}
+
+.ios-toggle:checked + .checkbox-label{
+/*box-shadow*/
+-webkit-box-shadow:inset 0 0 0 $height/2 rgba(82,153,255,1),0 0 0 2px rgba(82,153,255,1);
+   -moz-box-shadow:inset 0 0 0 $height/2 rgba(82,153,255,1),0 0 0 2px rgba(82,153,255,1);
+        box-shadow:inset 0 0 0 $height/2 rgba(82,153,255,1),0 0 0 2px rgba(82,153,255,1);
+}
+.ios-toggle:checked + .checkbox-label:before{
+left:calc(100% - 48px);
+/*box-shadow*/
+-webkit-box-shadow:0 0 0 2px transparent,0 3px 3px rgba(0,0,0,.3);
+   -moz-box-shadow:0 0 0 2px transparent,0 3px 3px rgba(0,0,0,.3);
+        box-shadow:0 0 0 2px transparent,0 3px 3px rgba(0,0,0,.3);
+}
+
+
+// .checkbox-label:after{
+//   display:block;
+//   position:absolute;
+//   z-index:0;
+//   top:0;
+//   left:-300px;
+//   padding:10px;
+//   height:100%;
+//   width:300px;
+//   text-align:right;
+//   color:$blue;
+//   white-space:nowrap;
+// }
+// .ios-toggle:checked + .checkbox-label:after{
+// left:60px;
+// width:36px;
+// }
+/* GREEN CHECKBOX */
+
+// #checkbox1 + .checkbox-label{
+// /*box-shadow*/
+// // -webkit-box-shadow:inset 0 0 0 0px rgba(82,153,255,1),0 0 0 2px #dddddd;
+// //    -moz-box-shadow:inset 0 0 0 0px rgba(82,153,255,1),0 0 0 2px #dddddd;
+// //         box-shadow:inset 0 0 0 0px rgba(82,153,255,1),0 0 0 2px #dddddd;
+// }
+// #checkbox1:checked + .checkbox-label{
+// /*box-shadow*/
+// // -webkit-box-shadow:inset 0 0 0 18px rgba(82,153,255,1),0 0 0 2px rgba(82,153,255,1);
+// //    -moz-box-shadow:inset 0 0 0 18px rgba(82,153,255,1),0 0 0 2px rgba(82,153,255,1);
+// //         box-shadow:inset 0 0 0 18px rgba(82,153,255,1),0 0 0 2px rgba(82,153,255,1);
+// }
+// #checkbox1:checked + .checkbox-label:after{
+// color:rgba(82,153,255,1);
+// }
+}

@@ -1,0 +1,52 @@
+# Place all the behaviors and hooks related to the matching controller here.
+# All this logic will automatically be available in application.js.
+# You can use CoffeeScript in this file: http://coffeescript.org/
+
+$ ->
+  #クリックしたときのファンクションをまとめて指定
+  $('.tab li').click ->
+    #.index()を使いクリックされたタブが何番目かを調べ、
+    #indexという変数に代入します。
+    index = $('.tab li').index(this)
+    #コンテンツを一度すべて非表示にし、
+    $('.tab-contents-item').css 'display', 'none'
+    #クリックされたタブと同じ順番のコンテンツを表示します。
+    $('.tab-contents-item').eq(index).css 'display', 'block'
+    #一度タブについているクラスselectを消し、
+    $('.tab li').removeClass 'select'
+    #クリックされたタブのみにクラスselectをつけます。
+    $(this).addClass 'select'
+    return
+
+  #
+  # $('input[type=submit]').click (e) ->
+  #   #e.preventDefault()
+  #   $('input[type=submit]').css 'opacity': 1.0
+  #   $(this).css 'opacity': '.5'
+  #   return
+  $ ->
+    $('input[type=submit]').on 'click', ->
+      $('input[type=submit]').css 'opacity': 1.0
+      form = $(this).parents('form')
+      form.attr 'action', $(this).data('action')
+      hoge = $(this).data('hoge')
+      $('<input>').attr(
+        'type': 'hidden'
+        'name': 'hoge'
+        'value': hoge).appendTo form
+      form.submit()
+      $(this).css 'opacity': '.5'
+      return
+    return
+
+  $('#notice-close').click ->
+    $('.notice').fadeOut 100
+    return
+
+  # $('.notice').hover (->
+  #   $('.notice').css('display', 'none').fadeOut 1000
+  #   return
+  # ), ->
+  #   $('.notice').css('display', 'none').fadeOut 1000
+  #   return
+  # return

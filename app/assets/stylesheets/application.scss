@@ -1,0 +1,680 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *
+ */
+
+ @import "bootstrap";
+ @import "font-awesome";
+
+ @import "questions.scss";
+ @import "modal.scss";
+  @import "vars.scss";
+@import "answers.scss";
+//= require bootstrap
+//= require jquery-ui
+//= require jquery.tagsinput
+//= require_tree .
+
+
+
+html, body, {
+  position:relative;
+  height:100%;
+  width:100%;
+  margin:0;
+  background-color: $bg-color;
+}
+
+.header{
+  background-color: $white;
+  height: $block2;
+  .header-button{
+    font-size: $font-size-sm;
+    border: $blue 2px solid;
+    padding: 0 8px;
+    border-radius: 24px;
+    a:hover{
+      text-decoration: none;
+    }
+  }
+}
+
+nav{
+  //height: $block;
+  padding-top: $ws-md;
+  position:relative;
+  .logo{
+    //height: 100%;
+    width: $block4;
+    margin: 0 auto;
+    img{
+      width:100%;
+      //height: 100%;
+    }
+  }
+  .right{
+    position: absolute;
+    right:$ws-sm;
+    top: $ws-md;
+        height: $block4 * 609 / 1784;
+        line-height: $block4 * 609 / 1784;
+  }
+}
+.max-height{
+  min-height:100%;
+}
+
+#center{
+  display: block;
+  max-width: $Width; //48*13
+  margin: 0 auto;
+  color: $font-color;
+  font-size: $font-size-lg;
+  height: 100%;
+  max-height: 100%;
+  position: relative;
+  @include screen($breakpoint-mobile, $breakpoint-tablet) {
+    max-width: 100%;
+  }
+}
+
+.container{
+  @include screen($breakpoint-mobile, $breakpoint-tablet) {
+    max-width: 100%;
+  }
+}
+
+.top{
+  position: relative;
+  overflow: hidden;
+  background-color: $blue;
+}
+
+.top-image{
+  width: 100%;
+      position: relative;
+}
+
+.top-description{
+  background: $blue;
+    color: white;
+    text-align: center;
+    padding: 0 $block;
+}
+
+.top-profile{
+  min-height: $block*8;
+max-height: $block*13;
+overflow: scroll;
+}
+
+.top-inputs{
+  padding: 0 16px;
+  .twitter-login{
+    .blue{
+      line-height: 78px;
+    }
+  }
+  .explain{
+    font-size: 24px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    text-align: center;
+    .large{
+      margin-top: $ws-md;
+      font-size: $block;
+      margin-bottom: $ws-md;
+    }
+    .bottom{
+      width: 340px;
+      margin: $ws-sm auto 0;
+    }
+  }
+}
+
+.question-top-image{
+  top: -8px;
+  position: absolute;
+  width: 100%;
+}
+
+//todo merge
+.top-content{
+  position: absolute;
+    width: 100%;
+    text-align: center;
+    color: white;
+    font-size: 50px;
+    /* bottom: 5px; */
+    top: 250px;
+}
+
+.question-top{
+  height:$block*13;
+}
+
+.top-question-text{
+  position: absolute;
+    width: 80%;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%,-50%);
+    -webkit-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%);
+    text-align: center;
+    color: white;
+    font-size: $font-size-lg;
+    border:white 4px solid;
+    background-color: rgba( 255, 255, 255, 0.20 );
+
+}
+
+// .top-question-show-content{
+//   margin:$ws-sm $ws-sm 0;
+//   min-height:$block7;
+//   font-family: hannotate SC;
+//
+//   margin:$ws-sm $ws-md 0;
+//   background-color:$white;
+//   text-align: center;
+// }
+// .top-question-show-content-text{
+//   width: 300px;
+//   height: 150px;
+//   margin: 0 auto;
+// }
+
+.no-answer{
+  color: $blue;
+  text-align: center;
+  padding: $block;
+  margin-bottom:$block2;
+  .large{
+    font-size:$block;
+  }
+  .middle{
+    width:$block7;
+    margin:0 auto;
+  }
+}
+
+.question-show{
+  .question-top{
+    margin-bottom:0px;
+  }
+}
+
+
+.top-question-show-footer{
+  position: relative;
+  color: white;
+  min-height: 48px;
+overflow: visible;
+    padding: $ws-sm;
+
+}
+
+
+.middle-content{
+  text-align: center;
+  font-size: 35px;
+  .middle-third{
+    font-size: 40px;
+  }
+}
+
+
+.btn-base{
+  width: 100%;
+    margin: 10px 2px $half-block 2px;
+    height:$block2;
+    color:white;
+    font-size: $font-size-lg;
+}
+
+
+.login-input-field{
+  width:100%;
+  background-color:$white;
+  border-color:$gray;
+  height:$block2;
+  margin-top:$ws-md;
+}
+
+input, textarea{
+  border-radius: 10px;
+}
+
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0px 1000px white inset;
+}
+
+.forgot-password{
+  text-align: center;
+}
+
+.input-question{
+  width: 100%;
+  background-color: $bg-color;
+  height: $block8;
+}
+
+.tweet{
+  position: relative;
+}
+
+
+.font-sm{
+  font-size: 24px;
+}
+
+$icon-length: $block2;
+.profile-icon{
+  width:$icon-length;
+  height:$icon-length;
+  border-radius:$icon-length;
+  border: 1px solid transparent;
+  overflow: hidden;
+  margin:0 auto;
+  img{
+    max-width: 100%;
+    max-height: 100%;
+  }
+
+}
+// .title-tag:after{
+//   content: "✖︎"
+// }
+
+
+
+.question-item{
+  list-style-type: none;
+  padding: 10px;
+  width: 100%;
+  position: relative;
+  background-color: $blue;
+  color: $white;
+  margin-bottom: $ws-md;
+  a, a:hover{
+    text-decoration: none;
+  }
+  .question-bg{
+    width: 100%;
+    height:100%;
+    position:absolute;
+    margin:0 auto;
+  }
+}
+.question-item:hover{
+  opacity: 0.8;
+}
+.question-item-main{
+  // position: absolute;
+  // top:0;
+  background-image: image-url("question_image_whitever1.png");
+  background-repeat: no-repeat;
+    background-size: cover;
+
+  width:100%;
+  // margin:0 $ws-sm;
+  height:$block6;
+  @include screen($breakpoint-mobile, $breakpoint-tablet) {
+    height:$block10;
+  }
+  color: $font-color;
+  //background-color: $white;
+  padding: 10px;
+  font-family: hannotate SC;
+}
+
+.question-item-footer{
+  // position: absolute;
+  // bottom:0;
+  width:100%;
+  color: white;
+  min-height: 48px;
+overflow: visible;
+
+  a{
+    color: white;
+  }
+  div{
+    display: inline-block;
+    // width: 45%;
+    padding: $ws-sm;
+    font-size: $font-size-sm;
+  }
+  .question-item-footer-left{
+    text-align: left;
+    position: absolute;
+    left: 0;
+  }
+  .question-item-footer-right{
+
+    position: absolute;
+    right: 0;
+    text-align: right;
+  }
+
+  .question-item-footer-center{
+    position: absolute;
+    left: 48%;
+    text-align: left;
+    img{
+      height:24px;
+    }
+  }
+}
+
+
+.top-profile{
+  background: linear-gradient($blue, #76CFFA);
+  width:100%;
+  color: $white;
+  div{
+    margin:10px auto 0;
+    text-align: center
+  }
+  .profile-header{
+    font-size: $font-size-sm;
+    height: $ws-lg;
+    position: relative;
+  .profile-edit{
+      position: absolute;
+      right: 5%;
+      width: $block4;
+      a {
+          color: $white;
+      }
+      line-height: $block2;
+      height: $block2;
+      border: 1px $white solid;
+      border-radius: $ws-lg;
+    }
+  }
+  .profile-icon{
+    margin-top:$block2;
+  }
+
+}
+
+.profile-posts-title{
+  text-align: center;
+  .posts-title{
+    font-size: $font-size-lg;
+  }
+  .posts-content{
+    font-size: $font-size-sm;
+  }
+  background-color: white;
+  padding: $block 0;
+}
+
+
+.profile-input-field{
+  width:100%;
+  background-color: $gray;
+  border-color: $gray;
+  height: $block;
+  border-width: 2px;
+  border-style: inset;
+  margin-top:$ws-md;
+}
+.profile-input-textarea{
+  height:$block4;
+}
+
+.footer{
+  padding-bottom:$block2;
+  ul li{
+    list-style-type: none;
+    a{
+      color: $font-color;
+    }
+  }
+  .copyright{
+    text-align: center;
+    padding: $ws-sm 0;
+  }
+}
+
+#fix-footer{
+  background-color:white;// $bg-color;
+  position:fixed;
+  width:100%;
+  height:$block2;
+  bottom:0;
+  text-align:center;
+  overflow:hidden;
+  .footer-center{
+    margin: 0 auto;
+    max-width: $Width;
+    @include screen($breakpoint-mobile, $breakpoint-tablet) {
+      max-width: 100%;
+    }
+  }
+  .footer-icons{
+    padding: $ws-md $ws-lg;
+    // background-color: $gray;
+    img{
+      height: $block;
+      // height: $block;
+    }
+    .footer-item{
+      width:30%;
+      text-align: center;
+    }
+    .footer-item.left{
+      text-align: left;
+    }
+    .footer-item.right{
+      text-align: right;
+    }
+  }
+}
+
+/* common */
+
+.tab{
+  color: $font-color;
+  overflow:hidden;
+  padding:0;
+  margin: 0;
+  //margin:0 $ws-md !important;
+  li{
+    list-style-type: none;
+    background:white;
+    padding:5px 25px;
+    float:left;
+    line-height: $block2;
+    height: $block2;
+    font-size: 35px;
+    text-align: center;
+  }
+  li.select{
+      border-bottom: 6px $blue solid;
+    }
+  }
+  .tab-contents{
+    padding:0;
+    //margin:0 16px;
+    margin: 0;
+  }
+.tab-contents-item{
+  list-style-type: none;
+
+}
+.hide {display:none;}
+
+.flexiblebox {
+ display: -webkit-flex;
+ display: flex;
+ -webkit-align-items: center; /* 縦方向中央揃え（Safari用） */
+ align-items: center; /* 縦方向中央揃え */
+ -webkit-justify-content: center; /* 横方向中央揃え（Safari用） */
+ justify-content: center; /* 横方向中央揃え */
+}
+
+.table-cell {
+ display: table-cell; /* IE8から使用可能 */
+ vertical-align: middle;
+}
+
+.blue{
+  background-color: $blue;
+  border-color: $blue;
+}
+
+.orange{
+  background-color: $orange;
+  border-color: $orange;
+}
+
+
+.black{
+  color: white;
+  background-color: $font-color;
+  border-color: $font-color;
+}
+
+
+
+/* auto-complete */
+.ui-helper-hidden-accessible { display:none; }
+.ui-menu{
+  z-index:10;
+  padding:0;
+  .ui-menu-item{
+    margin:0 $ws-sm/2;
+    padding:$ws-sm 0;
+    list-style-type: none;
+    background-color:$gray;
+    // width: 100%;
+  }
+}
+
+.answer-name{
+  min-height: 36px;
+}
+
+
+
+.input-error{
+  outline: 0;
+  border-color:red;
+}
+
+.normal-link{
+  text-align: center;
+  // padding:0 5px;
+  // background-color: $gray;
+  a{
+    color: $font-color;
+  }
+}
+
+.separate{
+  padding: $ws-sm $ws-lg;
+  min-height: $block3;
+  line-height: 132px;//$block3;
+  border-top: $font-color 1px solid;
+}
+
+
+.separate-bottom{
+  // margin-bottom: $block3;
+  border-bottom: $font-color 1px solid;
+}
+
+.white-back{
+  background-color:white;
+  padding: $ws-lg $ws-sm 0;
+
+}
+
+.actions-group{
+  margin-top: $block3;
+}
+
+.padding-bottom{
+  padding-bottom: $ws-lg;
+}
+
+// .label-info {
+//     background-color: #5bc0de;
+// }
+
+@-webkit-keyframes slideDown {
+    // 0%, 100% { -webkit-transform: translateY(-50px); }
+    // 10%, 90% { -webkit-transform: translateY(0px); }
+    0% { -webkit-transform: translateY(0px); }
+    50% { -webkit-transform: translateY(0px); }
+    100% { -webkit-transform: translateY(-300px); }
+}
+@-moz-keyframes slideDown {
+    // 0%, 100% { -moz-transform: translateY(-50px); }
+    // 10%, 90% { -moz-transform: translateY(0px); }
+    0% { -webkit-transform: translateY(0px); }
+    50% { -webkit-transform: translateY(0px); }
+    100% { -webkit-transform: translateY(-300px); }
+}
+
+.notice {
+    font-size: $font-size-sm;
+    width:100%;
+    position: absolute;
+    z-index: 101;
+    top: 0;
+    left: 0;
+    right: 0;
+    color:white;
+    text-align: center;
+    line-height: 4.0;
+    overflow: hidden;
+    -webkit-box-shadow: 0 0 5px white;
+    -moz-box-shadow:    0 0 5px white;
+    box-shadow:         0 0 5px white;
+    // -webkit-transform: translateY(-50px);
+    -webkit-animation: slideDown 3.5s 0s 1 ease-in forwards;
+    // -moz-transform:    translateY(-50px);
+    -moz-animation:    slideDown 3.5s 0s 1 ease-in forwards;
+    a{
+      color:white;
+      text-decoration: none;
+    }
+}
+
+.bg-blue{
+  background-color: $blue;
+}
+
+.bg-red{
+  background-color: $red;
+}
+
+// .cssanimations.csstransforms #notice-close {
+//   display: none;
+// }
+
+.actions{
+  padding:0 $ws-md;
+}
+
+.padding-zero{
+  padding: 0;
+}
+
+.mail-login-link{
+  padding-top: $ws-sm;
+  padding-bottom: $block;
+}

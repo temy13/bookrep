@@ -1,0 +1,45 @@
+%div.top-profile
+  %div.profile-header
+    - if @user.id == current_user.try(:id)
+      %div.profile-edit= link_to "設定はこちら", edit_user_registration_path
+  %div.profile-icon
+    = image_tag @user.icon
+  %div.profile-name= @user.name
+  %div.profile-status
+    %span.profile-question-icon= "質問数"
+    %span.profile-question= @user.questions_length(current_user)
+    %span.profile-answer-icon= "回答数"
+    %span.profile-answer= @user.answers_length(current_user)
+  %div.profile-description= @user.profile
+
+%div.profile-posts-title
+  %div.posts-title= "投稿一覧"
+  %div.posts-content= "匿名の投稿は本人のみに表示されます"
+
+
+%ul#profile-posts.tab.row
+  %li#profile-posts-q-tab.select.col-6
+    = "質問"
+  %li#profile-posts-a-tab.col-6
+    = "回答した質問"
+
+
+-# TODO: render
+%ul.tab-contents
+  %li#profile-posts-q.tab-contents-item
+    - if @questions.present?
+      = render 'share/questions_tab', questions: @questions, page_name: "page_q"
+    - else
+      %div.white-back.no-answer
+        %div.large= "まだ質問がありません"
+        %div.middle= "オススメの本を聞いて見ましょう！"
+        = image_tag "LogoMark_Blue.png"
+
+  %li#profile-posts-a.tab-contents-item.hide
+    - if @answer_questions.present?
+      = render 'share/questions_tab', questions: @answer_questions, page_name: "page_a"
+    - else
+      %div.white-back.no-answer
+        %div.large= "まだ回答がありません"
+        %div.middle= "あなたのオススメの本を教えてください！"
+        = image_tag "LogoMark_Blue.png"

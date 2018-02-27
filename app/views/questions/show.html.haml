@@ -1,0 +1,74 @@
+
+%div.question-show
+  %div#question.question-item
+    %div.question-item-main.flexiblebox
+      = @question.content
+    %div.question-item-footer
+    -#   = "つぎのほん"
+
+  - if @answers.present?
+    %div.answers
+      %ul.answer-list
+        - @answers.each do |answer|
+          %li.answer-item
+            = render 'answer_header', answer: answer
+            = link_to(answer.affiliate_url, class: '', target: ["_blank"]) do
+              %div.answer-inner.row
+                %div.answer-item-left.col-1
+                %div.answer-item-content.col-9
+                  %div.answer-book-info
+                    %div.answer-title
+                      = answer.book_title
+                    %div.answer-book-authors
+                      = answer.authors_txt
+                  %div.answer-content
+                    = answer.content
+                %div.answer-item-image.col-2
+                  = image_tag answer.book_image_url
+
+      = paginate @answers
+  - else
+    %div.white-back.no-answer
+      %div.large= "まだ回答がありません"
+      %div.middle= "あなたのオススメの本を教えてください！"
+      = image_tag "LogoMark_Blue.png"
+
+
+  - if current_user
+    = form_for @answer,  html: {id: 'answer_form', class: 'form' }  do |f|
+      %div.white-back
+        - if @answer.errors.any?
+          #error_explanation
+            -# %h2= "#{pluralize(@answer.errors.count, "error")} prohibited this answer from being saved:"
+            %ul
+              - @answer.errors.full_messages.each do |message|
+                %li= message
+
+        .field
+          -# TODO: title required
+          %div#answer-title-dummy-input
+            %input{:name => "title_dummy", :placeholder => "オススメの本はこちら", :class=> "input-title input-answer", :id => "answer-title-input"}
+          %div#answer-title-tag.d-none.input-title.input-answer
+            %div.title-tag.d-inline-block= ""
+            %div#answer-title-remove.d-inline-block.btn.remove-button= "x"
+          = f.hidden_field :title, :placeholder => "本のタイトルを入力", :class=> "input-title input-answer", :id => "answer-title-input-form"
+          = f.text_area :content, required: true, :placeholder => "ここにコメントを書いて投稿しよう", :class=> "input-answer input-question"
+          = f.hidden_field :user_id, :value => current_user.id
+          = f.hidden_field :question_id, :value => @question.id
+          = f.hidden_field :book_id, :value => nil, :id => "answer-book-id"
+        .field.tweet.separate.separate-bottom
+          %span.text= "Twitter"
+          %div.checkbox
+            = f.check_box :is_tweet, :id =>"checkbox1", :class=>"ios-toggle"
+            = label "", "checkbox1", :class=>"checkbox-label"#, :data=>{:off=>"off" , :on=>"on"}
+
+      .actions-group
+        .actions
+          = f.submit 'twitter名で投稿する', class: "btn blue btn-base answer-submit", name: "normal"
+        .actions
+          = f.submit '匿名で投稿で投稿する', class: "btn orange btn-base answer-submit", name: "anonymous"
+
+
+-# = link_to 'Edit', edit_question_path(@question)
+-# \|
+-# = link_to 'Back', questions_path

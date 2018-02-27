@@ -1,0 +1,164 @@
+// Place all the styles related to the answers controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.input-title{
+  margin-bottom: $ws-lg;
+  min-height: $block2;
+    line-height: $block2;
+}
+
+.answers{
+  margin: $ws-md $ws-md $block3;
+}
+
+.input-answer{
+  width: 100%;
+  color:$font-color;
+  background-color:$bg-color;
+}
+
+.answer-list, .question-list{
+  padding: 0;
+}
+
+.answer-item{
+  background-color: $white;
+  font-size: $font-size-sm;
+  list-style-type: none;
+  padding: $ws-sm $ws-md $ws-md;
+  min-height: $block4;
+  width: 100%;
+  a{
+    color: $font-color;
+  }
+  // margin-bottom: $block;
+}
+
+$answer-header-height: $block;
+.answer-header{
+  text-decoration: none;
+  height:$answer-header-height+$ws-md*2;
+  padding:$ws-md 0;
+  overflow: hidden;
+  .answer-name{
+    // line-height: $answer-header-height;
+    // height:$answer-header-height;
+    padding-left:$ws-sm;
+    //color:$dark-gray;
+    color: gray;
+  }
+  .answer-icon{
+    width:$answer-header-height;
+    border-radius:$answer-header-height;
+    border: 0px solid transparent;
+    overflow: hidden;
+    margin:0 auto;
+    img{
+      max-width: 100%;
+      max-height: 100%;
+    }
+  }
+}
+
+.answer-book-info{
+  padding-bottom: $ws-md;
+  border-bottom: 1px solid $dark-gray;
+  .answer-title{
+    font-size: $font-size-sm*1.5;
+  }
+  .answer-book-authors{
+    font-size: $font-size-sm;
+    color: gray;
+    //color:$dark-gray;
+  }
+
+}
+
+
+
+
+.answer-inner{
+  height:100%;
+  width:100%;
+}
+.answer-item-main{
+  // display: inline-block;
+  padding:10px;
+  background-color:white;
+  height: 100%;
+  // vertical-align:top;
+  //border:$gray solid 1px;
+
+  // box-shadow: 3px 3px 3px 3px rgba(0,0,0,0.4);
+  //   -webkit-box-shadow: 3px 3px 3px 3px rgba(0,0,0,0.4);
+  //   -moz-box-shadow: 3px 3px 3px 3px rgba(0,0,0,0.4);
+}
+
+.answer-item-image{
+  overflow: hidden;
+  img{
+    width:100%;
+  }
+}
+
+.answer-list{
+  padding: 0;
+  margin-bottom: $ws-lg;
+}
+#answer-title-tag{
+  position: relative;
+  div{
+    vertical-align: top;
+  }
+  .title-tag{
+    width: 90%;
+    padding-left: 5px;
+  }
+  .remove-button{
+    font-size: 48px;
+    display: inline-block;
+    padding: 0;
+    /* vertical-align: middle; */
+    line-height: 96px;
+    height: 96px;
+  }
+}
+
+.answer-content{
+  padding:$ws-sm 0;
+  word-break:  break-all;
+}
+
+.answer-title-suggest-item{
+  min-height:$block*2;
+  //overflow: hidden;
+  vertical-align: top;
+  img{
+    height: $block*2;
+    margin: 0 auto;
+  }
+  .answer-title-suggest-text, .answer-title-suggest-image{
+    display: inline-block;
+    vertical-align: top;
+  }
+  .answer-title-suggest-text{
+    padding-left:$ws-sm;
+    .answer-title-suggest-title{
+      min-height: $block;
+      font-size:$font-size-sm;
+      width:100%;
+    }
+    .answer-title-suggest-authors{
+      min-height: $block*1/2;
+      font-size:$font-size-sm*2/3;
+      width:100%;
+    }
+  }
+
+  .answer-title-suggest{
+    color: $font-color;
+    width: 100%;
+  }
+}

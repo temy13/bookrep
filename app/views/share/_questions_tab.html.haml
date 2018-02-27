@@ -1,0 +1,20 @@
+%div.questions
+  %ul.question-list
+    - questions.each do |question|
+      %li.question-item
+        = link_to(question_path(question), class: '') do
+          -# = image_tag "OG_pattern01.jpg", {:class => "question-bg"}
+          %div.question-item-main.flexiblebox
+            = question.content
+          %div.question-item-footer
+            -# %div.question-item-footer-left
+            -#   = "つぎのほん"
+            - if question.answers.length > 0
+              %div.question-item-footer-center
+                = image_tag "communication-4.png"
+                = question.answers.length
+
+            %div.question-item-footer-right
+              = render 'share/username', obj: question, anonymous: false
+
+= paginate questions, :param_name => page_name, :params => {:page => page_name}#, remote: true

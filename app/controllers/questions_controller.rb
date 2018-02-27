@@ -1,0 +1,102 @@
+include Tweet
+
+class QuestionsController < ApplicationController
+  before_action :authenticate_user!, only: [:new]
+  before_action :set_question, only: [:show] #, :edit, :update, :destroy
+  PER = 10
+  TWITTER_PER=40
+
+  def index
+    @questions = Question.not_answered.includes(:answers).page(params[:page_1]).per(PER)
+    @questions_answered = Question.answered.includes(:answers).page(params[:page_2]).per(PER)
+  end
+
+  def show
+    @answer = Answer.new
+    @answers = @question.answers.page(params[:page]).per(PER)
+  end
+
+  def new
+    @question = Question.new
+  end
+
+  # def edit
+  # end
+
+  def create
+    @question = Question.new(question_params)
+    @question.is_anonymous = params[:anonymous].present?
+    if @question.save
+#      tweet_question(@question, params[:reply]) if @question.is_tweet
+      flash[:notice_link] = profile_path(current_user) if current_user.is_dummy_email
+      notice = flash[:notice_link].blank? ? "質問が投稿されました" : "質問が投稿されました。通知のためEmailを登録しましょう"
+      redirect_to @question, notice: notice
+    else
+       render :new
+    end
+  end
+
+  # post from question/:id (for twitter card)
+  def add_image
+    @question = Question.find(params[:field][:id])
+    return if @question.image_url
+    @question.image_data_uri = params[:field][:data]
+    @question.save
+    tweet_question(@question) if @question.is_tweet
+    @question.requests.each do |r|
+      tweet_request(r)
+    end
+  end
+
+  def reply_options
+
+    if params[:query].blank?
+        response = get_followers(params[:cursor].to_i, TWITTER_PER)
+        @cursor = response.attrs[:next_cursor]
+        @results = response.take(TWITTER_PER)
+        data ={options: @results.map{|user| user_data(user)}, cursor: @cursor}
+    else
+        @results = user_search(params[:query], TWITTER_PER)
+        data ={options: @results.map{|user| user_data(user)}}
+    end
+    render json: data.to_json
+  end
+
+
+  # def update
+  #   if @question.update(question_params)
+  #      redirect_to @question, notice: 'Question was successfully updated.'
+  #   else
+  #      render :edit
+  #   end
+  # end
+  #
+  # def destroy
+  #   @question.destroy
+  #   redirect_to questions_url, notice: 'Question was successfully destroyed.'
+  # end
+
+
+
+  private
+    # Use callbacks to share common setup or constraints between actions.
+    def set_question
+      @question = Question.find(params[:id])
+    end
+
+
+    def user_data(user)
+      {
+      screen_name: user.screen_name,
+      uid: user.id,
+      name: user.name,
+      image: user.profile_image_url,
+      }
+    end
+
+
+    # Never trust parameters from the scary internet, only allow the white list through.
+    def question_params
+      params.require(:question).permit(:user_id, :content, :is_tweet, :is_anonymous, requests_attributes: [:uid, :name])
+    end
+end

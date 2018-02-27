@@ -1,0 +1,77 @@
+%div.top.question-top
+  =image_tag("question_top_bg.png", :class => "top-image, question-top-image")
+  %div.top-question-text
+    %p= current_user.try(:name).present? ? current_user.name + "さん" : ""
+    %p= "「つぎのほん」へようこそ"
+    %p= "さっそく質問してみましょう"
+
+= form_for @question do |f|
+  %div.white-back
+    - if @question.errors.any?
+      #error_explanation
+        %h2= "#{pluralize(@question.errors.count, "error")} prohibited this question from being saved:"
+        %ul
+          - @question.errors.full_messages.each do |message|
+            %li= message
+
+    .field
+      = f.text_area :content, required: true, :placeholder => "ここに質問を書いて投稿しよう", :class=> "input-question"
+      = f.hidden_field :user_id, :value => current_user.id
+    .field.tweet.separate
+      %span.text= "Twitter"
+      %div.checkbox
+        = f.check_box :is_tweet, :id =>"checkbox1", :class=>"ios-toggle"
+        = label "", "checkbox1", :class=>"checkbox-label"#, :data=>{:off=>"off" , :on=>"on"}
+    -# #= link_to "リクエスト", "#", class: "show-modal" do
+    = link_to("#", class: 'show-modal') do
+      .field.separate.separate-bottom
+        = "リクエスト"
+
+    = f.fields_for :requests do |r|
+      = r.hidden_field :name
+      = r.hidden_field :uid
+
+
+
+  .actions-group
+    .actions
+      = f.submit 'twitter名で投稿', class: "btn blue btn-base", name: "normal"
+    .actions
+      = f.submit '匿名で投稿', class: "btn orange btn-base", name: "anonymous"
+
+
+%div#modalwin.modalwin.hide.padding-zero-wb
+  %div.modal-header
+    %div.modal-close.cross= "×"
+    %div.modal-title="リクエストを送る"
+  %div.modalwin-contents
+    %div#reply.modal-border-top
+      %div.text.d-inline-block.modal-inner-title.border-bottom
+        -# ="回答リクエストとは"
+        =image_tag "logos/request_page_title01.png", {:class => "title-logo"}
+        %div.image.d-inline-block
+          = image_tag "Arrow01.jpg", {:id => "reply-arrow-img"}
+    %div#reply-input-box
+      %div.inner-content
+        %p="Twitterのブクリプ公式アカウントが"
+        %p="リクエストされたアカウントに"
+        %p="「回答リクエストが届きました！」と"
+        %p="ツイートでおしらせします"
+        %p.font-sm="リクエストが届くまで時間がかかる場合や、届かない場合があります。"
+      %div.modal-inner-title.border-bottom
+        =image_tag "logos/request_page_title02.png", {:class => "title-logo"}
+        -# ="公式からTwitterへの投稿"
+      = image_tag "twitter_timeline_view_request3.jpg"
+    %div.reply-search-box
+      %div.modal-inner-title.modal-border-top
+        =image_tag "logos/request_page_title03.png", {:class => "title-logo"}
+        -# ="宛先を選ぶ"
+      %input{:name => "reply-search", :placeholder => "アカウントを検索する", :class=> "input-title input-answer", :id=>"reply-search"}
+      %ul#option-users
+
+    %button= "閉じる"
+
+
+-# = render 'form'
+
+-# = link_to 'Back', questions_path

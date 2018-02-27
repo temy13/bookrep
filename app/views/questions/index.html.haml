@@ -1,0 +1,11 @@
+%ul.tab.row
+  %li#unanswered-questions-tab.select.col-6
+    = "未回答の相談"
+  %li#answered-questions-tab.col-6
+    = "回答済み"
+
+%ul#questions.tab-contents
+  %li#unanswered-questions.tab-contents-item
+    = render 'share/questions_tab', questions: @questions, page_name: "page_1"
+  %li#answered-questions.tab-contents-item.hide
+    = render 'share/questions_tab', questions: @questions_answered, page_name: "page_2"

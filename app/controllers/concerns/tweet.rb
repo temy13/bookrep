@@ -20,13 +20,13 @@ module Tweet extend ActiveSupport::Concern
 
   def tweet_question(question)
     @client = twitter_client
-    url = "https://nextbooks.herokuapp.com/questions/" + question.id.to_s
+    url = ENV["SERVICE_HOST"] + "/questions/" + question.id.to_s
     @client.update("ブクリプで質問しました! " + url)
   end
 
   def tweet_answer(answer)
     @client = twitter_client
-    url = "https://nextbooks.herokuapp.com/questions/" + answer.question.id.to_s
+    url = ENV["SERVICE_HOST"] + "/questions/" + answer.question.id.to_s
     @client.update("ブクリプで質問に答えました! " + url)
   end
 
@@ -43,7 +43,7 @@ module Tweet extend ActiveSupport::Concern
 
   def tweet_request(request)
     @client = official_twitter_client
-    url = "https://nextbooks.herokuapp.com/questions/" + request.question_id.to_s
+    url = ENV["SERVICE_HOST"] + "/questions/" + request.question_id.to_s
     @client.update("@" + request.name + " リクエストが届いています！ " + url)
   end
 

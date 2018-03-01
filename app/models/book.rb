@@ -33,6 +33,7 @@ class Book < ApplicationRecord
     Author.import new_authors if new_authors
     @results.map{|book|
       {
+        id: book.id,
         title: book.title,
         authors: book.authors_txt,
         imgurl: book.image_url

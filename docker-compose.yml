@@ -15,7 +15,7 @@ services:
   rails:
     #build:
     #  context: .
-    images: localhost:5000/temy13/bookrep:v1
+    image: localhost:5000/temy13/bookrep:v1
     ports:
       - "3000:${PORT:-3000}"
     environment:

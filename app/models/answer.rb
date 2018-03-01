@@ -60,7 +60,7 @@ class Answer < ApplicationRecord
   end
 
   def authors_txt
-    self.book.authors_txt
+    self.book.present? ? self.book.authors_txt : ""
   end
 
 

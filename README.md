@@ -73,8 +73,8 @@ CREATE DATABASE
 
 - docker
 https://qiita.com/progrhyme/items/116948c9fef37f3e995b
-docker tag temy13/bookrep:v1 localhost:5000/temy13/bookrep:v1
-docker
+docker tag temy13/bookrep:v1.2 localhost:5000/temy13/bookrep:v1.2
+docker push localhost:5000/temy13/bookrep:v1.2
 -
 https://qiita.com/irotoris/items/f3b98feb69807f450984
 https://qiita.com/miwato/items/9770a2a757d3f5e369a4

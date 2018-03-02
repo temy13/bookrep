@@ -1,7 +1,7 @@
 %div.top.question-top
   =image_tag("question_top_bg.png", :class => "top-image, question-top-image")
   %div.top-question-text
-    %p= current_user.try(:name).present? ? current_user.name + "さん" : ""
+    %p= current_user.name + "さん"
     %p= "「つぎのほん」へようこそ"
     %p= "さっそく質問してみましょう"
 

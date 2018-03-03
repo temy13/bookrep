@@ -1,5 +1,8 @@
 
 = simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+  - if resource.errors.any?
+    %div.alert.alert-danger.errors= devise_error_messages!
+
   .form-inputs
     = f.text_field :email, required: true, placeholder: "Email", class: "login-input-field"
     = f.password_field :password, required: true, autocomplete: "off", placeholder: "Password", class: "login-input-field"

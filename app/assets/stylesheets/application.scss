@@ -26,6 +26,11 @@
 //= require_tree .
 
 
+.errors{
+  li{
+    list-style-type: none;
+  }
+}
 
 html, body, {
   position:relative;
@@ -334,7 +339,7 @@ $icon-length: $block2;
   color: $font-color;
   //background-color: $white;
   padding: 10px;
-  font-family: hannotate SC;
+  font-family: hannotate SC, YuGothic, 'Yu Gothic', sans-serif;
 }
 
 .question-item-footer{
@@ -343,7 +348,7 @@ $icon-length: $block2;
   width:100%;
   color: white;
   min-height: 48px;
-overflow: visible;
+  overflow: visible;
 
   a{
     color: white;

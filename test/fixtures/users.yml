@@ -18,7 +18,7 @@
 #  provider               :string
 #  uid                    :string
 #  screen_name            :string
-#  name                   :string
+#  name                   :string           default("クリス"), not null
 #  profile                :string
 #  icon_path              :string
 #  is_email_notice        :boolean          default(FALSE)

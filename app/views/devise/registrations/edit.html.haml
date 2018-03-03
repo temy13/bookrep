@@ -1,6 +1,9 @@
 %div.white-back
   = simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
-    = f.error_notification
+    -# = f.error_notification
+    - if resource.errors.any?
+      %div.alert.alert-danger.errors= devise_error_messages!
+
     .form-inputs
       %div
       //= f.input :screen_name, required: true

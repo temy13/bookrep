@@ -1,11 +1,14 @@
-%h2 Change your password
+-# %h2 パスワードを再設定する
 = simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f|
-  = f.error_notification
+  -# = f.error_notification
+  - if resource.errors.any?
+    %div.alert.alert-danger.errors= devise_error_messages!
+
   = f.input :reset_password_token, as: :hidden
   = f.full_error :reset_password_token
   .form-inputs
-    = f.input :password, label: "New password", required: true, autofocus: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length)
-    = f.input :password_confirmation, label: "Confirm your new password", required: true
+    = f.password_field :password, required: true, autofocus: true, placeholder: "パスワード", class: "login-input-field"#, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length)
+    = f.password_field :password_confirmation, required: true, placeholder: "パスワード(確認用)", class: "login-input-field"
   .form-actions
-    = f.button :submit, "Change my password"
-= render "devise/shared/links"
+    = f.button :submit, "パスワードを再設定する", class: "btn black btn-base"
+-# = render "devise/shared/links"

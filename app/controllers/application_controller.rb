@@ -5,17 +5,14 @@ class ApplicationController < ActionController::Base
 
   def store_location
    # 今回の場合は、 /users/sign_in , /users/sign_up, /users/password にアクセスしたとき、ajaxでのやりとりはsessionには保存しない。
-      if (request.fullpath != "/users/sign_in" && \
-          request.fullpath != "/users/sign_up" && \
-          request.fullpath != "/users/password" && \
-          !request.xhr?) # don't store ajax calls
+      if check_except
         session[:previous_url] = request.fullpath
       end
   end
 
   #ログイン後のリダイレクトをログイン前のページにする場合
   def after_sign_in_path_for(resource)
-    session[:previous_url] || question_new_path
+    check_except ? new_question_path : (session[:previous_url] || new_question_path)
   end
 
   #ログアウト後のリダイレクトをログアウト前のページにする場合
@@ -24,11 +21,11 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_up_path_for(resource)
-    session[:previous_url] || question_new_path
+    check_except ? new_question_path : (session[:previous_url] || new_question_path)
   end
 
   def after_inactive_sign_up_path_for(resource)
-    session[:previous_url] || question_new_path
+    check_except ? new_question_path : (session[:previous_url] || new_question_path)
   end
 
 
@@ -44,6 +41,13 @@ class ApplicationController < ActionController::Base
   end
 
   private
+
+  def check_except
+    return (request.fullpath != "/users/sign_in" && \
+        request.fullpath != "/users/sign_up" && \
+        request.fullpath != "/users/password" && \
+        !request.xhr?)
+  end
 
   def _render_404(e = nil)
     logger.info "Rendering 404 with exception: #{e.message}" if e

@@ -1,26 +1,53 @@
 version: "3"
 
 services:
+  #https-portal:
+  #  image: steveltn/https-portal:1.0.0
+  #  ports:
+  #    - '80:80'
+  #    - '443:443'
+  #  links:
+  #    - rails
+  #  restart: always
+  #  environment:
+  #    DOMAINS: 'bookrep.tokyo -> http://rails'
+    # STAGE: 'production'
+    #     # FORCE_RENEW: 'true'
+    #
   nginx:
-      build: ./nginx
+      #build: ./nginx
+      image: localhost:5000/temy13/nginx:v1.8
       ports:
           - "80:80"
+          - "443:443"
       restart: always
+      volumes: 
+          - "/etc/letsencrypt:/etc/letsencrypt"
   #db:
   #  image: postgres:9.5
   #  environment:
   #    - POSTGRES_USER=${MY_APP_DATABASE_USER}
   #    - POSTGRES_PASSWORD=${MY_APP_DATABASE_PASSWORD}
   #    - POSTGRES_DB=${MY_APP_DATABASE_NAME}
+  #
   rails:
     #build:
     #  context: .
-    image: localhost:5000/temy13/bookrep:v1
+    image: localhost:5000/temy13/bookrep:v1.5
     ports:
       - "3000:${PORT:-3000}"
     environment:
       #- DATABASE_URL=postgres://${MY_APP_DATABASE_USER}:${MY_APP_DATABASE_PASSWORD}@db:5432/${MY_APP_DATABASE_NAME}
       - DATABASE_URL=postgres://${MY_APP_DATABASE_USER}:${MY_APP_DATABASE_PASSWORD}@${MY_APP_DATABASE_HOST}:5432/${MY_APP_DATABASE_NAME}
       - SECRET_KEY_BASE=${SECRET_KEY_BASE}
-    #depends_on:
+      - TWITTER_KEY=${TWITTER_KEY}
+      - TWITTER_SECRET=${TWITTER_SECRET}
+      - TWITTER_ACCESS=${TWITTER_ACCESS}
+      - TWITTER_ACCESS_SECRET=${TWITTER_ACCESS_SECRET}
+      - AMAZON_ASSOCIATE_ID=${AMAZON_ASSOCIATE_ID}
+      - EMAIL=${EMAIL}
+      - EMAIL_PASS=${EMAIL_PASS}
+      - SERVICE_HOST=${SERVICE_HOST}
+      - RAILS_LOG_TO_STDOUT=${RAILS_LOG_TO_STDOUT}
+   #depends_on:
     #  - db

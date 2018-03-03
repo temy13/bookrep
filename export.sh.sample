@@ -11,3 +11,4 @@ export AMAZON_ASSOCIATE_ID=
 export EMAIL=
 export EMAIL_PASS=
 export SERVICE_HOST=
+export RAILS_LOG_TO_STDOUT=production.log

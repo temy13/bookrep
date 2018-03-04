@@ -5,7 +5,7 @@ $ ->
 
   $(document).on 'click', '.option-add', ->
     v = $(this).data("value")
-    console.log v
+    console.log "add click: " + v
     $(".add-option-" + v).removeClass "hide"
     $(".add-option-" + v).addClass "show"
     $(this).addClass "hide"
@@ -13,13 +13,17 @@ $ ->
   setListItem = (index, user) ->
     img = user.image
     imgurl = img.scheme + "://" + img.host + img.path
+    console.log "index: " + index
+    console.log "show: " + index<10
     if index < 10
       r = "<li class='option-user-item' >"
     else
       r = "<li class='option-user-item hide add-option-" + Math.floor(index/n) + "' >"
     r += "<div class='option-user-image'><image src=" + imgurl + " /></div>"
     r += "<div class='option-names'>"
-    r += "<div class='option-user-name' >" + user.name + "</div>"
+    username = user.name
+    name = if username.length < 12 then username else username.slice(0, 12) + "..."
+    r += "<div class='option-user-name' >" + name + "</div>"
     r += "<div class='option-user-sname' >" + user.screen_name + "</div>"
     r += "<div class='option-user-uid' >" + user.uid + "</div></div>"
     r += "<div class='option-checkbox'><label><input class='checkbox option-checkbox-input' type='checkbox' name='" + user.screen_name + "' value='" + user.uid + "'>"
@@ -36,17 +40,22 @@ $ ->
         query: query
       dataType: 'json'
       success: (data) ->
-        if cursor <= 0 && query == before_query
-          $('ul#option-users').empty()
+        if cursor <= 0 && query == before_query && query != ""
+          return
+        $('ul#option-users').empty()
         before_query = query
         $.each data["options"], (index, val) ->
           i = index/n
+          console.log "index: " + index
+          console.log "i: " + i
           if index == n
             e =  $("<li id='option-add-" + i + "' class='option-user-item option-add' data-value='" + i + "'>もっと見る</li>")
             $('ul#option-users').append e
+            return
           if index % n == 0 && index > 0
-            e = $("<li id='option-add-" + i + "' class='option-user-item option-add hide add-option-" + (i-1) + "'  data-value='" + i + "'>もっと見る</li>")
+            e = $("<li id='option-add-" + i + "' class='option-user-item option-add hide add-option-" + (i-1) + "'  data-value='" + (i) + "'>もっと見る</li>")
             $('ul#option-users').append e
+            return
 
           $('ul#option-users').append setListItem index, val
           return
@@ -59,7 +68,8 @@ $ ->
         return
 
 
-  $("#reply-search").on 'change change keyup paste click', ->
+  #$("#reply-search").on 'change change keyup paste click', ->
+  $("#reply-search").on 'change paste click keyup', ->
     if $("#reply-search").val().length > 2
       updateOptions -1
 

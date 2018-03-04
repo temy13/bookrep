@@ -2,7 +2,7 @@
   =image_tag("question_top_bg.png", :class => "top-image, question-top-image")
   %div.top-question-text
     %p= current_user.name + "さん"
-    %p= "「つぎのほん」へようこそ"
+    %p= "「ブクリプ」へようこそ"
     %p= "さっそく質問してみましょう"
 
 = form_for @question do |f|
@@ -69,7 +69,7 @@
       %input{:name => "reply-search", :placeholder => "アカウントを検索する", :class=> "input-title input-answer", :id=>"reply-search"}
       %ul#option-users
 
-    %button= "閉じる"
+    %button.modal-back-button=image_tag "request_page_button.png", {:class => "modal-back-button-img"}
 
 
 -# = render 'form'

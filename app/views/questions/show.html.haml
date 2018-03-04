@@ -1,8 +1,9 @@
 
 %div.question-show
   %div#question.question-item
-    %div.question-item-main.flexiblebox
-      = @question.content
+    %div.question-item-main
+      %div.question-item-main-content.flexiblebox
+        = @question.content
     %div.question-item-footer
     -#   = "つぎのほん"
 
@@ -15,7 +16,7 @@
             = link_to(answer.affiliate_url, class: '', target: ["_blank"]) do
               %div.answer-inner.row
                 %div.answer-item-left.col-1
-                %div.answer-item-content.col-9
+                %div.answer-item-content.col-8
                   %div.answer-book-info
                     %div.answer-title
                       = answer.book_title
@@ -23,7 +24,7 @@
                       = answer.authors_txt
                   %div.answer-content
                     = answer.content
-                %div.answer-item-image.col-2
+                %div.answer-item-image.col-3
                   = image_tag answer.book_image_url
 
       = paginate @answers

@@ -81,6 +81,7 @@ $ ->
     posX = ($("#center").width() - $modalWin.outerWidth()) / 2
     posY = $(window).height()/10
     $(".modal-close").on 'click', hideModal
+    $(".modal-back-button").on 'click', hideModal
 
     updateOptions -1
 

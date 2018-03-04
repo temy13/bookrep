@@ -255,7 +255,8 @@ overflow: visible;
 
 input, textarea{
   border-radius: 10px;
-  font-size: $font-size-lg;
+  font-size: $font-size-lg * 2;
+  // transform: scale(0.8);
 }
 
 input:-webkit-autofill {

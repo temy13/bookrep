@@ -58,7 +58,8 @@ a.show-modal{
 
 
 .modalwin {
-          position: fixed;
+          // position: fixed;
+          position: absolute;
           width: 90%;
           overflow-y: auto;
         max-height: 90%;

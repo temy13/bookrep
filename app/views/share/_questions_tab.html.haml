@@ -4,8 +4,9 @@
       %li.question-item
         = link_to(question_path(question), class: '') do
           -# = image_tag "OG_pattern01.jpg", {:class => "question-bg"}
-          %div.question-item-main.flexiblebox
-            = question.content
+          %div.question-item-main
+            %div.question-item-main-content.flexiblebox
+              = question.content
           %div.question-item-footer
             -# %div.question-item-footer-left
             -#   = "つぎのほん"

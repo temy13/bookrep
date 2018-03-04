@@ -20,19 +20,21 @@
 
   %body
     - if notice
-      %p.notice.bg-blue
-        - if flash[:notice_link]
+      - if flash[:notice_link]
+        %p.notice.bg-blue.slide-slow
           = link_to notice, flash[:notice_link]
-        - else
+      - else
+        %p.notice.bg-blue.slide-normal
           = notice
-        %a#notice-close= "×"
+          %a#notice-close= "×"
     - if alert
-      %p.notice.bg-red
-        - if flash[:notice_link]
+      - if flash[:notice_link]
+        %p.notice.bg-red.slide-slow
           = link_to alert, flash[:notice_link]
-        - else
+      - else
+        %p.notice.bg-red.slide-normal
           = alert
-        %a#notice-close= "×"
+          %a#notice-close= "×"
 
     %div.container.max-height
       %div.row.max-height
@@ -44,9 +46,17 @@
                 - if user_signed_in?
                   -# %div.d-inline-block= link_to current_user.name, pages_show_path
                   -# %div.d-inline-block= link_to 'プロフィール変更', edit_user_registration_path
-
                   %div.d-block.logo
-                    = link_to image_tag('TitleLogo_2_Blue.png', { :border => '0', :alt => 'ロゴ'}), root_path
+                    - if request.fullpath == new_question_path
+                      = link_to image_tag('logos/header_post_question.png', { :border => '0', :alt => 'ロゴ'}), root_path
+                    - elsif request.fullpath == questions_path
+                      = link_to image_tag('logos/header_questions.png', { :border => '0', :alt => 'ロゴ'}), root_path
+                    - elsif @question.present? && request.fullpath == question_path
+                      = link_to image_tag('logos/header_post_answer.png', { :border => '0', :alt => 'ロゴ'}), root_path
+                    - elsif request.fullpath == edit_user_registration_path
+                      = link_to image_tag('logos/header_setting.png', { :border => '0', :alt => 'ロゴ'}), root_path
+                    - else
+                      = link_to image_tag('TitleLogo_2_Blue.png', { :border => '0', :alt => 'ロゴ'}), root_path
                   %div.d-inline-block.right.header-button
                     = link_to 'ログアウト', destroy_user_session_path, method: :delete
                 - else

@@ -2,7 +2,8 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-
+  @import "vars.scss";
+  
 $blue: #5299ff;
 $white: white;
 $gray: #F2F2F2;
@@ -16,7 +17,7 @@ $height: 48px;
 $animation: .25s ease-in-out;
 
 .profile-checkbox{
-  margin:16px 0;
+  margin:$ws-lg 0 $block 0;
 }
 
 .tweet, .profile-checkbox{

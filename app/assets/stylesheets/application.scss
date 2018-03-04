@@ -42,7 +42,7 @@ html, body, {
 
 .header{
   background-color: $white;
-  height: $block2;
+  height: $block*4;
   .header-button{
     font-size: $font-size-sm;
     border: $blue 2px solid;
@@ -56,11 +56,12 @@ html, body, {
 
 nav{
   //height: $block;
-  padding-top: $ws-md;
+  padding-top: $ws-lg;
   position:relative;
+  height:100%;
   .logo{
     //height: 100%;
-    width: $block4;
+    width: $block*8;
     margin: 0 auto;
     img{
       width:100%;
@@ -70,9 +71,9 @@ nav{
   .right{
     position: absolute;
     right:$ws-sm;
-    top: $ws-md;
-        height: $block4 * 609 / 1784;
-        line-height: $block4 * 609 / 1784;
+    top: $ws-lg;
+    height: $block*8 * 609 / 1784;
+    line-height: $block*8 * 609 / 1784;
   }
 }
 .max-height{
@@ -147,8 +148,8 @@ overflow: scroll;
 }
 
 .question-top-image{
-  top: -8px;
-  position: absolute;
+  // top: -8px;
+  // position: absolute;
   width: 100%;
 }
 
@@ -163,9 +164,9 @@ overflow: scroll;
     top: 250px;
 }
 
-.question-top{
-  height:$block*13;
-}
+// .question-top{
+//   height:$block*13;
+// }
 
 .top-question-text{
   position: absolute;
@@ -180,6 +181,8 @@ overflow: scroll;
     font-size: $font-size-lg;
     border:white 4px solid;
     background-color: rgba( 255, 255, 255, 0.20 );
+    font-weight: bold;
+    padding: $block*2 0;
 
 }
 
@@ -212,11 +215,6 @@ overflow: scroll;
   }
 }
 
-.question-show{
-  .question-top{
-    margin-bottom:0px;
-  }
-}
 
 
 .top-question-show-footer{
@@ -257,6 +255,7 @@ overflow: visible;
 
 input, textarea{
   border-radius: 10px;
+  font-size: $font-size-lg;
 }
 
 input:-webkit-autofill {
@@ -340,6 +339,13 @@ $icon-length: $block2;
   //background-color: $white;
   padding: 10px;
   font-family: hannotate SC, YuGothic, 'Yu Gothic', sans-serif;
+  word-break: break-all;
+    overflow: hidden;
+    .question-item-main-content{
+      overflow: scroll;
+      width: 100%;
+      height: 100%;
+    }
 }
 
 .question-item-footer{
@@ -415,6 +421,7 @@ $icon-length: $block2;
 
 .profile-posts-title{
   text-align: center;
+  border-bottom: $gray 2px solid;
   .posts-title{
     font-size: $font-size-lg;
   }
@@ -430,19 +437,20 @@ $icon-length: $block2;
   width:100%;
   background-color: $gray;
   border-color: $gray;
-  height: $block;
+  height: $block*2;
   border-width: 2px;
   border-style: inset;
   margin-top:$ws-md;
 }
 .profile-input-textarea{
-  height:$block4;
+  height:$block*6;
 }
 
 .footer{
   padding-bottom:$block2;
   ul li{
     list-style-type: none;
+    padding-bottom: 96px;
     a{
       color: $font-color;
     }
@@ -458,6 +466,9 @@ $icon-length: $block2;
   position:fixed;
   width:100%;
   height:$block2;
+  @include screen($breakpoint-mobile, $breakpoint-tablet) {
+    height: $block*3;
+  }
   bottom:0;
   text-align:center;
   overflow:hidden;
@@ -470,6 +481,9 @@ $icon-length: $block2;
   }
   .footer-icons{
     padding: $ws-md $ws-lg;
+    @include screen($breakpoint-mobile, $breakpoint-tablet) {
+      padding: $block $ws-lg;
+    }
     // background-color: $gray;
     img{
       height: $block;
@@ -624,6 +638,7 @@ $icon-length: $block2;
     // 10%, 90% { -webkit-transform: translateY(0px); }
     0% { -webkit-transform: translateY(0px); }
     50% { -webkit-transform: translateY(0px); }
+    //100% { -webkit-transform: translateY(0px); }
     100% { -webkit-transform: translateY(-300px); }
 }
 @-moz-keyframes slideDown {
@@ -631,6 +646,7 @@ $icon-length: $block2;
     // 10%, 90% { -moz-transform: translateY(0px); }
     0% { -webkit-transform: translateY(0px); }
     50% { -webkit-transform: translateY(0px); }
+    //100% { -webkit-transform: translateY(0px); }
     100% { -webkit-transform: translateY(-300px); }
 }
 
@@ -649,15 +665,24 @@ $icon-length: $block2;
     -webkit-box-shadow: 0 0 5px white;
     -moz-box-shadow:    0 0 5px white;
     box-shadow:         0 0 5px white;
-    // -webkit-transform: translateY(-50px);
-    -webkit-animation: slideDown 3.5s 0s 1 ease-in forwards;
-    // -moz-transform:    translateY(-50px);
-    -moz-animation:    slideDown 3.5s 0s 1 ease-in forwards;
     a{
+      position: absolute;
+      right: 100px;
       color:white;
       text-decoration: none;
     }
 }
+
+.slide-normal{
+  -webkit-animation: slideDown 3.5s 0s 1 ease-in forwards;
+  -moz-animation:    slideDown 3.5s 0s 1 ease-in forwards;
+}
+
+.slide-slow{
+  -webkit-animation: slideDown 10s 0s 1 ease-in forwards;
+  -moz-animation:    slideDown 10s 0s 1 ease-in forwards;
+}
+
 
 .bg-blue{
   background-color: $blue;

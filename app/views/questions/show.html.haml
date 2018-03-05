@@ -4,8 +4,15 @@
     %div.question-item-main
       %div.question-item-main-content.flexiblebox
         = @question.content
-    %div.question-item-footer
-    -#   = "つぎのほん"
+    %div.question-item-footer.row
+      %div.question-item-footer-left.col-4
+        =image_tag "title_logo_1.png"
+      %div.question-item-footer-center.col-4
+        - if @question.answers.length > 0
+          = image_tag "communication-4.png"
+          = @question.answers.length
+      %div.question-item-footer-right.col-4
+        = render 'share/username', obj: @question, anonymous: false, link: true
 
   - if @answers.present?
     %div.answers
@@ -57,11 +64,20 @@
           = f.hidden_field :user_id, :value => current_user.id
           = f.hidden_field :question_id, :value => @question.id
           = f.hidden_field :book_id, :value => nil, :id => "answer-book-id"
-        .field.tweet.separate.separate-bottom
-          %span.text= "Twitter"
-          %div.checkbox
-            = f.check_box :is_tweet, :id =>"checkbox1", :class=>"ios-toggle"
-            = label "", "checkbox1", :class=>"checkbox-label"#, :data=>{:off=>"off" , :on=>"on"}
+
+        - if current_user.provider == "twitter"
+          .field.tweet.separate
+            %span.text= "Twitter"
+            %div.checkbox
+              = f.check_box :is_tweet, :id =>"checkbox1", :class=>"ios-toggle"
+              = label "", "checkbox1", :class=>"checkbox-label"#, :data=>{:off=>"off" , :on=>"on"}
+        - else
+          .field.tweet.separate.disabled
+            -# %div.fade
+            %span.text= "Twitter"
+            %div.checkbox
+              = f.check_box :is_tweet, :checked=>false, :id =>"checkbox1", :class=>"ios-toggle"
+              = label "", "checkbox1", :class=>"checkbox-label"#, :data=>{:off=>"off" , :on=>"on"}
 
       .actions-group
         .actions

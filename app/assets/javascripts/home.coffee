@@ -24,18 +24,19 @@ $ ->
   #   $('input[type=submit]').css 'opacity': 1.0
   #   $(this).css 'opacity': '.5'
   #   return
+
+  $('form[data-validate]').on 'input', ->
+    $(this).find(':submit').attr 'disabled', !@checkValidity()
+    return
+
   $ ->
     $('input[type=submit]').on 'click', ->
       $('input[type=submit]').css 'opacity': 1.0
       form = $(this).parents('form')
       form.attr 'action', $(this).data('action')
-      hoge = $(this).data('hoge')
-      $('<input>').attr(
-        'type': 'hidden'
-        'name': 'hoge'
-        'value': hoge).appendTo form
+      if form.valid()
+        $(this).css 'opacity': '.5'
       form.submit()
-      $(this).css 'opacity': '.5'
       return
     return
 

@@ -3,14 +3,7 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 $ ->
-  $("#reply").on　"click", ->
-    $("#reply-input-box").slideToggle();
-    if $("#reply-arrow-img").hasClass("appeared")
-      $("#reply-arrow-img").removeClass('appeared');
-      $("#reply-arrow-img").addClass 'disappeared';
-    else
-      $("#reply-arrow-img").addClass('appeared');
-      $("#reply-arrow-img").removeClass 'disappeared';
+
 
   if ($('#question').exists())
     html2canvas(document.querySelector('#question')).then (canvas) ->

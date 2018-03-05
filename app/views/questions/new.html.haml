@@ -17,16 +17,25 @@
     .field
       = f.text_area :content, required: true, :placeholder => "ここに質問を書いて投稿しよう", :class=> "input-question"
       = f.hidden_field :user_id, :value => current_user.id
-    .field.tweet.separate
-      %span.text= "Twitter"
-      %div.checkbox
-        = f.check_box :is_tweet, :id =>"checkbox1", :class=>"ios-toggle"
-        = label "", "checkbox1", :class=>"checkbox-label"#, :data=>{:off=>"off" , :on=>"on"}
-    -# #= link_to "リクエスト", "#", class: "show-modal" do
-    = link_to("#", class: 'show-modal') do
-      .field.separate.separate-bottom
-        = "リクエスト"
+    - if current_user.provider == "twitter"
+      .field.tweet.separate
+        %span.text= "Twitter"
+        %div.checkbox
+          = f.check_box :is_tweet, :id =>"checkbox1", :class=>"ios-toggle"
+          = label "", "checkbox1", :class=>"checkbox-label"#, :data=>{:off=>"off" , :on=>"on"}
+    - else
+      .field.tweet.separate.disabled
+        -# %div.fade
+        %span.text= "Twitter"
+        %div.checkbox
+          = f.check_box :is_tweet, :checked=>false, :id =>"checkbox1", :class=>"ios-toggle"
+          = label "", "checkbox1", :class=>"checkbox-label"#, :data=>{:off=>"off" , :on=>"on"}
 
+    .field.separate.separate-bottom.row.height-block3
+      = link_to("#", class: 'show-modal col-10') do
+        = "リクエスト"
+      = link_to("#", class: 'show-modal-wq col-2 question-circle') do
+        =image_tag "question_circle.png"
     = f.fields_for :requests do |r|
       = r.hidden_field :name
       = r.hidden_field :uid
@@ -66,7 +75,11 @@
       %div.modal-inner-title.modal-border-top
         =image_tag "logos/request_page_title03.png", {:class => "title-logo"}
         -# ="宛先を選ぶ"
-      %input{:name => "reply-search", :placeholder => "アカウントを検索する", :class=> "input-title input-answer", :id=>"reply-search"}
+      %div.row
+        %div.col-10
+          %input{:name => "reply-search", :placeholder => "アカウントを検索する", :class=> "input-title input-answer", :id=>"reply-search"}
+        %div#user-search-exec.col-2.option-search
+          =image_tag "modal_search.png"
       %ul#option-users
 
     %div.modal-back-button=image_tag "request_page_button.png", {:class => "modal-back-button-img"}

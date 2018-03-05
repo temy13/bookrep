@@ -15,3 +15,10 @@ $ ->
     else if page == "page_a"
       $('#profile-posts-a').css 'display', 'block'
       $('#profile-posts-a-tab').addClass 'select'
+
+  # $("#profile-checkbox-input")
+
+# $(document).on("ready page:change", function() {
+#     $('.tag-tooltip').tooltip("show");
+# 		$('.tag-tooltip').tooltip("disable");
+# });

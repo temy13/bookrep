@@ -46,7 +46,11 @@ $ ->
     $('#answer-title-input').addClass("input-error")
     return false
 
+
   if ($('#answer-title-input').exists())
+    $('#answer-title-input').on 'click', ->
+      $("html,body").animate({scrollTop:$('#answer-title-input').offset().top - 20});
+
     $('#answer-title-input').autocomplete(
       source: '/answers/auto_complete.json'
       delay: 200

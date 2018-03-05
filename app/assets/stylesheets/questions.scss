@@ -3,7 +3,7 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
   @import "vars.scss";
-  
+
 $blue: #5299ff;
 $white: white;
 $gray: #F2F2F2;
@@ -102,6 +102,7 @@ left:calc(100% - 48px);
    -moz-box-shadow:0 0 0 2px transparent,0 3px 3px rgba(0,0,0,.3);
         box-shadow:0 0 0 2px transparent,0 3px 3px rgba(0,0,0,.3);
 }
+
 
 
 // .checkbox-label:after{

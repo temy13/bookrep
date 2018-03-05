@@ -18,13 +18,15 @@
 //= require rails-ujs
 //= require jquery
 //= require jquery-ui
-//= require bootstrap
 //= require jquery_ujs
-
+//= require jquery.validate.additional-methods
+//= require jquery.validate
+//= require bootstrap
 
 //= require_tree .
 
 jQuery.fn.exists = function(){return Boolean(this.length > 0);}
+
 
 $.extend($.ui.autocomplete.prototype.options, {
 	open: function(event, ui) {
@@ -32,6 +34,11 @@ $.extend($.ui.autocomplete.prototype.options, {
             "width": ($(this).width() + "px")
         });
     }
+});
+
+$.extend($.validator.messages, {
+		required: "このフィールドは必須です。",
+		//required: "{1}を入力してください。",
 });
 
 

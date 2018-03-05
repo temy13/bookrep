@@ -78,3 +78,4 @@ gem 'carrierwave-data-uri'
 gem 'activerecord-import'
 gem "font-awesome-rails"
 gem 'gon'
+gem 'jquery-validation-rails'

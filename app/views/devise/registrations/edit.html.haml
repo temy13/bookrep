@@ -35,16 +35,17 @@
 
     %div
       = "Email"
-      - if resource[:provider].nil?
-        = f.text_field :email, required: true, :class=>"profile-input-field"
-      - else
-        = f.text_field :email, :class=>"profile-input-field"
+      %div.tag-tooltip{:data => {:toggle=>"tooltip", :placement=>"top", :title=>"Email書いて"}}
+        - if resource[:provider].nil?
+          = f.text_field :email, required: true, :class=>"profile-input-field"
+        - else
+          = f.text_field :email, :class=>"profile-input-field"
 
     %div.profile-checkbox
       = "Emailで通知を受け取る"
       %div.checkbox
-        = f.check_box :is_email_notice, :id =>"checkbox1", :class=>"ios-toggle"
-        = label "", "checkbox1", :class=>"checkbox-label"#, :data=>{:off=>"off" , :on=>"on"}
+        = f.check_box :is_email_notice, :id =>"profile-checkbox-input", :class=>"ios-toggle"
+        = label "", "profile-checkbox-input", :class=>"checkbox-label"#, :data=>{:off=>"off" , :on=>"on"}
 
 
     .form-actions

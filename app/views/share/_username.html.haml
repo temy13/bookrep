@@ -1,12 +1,12 @@
 //質問と回答のみ
 - if anonymous
-  - if obj.is_anonymous
+  - if obj.is_anonymous || !link
     = obj.name_or_anonymous + "のおすすめ"
   - else
     = link_to profile_path(obj.user) do
       = obj.name_or_anonymous + "のおすすめ"
 - else
-  - if obj.is_anonymous
+  - if obj.is_anonymous || !link
     = obj.name_or_hide
   - else
     = link_to profile_path(obj.user) do

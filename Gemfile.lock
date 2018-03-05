@@ -148,6 +148,7 @@ GEM
       turbolinks
     jquery-ui-rails (6.0.1)
       railties (>= 3.2.16)
+    jquery-validation-rails (1.16.0)
     kaminari (1.1.1)
       activesupport (>= 4.1.0)
       kaminari-actionview (= 1.1.1)
@@ -336,6 +337,7 @@ DEPENDENCIES
   jquery-rails
   jquery-turbolinks
   jquery-ui-rails
+  jquery-validation-rails
   kaminari
   kaminari-bootstrap
   listen (>= 3.0.5, < 3.2)

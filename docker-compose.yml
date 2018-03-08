@@ -33,7 +33,7 @@ services:
   rails:
     #build:
     #  context: .
-    image: localhost:5000/temy13/bookrep:v1.5
+    image: localhost:5000/temy13/bookrep:v1.13
     ports:
       - "3000:${PORT:-3000}"
     environment:

@@ -19,21 +19,21 @@
       = f.hidden_field :user_id, :value => current_user.id
     - if current_user.provider == "twitter"
       .field.tweet.separate
-        %span.text= "Twitter"
+        %span.text= "Twitterアカウントで投稿をシェアする"
         %div.checkbox
           = f.check_box :is_tweet, :id =>"checkbox1", :class=>"ios-toggle"
           = label "", "checkbox1", :class=>"checkbox-label"#, :data=>{:off=>"off" , :on=>"on"}
     - else
       .field.tweet.separate.disabled
         -# %div.fade
-        %span.text= "Twitter"
+        %span.text= "Twitterアカウントで投稿をシェアする"
         %div.checkbox
           = f.check_box :is_tweet, :checked=>false, :id =>"checkbox1", :class=>"ios-toggle"
           = label "", "checkbox1", :class=>"checkbox-label"#, :data=>{:off=>"off" , :on=>"on"}
 
     .field.separate.separate-bottom.row.height-block3
       = link_to("#", class: 'show-modal col-10') do
-        = "リクエスト"
+        = "友達に回答リクエストを送る"
       = link_to("#", class: 'show-modal-wq col-2 question-circle') do
         =image_tag "question_circle.png"
     = f.fields_for :requests do |r|
@@ -45,7 +45,7 @@
   .actions-group
     - if current_user.provider == "twitter"
       .actions
-        = f.submit 'Twitter名で投稿', class: "btn blue btn-base", name: "normal"
+        = f.submit 'アカウント名で投稿', class: "btn blue btn-base", name: "normal"
     - else
       .actions
         = f.submit 'ユーザ名で投稿', class: "btn blue btn-base", name: "normal"
@@ -66,22 +66,22 @@
           = image_tag "Arrow01.jpg", {:id => "reply-arrow-img"}
     %div#reply-input-box
       %div.inner-content
+        %p="あなたが選んだTwitterアカウント宛に"
         %p="Twitterのブクリプ公式アカウントが"
-        %p="リクエストされたアカウントに"
         %p="「回答リクエストが届きました！」と"
         %p="ツイートでおしらせします"
         %p.font-sm="リクエストが届くまで時間がかかる場合や、届かない場合があります。"
       %div.modal-inner-title.border-bottom
-        =image_tag "logos/request_page_title02.png", {:class => "title-logo"}
+        =image_tag "logos/request_page_title03.png", {:class => "title-logo"}
         -# ="公式からTwitterへの投稿"
-      = image_tag "twitter_timeline_view_request3.jpg"
+      = image_tag "twitter_timeline_view_request3.jpg", {:class => "reply-sample"}
     %div.reply-search-box
       %div.modal-inner-title.modal-border-top
-        =image_tag "logos/request_page_title03.png", {:class => "title-logo"}
+        =image_tag "logos/request_page_title02.png", {:class => "title-logo"}
         -# ="宛先を選ぶ"
       %div.row
         %div.col-10
-          %input{:name => "reply-search", :placeholder => "アカウントを検索する", :class=> "input-title input-answer", :id=>"reply-search"}
+          %input{:name => "reply-search", :placeholder => "アカウントを検索する", :class=> "input-request input-answer", :id=>"reply-search"}
         %div#user-search-exec.col-2.option-search
           =image_tag "modal_search.png"
       %ul#option-users

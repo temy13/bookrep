@@ -10,7 +10,7 @@ class QuestionsController < ApplicationController
   def index
     #@questions = Question.not_answered.includes(:answers).page(params[:page_1]).per(PER)
     #@questions_answered = Question.answered.includes(:answers).page(params[:page_2]).per(PER)
-    @questions = Question.includes(:answers).page(params[:page]).per(PER)
+    @questions = Question.includes(:answers).order('created_at DESC').page(params[:page]).per(PER)
   end
 
   def show
@@ -31,7 +31,7 @@ class QuestionsController < ApplicationController
     if @question.save
 #      tweet_question(@question, params[:reply]) if @question.is_tweet
       flash[:notice_link] = profile_path(current_user) if current_user.is_dummy_email
-      notice = flash[:notice_link].blank? ? "質問が投稿されました" : "質問が投稿されました。通知のためEmailを登録しましょう"
+      notice = flash[:notice_link].blank? ? "質問が投稿されました" : "質問が投稿されました。通知を受け取るためにはアカウントページからメール登録してください"
       redirect_to @question, notice: notice
     else
        render :new

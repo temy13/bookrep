@@ -1,7 +1,7 @@
 %div.questions
   %ul.question-list
     - questions.each do |question|
-      %li.question-item
+      %li.question-item.question-item-li
         = link_to(question_path(question), class: '') do
           -# = image_tag "OG_pattern01.jpg", {:class => "question-bg"}
           %div.question-item-main

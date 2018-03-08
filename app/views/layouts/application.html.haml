@@ -13,26 +13,28 @@
     - if @question.present? && @question.try(:id).present?  && @question.try(:content).present? && @question.try(:image_url).present?
       %meta{:name => "twitter:card", :content=>"summary_large_image"}
       %meta{:name => "twitter:site", :content=>"@bookreptokyo"}
-      %meta{:property => "og:url", :content=>"https://nextbooks.herokuapp.com/questions/" + @question.id.to_s}
+      %meta{:property => "og:url", :content=>ENV["SERVICE_HOST"] + @question.id.to_s}
       %meta{:property => "og:title", :content=>@question.content}
       %meta{:property => "og:desctiption", :content=>@question.content}
-      %meta{:property => "og:image", :content=>"https://nextbooks.herokuapp.com/" + @question.image.sns.url}
+      %meta{:property => "og:image", :content=>ENV["SERVICE_HOST"] + @question.image.sns.url}
 
   %body
     - if notice
       - if flash[:notice_link]
-        %p.notice.bg-blue.slide-slow
+        %div.notice.bg-blue.slide-slow
           = link_to notice, flash[:notice_link]
+          -# = notice
+          %a#notice-close= "×"
       - else
-        %p.notice.bg-blue.slide-normal
+        %div.notice.bg-blue.slide-normal
           = notice
           %a#notice-close= "×"
     - if alert
       - if flash[:notice_link]
-        %p.notice.bg-red.slide-slow
+        %div.notice.bg-red.slide-slow
           = link_to alert, flash[:notice_link]
       - else
-        %p.notice.bg-red.slide-normal
+        %div.notice.bg-red.slide-normal
           = alert
           %a#notice-close= "×"
 
@@ -45,27 +47,14 @@
               %nav.row
                 %div.col-4
                 - if user_signed_in?
-                  -# %div.d-inline-block= link_to current_user.name, pages_show_path
-                  -# %div.d-inline-block= link_to 'プロフィール変更', edit_user_registration_path
                   %div.logo.col-4
-                    - if request.fullpath == new_question_path
-                      = link_to image_tag('logos/header_post_question.png', { :border => '0', :alt => 'ロゴ'}), root_path
-                    - elsif request.fullpath == questions_path
-                      = link_to image_tag('logos/header_questions.png', { :border => '0', :alt => 'ロゴ'}), root_path
-                    - elsif @question.present? && request.fullpath == question_path
-                      = link_to image_tag('logos/header_post_answer.png', { :border => '0', :alt => 'ロゴ'}), root_path
-                    - elsif request.fullpath == edit_user_registration_path
-                      = link_to image_tag('logos/header_setting.png', { :border => '0', :alt => 'ロゴ'}), root_path
-                    - else
-                      = link_to image_tag('TitleLogo_2_Blue.png', { :border => '0', :alt => 'ロゴ'}), root_path
+                    =render "share/logo"
                   %div.d-inline-block.right.col-4
                     %div.header-button
                       = link_to 'ログアウト', destroy_user_session_path, method: :delete
                 - else
                   %div.logo.col-4
-                    = link_to image_tag('TitleLogo_2_Blue.png', { :border => '0', :alt => 'ロゴ'}), root_path
-                  -# %div.d-inline-block= link_to 'サインアップ', new_user_registration_path
-                  -# %div.d-inline-block= link_to 'ログイン', new_user_session_path
+                    =render "share/logo"
                   %div.d-inline-block.right.col-4
                     %div.header-button
                       = link_to user_twitter_omniauth_authorize_path do

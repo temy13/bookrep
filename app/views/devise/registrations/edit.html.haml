@@ -35,11 +35,11 @@
 
     %div
       = "Email"
-      %div.tag-tooltip{:data => {:toggle=>"tooltip", :placement=>"top", :title=>"Email書いて"}}
+      %div.tag-tooltip.email-tag-tooltip{:data => {:toggle=>"tooltip", :placement=>"top", :html=>"true", :title=>"<div class='email-tooltip'>Emailで通知を受け取るために<br>Emailを書いてください！</div>"}}
         - if resource[:provider].nil?
-          = f.text_field :email, required: true, :class=>"profile-input-field"
+          = f.text_field :email, required: true, :class=>"profile-input-field", :id=>"profile-email-input"
         - else
-          = f.text_field :email, :class=>"profile-input-field"
+          = f.text_field :email, :class=>"profile-input-field", :id=>"profile-email-input"
 
     %div.profile-checkbox
       = "Emailで通知を受け取る"

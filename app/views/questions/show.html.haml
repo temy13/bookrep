@@ -33,6 +33,20 @@
                     = answer.content
                 %div.answer-item-image.col-3
                   = image_tag answer.book_image_url
+            - if current_user.blank?
+              %div.answer-footer.row
+                %div.col-4
+                %div.col-4
+                  %i.fa.fa-heart-o.like= answer.likes.size
+                %div.col-4
+            - elsif current_user.liked(answer)
+              %div{id:"answer-like-#{answer.id}", class: "answer-footer row"}
+                = render 'likes/dislike', answer: answer, user: current_user
+            - else
+              %div{id:"answer-like-#{answer.id}", class: "answer-footer row"}
+                = render 'likes/like', answer: answer, user: current_user
+
+
 
       = paginate @answers
   - else
@@ -80,8 +94,12 @@
               = label "", "checkbox1", :class=>"checkbox-label"#, :data=>{:off=>"off" , :on=>"on"}
 
       .actions-group
-        .actions
-          = f.submit 'twitter名で投稿する', class: "btn blue btn-base answer-submit", name: "normal"
+        - if current_user.provider == "twitter"
+          .actions
+            = f.submit 'Twitter名で投稿', class: "btn blue btn-base", name: "normal"
+        - else
+          .actions
+            = f.submit 'ユーザ名で投稿', class: "btn blue btn-base", name: "normal"
         .actions
           = f.submit '匿名で投稿で投稿する', class: "btn orange btn-base answer-submit", name: "anonymous"
 

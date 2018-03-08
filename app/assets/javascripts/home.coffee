@@ -18,6 +18,15 @@ $ ->
     $(this).addClass 'select'
     return
 
+  $('.owl-carousel').owlCarousel
+    loop: true
+    margin: 10
+    responsiveClass:true
+    responsive:
+      0:
+        items: 1
+        nav: false
+
   #
   # $('input[type=submit]').click (e) ->
   #   #e.preventDefault()

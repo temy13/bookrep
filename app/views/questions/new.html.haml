@@ -43,8 +43,12 @@
 
 
   .actions-group
-    .actions
-      = f.submit 'twitter名で投稿', class: "btn blue btn-base", name: "normal"
+    - if current_user.provider == "twitter"
+      .actions
+        = f.submit 'Twitter名で投稿', class: "btn blue btn-base", name: "normal"
+    - else
+      .actions
+        = f.submit 'ユーザ名で投稿', class: "btn blue btn-base", name: "normal"
     .actions
       = f.submit '匿名で投稿', class: "btn orange btn-base", name: "anonymous"
 

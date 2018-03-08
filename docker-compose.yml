@@ -14,15 +14,6 @@ services:
     # STAGE: 'production'
     #     # FORCE_RENEW: 'true'
     #
-  nginx:
-      #build: ./nginx
-      image: localhost:5000/temy13/nginx:v1.8
-      ports:
-          - "80:80"
-          - "443:443"
-      restart: always
-      volumes: 
-          - "/etc/letsencrypt:/etc/letsencrypt"
   #db:
   #  image: postgres:9.5
   #  environment:
@@ -33,7 +24,10 @@ services:
   rails:
     #build:
     #  context: .
-    image: localhost:5000/temy13/bookrep:v1.13
+    image: localhost:5000/temy13/bookrep:v1.15
+    volumes:
+      - .:/app
+      - public-data:/app/public
     ports:
       - "3000:${PORT:-3000}"
     environment:
@@ -51,3 +45,17 @@ services:
       - RAILS_LOG_TO_STDOUT=${RAILS_LOG_TO_STDOUT}
    #depends_on:
     #  - db
+  nginx:
+      #build: ./nginx
+      image: localhost:5000/temy13/nginx:v1.9
+      ports:
+          - "80:80"
+          - "443:443"
+      restart: always
+      volumes: 
+          - "/etc/letsencrypt:/etc/letsencrypt"
+          - public-data:/app/public
+      depends_on:
+        - rails
+volumes:
+  public-data:

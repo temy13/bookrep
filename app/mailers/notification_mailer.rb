@@ -5,7 +5,7 @@ class NotificationMailer < ApplicationMailer
     @question = answer.question
     @user = @question.user
     mail(
-      subject: "あなたの質問に回答がつきました！", #件名
+      subject: "【ブクリプ】あなたの質問に回答が届きました！", #件名
       to: @user.email
     ) do |format|
       format.text

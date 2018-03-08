@@ -53,7 +53,7 @@ ja:
       password_change:
         greeting: "%{recipient}様"
         message: "パスワードが再設定されたことを通知します。"
-        subject: "パスワードの変更について"
+        subject: "【ブクリプ】パスワードが変更されました！"
       reset_password_instructions:
         action: "パスワード変更"
         greeting: "%{recipient}様"

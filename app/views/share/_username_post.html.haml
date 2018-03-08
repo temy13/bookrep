@@ -1,0 +1,7 @@
+//質問と回答のみ
+
+- if obj.is_anonymous || !link
+  = obj.name_or_anonymous_post
+- else
+  = link_to profile_path(obj.user) do
+    = obj.name_or_anonymous_post

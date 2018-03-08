@@ -104,4 +104,9 @@ Rails.application.configure do
     password: ENV["EMAIL_PASS"],
   }
 
+  # image 404
+  config.serve_static_assets = true
+  config.public_file_server.enabled = true
+
+
 end

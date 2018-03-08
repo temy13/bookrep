@@ -15,6 +15,6 @@
                 = image_tag "communication-4.png"
                 = question.answers.length
             %div.question-item-footer-right.col-4
-              = render 'share/username', obj: question, anonymous: false, link: false
+              = render 'share/username_post', obj: question, link: false
 
 = paginate questions, :param_name => page_name, :params => {:page => page_name}#, remote: true

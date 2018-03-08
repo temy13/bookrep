@@ -1,2 +1,2 @@
 id = '<%= "#answer-like-#{@answer.id}" %>';
-$(id).html("<%= j(render(:partial => 'dislike', :locals => { :answer => @answer, :user=>@user })) %>");
+$(id).html("<%= j(render(:partial => 'todislike', :locals => { :answer => @answer, :user=>@user })) %>");

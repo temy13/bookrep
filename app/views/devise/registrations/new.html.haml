@@ -1,10 +1,17 @@
-%div.top
-  =image_tag("question_top_bg.png", :class => "top-image")
-  %div.top-cover
-    %div.top-cover-bg
-    %div.top-cover-contents
-      %div.top-cover-text= "誰かとっておきの本を選んでもらうQ&Aコミュニティ"
-      %div.top-cover-image= image_tag "logo_mark_blue.png"
+%div.top.owl-carousel.owl-theme
+  %div.item
+    =image_tag("question_top_bg.png", :class => "top-image")
+    %div.top-cover
+      %div.top-cover-bg
+      %div.top-cover-contents
+        %div.top-cover-text= "誰かとっておきの本を選んでもらうQ&Aコミュニティ"
+        %div.top-cover-image= image_tag "logo_mark_blue.png"
+  %div.item
+    =image_tag("question_top_bg.png", :class => "top-image")
+  %div.item
+    =image_tag("question_top_bg.png", :class => "top-image")
+  %div.item
+    =image_tag("question_top_bg.png", :class => "top-image")
   -# %div.top-description="おすすめの本を教えてもらう匿名Q&Aサイト"
   -# %div.top-content
   -#   ="つぎのほん"
@@ -37,15 +44,15 @@
   %div.top-sub-title="例えば、こんな時のために"
 
   %div.using.row
-    %div.using-img.col-2= image_tag "icons/1.png"
+    %div.using-img.col-2= image_tag "icons/4.png"
     %div.using-txt.col-10="最近の気分にあった作品はないかしら"
   %div.using.row
-    %div.using-img.col-2= image_tag "icons/2.png"
+    %div.using-img.col-2= image_tag "icons/6.png"
     %div.using-txt.col-10
       %p="同じような本ばかり読んでいるなぁ..."
       %p="新しいジャンルに挑戦してみたい！"
   %div.using.row
-    %div.using-img.col-2= image_tag "icons/3.png"
+    %div.using-img.col-2= image_tag "icons/2.png"
     %div.using-txt.col-10
       %p="大切な一冊や、「辛い時に読む一冊」"
       %p="みんなに聞きたいな"
@@ -74,7 +81,7 @@
 %div.white-back.top-inputs
   %div.twitter-login
     = link_to "Twitterで登録/ログイン", user_twitter_omniauth_authorize_path, class: "btn blue btn-base"
-  = simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+  = simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { id: "user-2" }) do |f|
     - if flash[:error].present?
       #error_explanation
         -# %h2= "#{pluralize(@answer.errors.count, "error")} prohibited this answer from being saved:"
@@ -82,8 +89,8 @@
           - flash[:error].each do |message|
             %li.list-group-item.list-group-item-danger= message
     .form-inputs
-      = f.text_field :email, required: true, placeholder: "Email", class: "login-input-field"
-      = f.password_field :password, autocomplete: "off", required: true, placeholder: "Password", class: "login-input-field"
+      = f.text_field :email, required: true, placeholder: "Email", class: "login-input-field", id: "user-email-2"
+      = f.password_field :password, autocomplete: "off", required: true, placeholder: "Password", class: "login-input-field", id: "user-password-2"
       -# = f.input :remember_me, as: :boolean if devise_mapping.rememberable?
     .form-actions
       = f.button :submit, "メールアドレスで登録", class: "btn orange btn-base"

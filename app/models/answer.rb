@@ -63,5 +63,11 @@ class Answer < ApplicationRecord
     self.book.present? ? self.book.authors_txt : ""
   end
 
+  def like_count
+    Like.where(answer_id: self.id, like: true)
+      .uniq{ |m| "#{m[:answer_id]}-#{m[:user_id]}" }
+      .length
+  end
+
 
 end

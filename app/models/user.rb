@@ -104,6 +104,10 @@ class User < ApplicationRecord
     self.icon_path
   end
 
+  def liked(answer)
+    Like.where(user_id: self.id, answer_id: answer.id).size > 0
+  end
+
 
 
   private

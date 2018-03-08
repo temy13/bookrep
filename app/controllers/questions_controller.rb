@@ -7,13 +7,14 @@ class QuestionsController < ApplicationController
   TWITTER_PER=40
 
   def index
-    @questions = Question.not_answered.includes(:answers).page(params[:page_1]).per(PER)
-    @questions_answered = Question.answered.includes(:answers).page(params[:page_2]).per(PER)
+    #@questions = Question.not_answered.includes(:answers).page(params[:page_1]).per(PER)
+    #@questions_answered = Question.answered.includes(:answers).page(params[:page_2]).per(PER)
+    @questions = Question.includes(:answers).page(params[:page]).per(PER)
   end
 
   def show
     @answer = Answer.new
-    @answers = @question.answers.page(params[:page]).per(PER)
+    @answers = @question.answers.includes(:likes).page(params[:page]).per(PER)
   end
 
   def new

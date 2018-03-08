@@ -15,12 +15,12 @@
 //= require jquery3
 //= require popper
 //= require bootstrap-sprockets
-//= require rails-ujs
 //= require jquery
 //= require jquery-ui
 //= require jquery_ujs
-//= require jquery.validate.additional-methods
+//= require rails-ujs
 //= require jquery.validate
+//= require jquery.validate.additional-methods
 //= require bootstrap
 
 //= require_tree .
@@ -57,6 +57,19 @@ var getUrlParameter = function getUrlParameter(sParam) {
     }
 };
 
+$('.owl-carousel').owlCarousel({
+    loop:true,
+    margin:10,
+    // nav:true,
+    responsive:{
+        0:{
+            items:1
+        }//,
+        // 600:{
+        //     items:3
+        // },
+    }
+})
 
 // input.addEventListener 'invalid', ((e) ->
 //   if input.validity.valueMissing

@@ -42,11 +42,12 @@
         %div.col-12.col-lg-8.max-height.padding-zero
           %div#center.max-height
             %div.header
-              %nav
+              %nav.row
+                %div.col-4
                 - if user_signed_in?
                   -# %div.d-inline-block= link_to current_user.name, pages_show_path
                   -# %div.d-inline-block= link_to 'プロフィール変更', edit_user_registration_path
-                  %div.d-block.logo
+                  %div.logo.col-4
                     - if request.fullpath == new_question_path
                       = link_to image_tag('logos/header_post_question.png', { :border => '0', :alt => 'ロゴ'}), root_path
                     - elsif request.fullpath == questions_path
@@ -57,16 +58,18 @@
                       = link_to image_tag('logos/header_setting.png', { :border => '0', :alt => 'ロゴ'}), root_path
                     - else
                       = link_to image_tag('TitleLogo_2_Blue.png', { :border => '0', :alt => 'ロゴ'}), root_path
-                  %div.d-inline-block.right.header-button
-                    = link_to 'ログアウト', destroy_user_session_path, method: :delete
+                  %div.d-inline-block.right.col-4
+                    %div.header-button
+                      = link_to 'ログアウト', destroy_user_session_path, method: :delete
                 - else
-                  %div.d-block.logo
+                  %div.logo.col-4
                     = link_to image_tag('TitleLogo_2_Blue.png', { :border => '0', :alt => 'ロゴ'}), root_path
                   -# %div.d-inline-block= link_to 'サインアップ', new_user_registration_path
                   -# %div.d-inline-block= link_to 'ログイン', new_user_session_path
-                  %div.d-inline-block.right.header-button
-                    = link_to user_twitter_omniauth_authorize_path do
-                      %i.fa.fa-twitter="登録/ログイン"
+                  %div.d-inline-block.right.col-4
+                    %div.header-button
+                      = link_to user_twitter_omniauth_authorize_path do
+                        %i.fa.fa-twitter="登録/ログイン"
 
             %div#main-contents.max-height
               = yield

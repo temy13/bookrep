@@ -16,9 +16,21 @@ $ ->
       $('#profile-posts-a').css 'display', 'block'
       $('#profile-posts-a-tab').addClass 'select'
 
-  # $("#profile-checkbox-input")
+  $("#profile-checkbox-input").on 'change', ->
+    if $(this).prop("checked") == true && $("#profile-email-input").val() == ""
+      $('.email-tag-tooltip').tooltip("show")
+      $('.email-tag-tooltip').tooltip("disable")
+      # $('.email-tag-tooltip').tooltip("destroy")
+
+  $("#profile-email-input").on 'change', ->
+    if $("#profile-email-input").val() != ""
+      $('.email-tag-tooltip').tooltip("hide")
+
+  # gbTip = $('.email-tag-tooltip').tipr()
+  # gbTip.unbind 'mouseenter mouseleave'
+
+
 
 # $(document).on("ready page:change", function() {
-#     $('.tag-tooltip').tooltip("show");
 # 		$('.tag-tooltip').tooltip("disable");
 # });

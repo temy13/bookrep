@@ -18,7 +18,11 @@ $animation: .25s ease-in-out;
 
 .like-submit{
   background-color: transparent;
-  border:none,
+  border:none;
+  i:before{
+    color:$red;
+    margin: $ws-sm;
+  }
 }
 
 .profile-checkbox{

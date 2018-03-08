@@ -2,6 +2,8 @@ include Tweet
 
 class AnswersController < ApplicationController
   before_action :authenticate_user!
+  before_action :save_title_query, only: [:auto_complete]
+
   # before_action :set_answer, only: [:show, :edit, :update, :destroy]
 
   # # GET /answers
@@ -55,13 +57,14 @@ class AnswersController < ApplicationController
 
   #TODO: too many response
   def auto_complete
-    uri = Addressable::URI.parse("https://www.googleapis.com/books/v1/volumes?q=#{params[:term]}&country=JP")
+    q = params[:term].gsub(/\s/, "").gsub(" ", "")
+    uri = Addressable::URI.parse("https://www.googleapis.com/books/v1/volumes?q=#{q}&country=JP&maxResults=40&orderBy=relevance")
     begin
       response = Net::HTTP.get_response(uri)
       result = JSON.parse(response.body)
       book_result = result["items"]
         .select{|item| item.has_key?("volumeInfo") &&  item["volumeInfo"].has_key?("title")}
-        .take(10)
+        .take(40)
         .map{|item|
           {
             title: item["volumeInfo"]["title"],
@@ -84,6 +87,10 @@ class AnswersController < ApplicationController
     # def set_answer
     #   @answer = Answer.find(params[:id])
     # end
+    def save_title_query
+      @query = TitleQuery.new(user_id: current_user.try(:id), query: params[:term])
+      @query.save
+    end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def answer_params

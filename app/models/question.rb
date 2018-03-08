@@ -18,8 +18,9 @@ class Question < ApplicationRecord
   belongs_to :user
   has_many :answers
   has_many :requests
-  accepts_nested_attributes_for :requests
+  has_many :question_show_logs
 
+  accepts_nested_attributes_for :requests
   validates :content, presence: true
 
   mount_uploader :image, ImageUploader

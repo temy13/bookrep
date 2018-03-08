@@ -786,6 +786,7 @@ $icon-length: $block2;
 }
 
 .white-back{
+  position: relative;
   background-color:white;
   padding: $ws-lg $ws-sm 0;
 
@@ -922,5 +923,38 @@ $icon-length: $block2;
     bottom: 0;
     left: 0;
     margin: auto;
+  }
+}
+
+
+.invition-qs{
+  position: absolute;
+  color: $blue;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  margin: auto;
+  height: 80%;
+  width: 80%;
+  border: $blue 3px solid;
+  border-radius: $block;
+  text-align: center;
+  .invition-qs-bg{
+    background: white;
+    opacity: 0.3;
+    height: 100%;
+    width: 100%;
+  }
+  .invition-qs-txt{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    width: 80%;
+    height: 50%;
+    font-size: $font-size-lg * 2;
   }
 }

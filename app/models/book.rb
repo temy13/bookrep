@@ -14,6 +14,8 @@
 
 class Book < ApplicationRecord
   has_many :authors
+  has_many :book_click_logs
+
   #mapの配列をもらい、mapを返す
   def self.auto_complete_map(arr)
     ids = arr.map{|m| m[:google_books_id]}

@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  post 'click_logs/book_affiliate'
+
   resources :answers, only: [:create] do
     collection do
       get :auto_complete

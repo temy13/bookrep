@@ -20,7 +20,7 @@
         - @answers.each do |answer|
           %li.answer-item
             = render 'answer_header', answer: answer
-            = link_to(answer.affiliate_url, class: '', target: ["_blank"]) do
+            = link_to(answer.affiliate_url, class: '', target: ["_blank"], rel: "book_affiliate", data: {answer_id: answer.id, user_id: current_user.try(:id), book_id: answer.book.try(:id)}) do
               %div.answer-inner.row
                 %div.answer-item-left.col-1
                 %div.answer-item-content.col-8
@@ -41,10 +41,10 @@
                 %div.col-4
             - elsif current_user.liked(answer)
               %div{id:"answer-like-#{answer.id}", class: "answer-footer row"}
-                = render 'likes/dislike', answer: answer, user: current_user
+                = render 'likes/todislike', answer: answer, user: current_user
             - else
               %div{id:"answer-like-#{answer.id}", class: "answer-footer row"}
-                = render 'likes/like', answer: answer, user: current_user
+                = render 'likes/tolike', answer: answer, user: current_user
 
 
 
@@ -53,7 +53,7 @@
     %div.white-back.no-answer
       %div.large= "まだ回答がありません"
       %div.middle= "あなたのオススメの本を教えてください！"
-      = image_tag "LogoMark_Blue.png"
+      = image_tag "logo_mark_blue.png"
 
 
   - if current_user
@@ -65,7 +65,6 @@
             %ul
               - @answer.errors.full_messages.each do |message|
                 %li= message
-
         .field
           -# TODO: title required
           %div#answer-title-dummy-input
@@ -75,7 +74,7 @@
             %div#answer-title-remove.d-inline-block.btn.remove-button= "x"
           = f.hidden_field :title, :placeholder => "本のタイトルを入力", :class=> "input-title input-answer", :id => "answer-title-input-form"
           = f.text_area :content, required: true, :placeholder => "ここにコメントを書いて投稿しよう", :class=> "input-answer input-question"
-          = f.hidden_field :user_id, :value => current_user.id
+          = f.hidden_field :user_id, :value => current_user.try(:id)
           = f.hidden_field :question_id, :value => @question.id
           = f.hidden_field :book_id, :value => nil, :id => "answer-book-id"
 
@@ -102,6 +101,29 @@
             = f.submit 'ユーザ名で投稿', class: "btn blue btn-base", name: "normal"
         .actions
           = f.submit '匿名で投稿で投稿する', class: "btn orange btn-base answer-submit", name: "anonymous"
+  - else
+    %div.white-back
+      %div.disabled
+        .field
+          %div#answer-title-dummy-input
+            %input{:name => "title_dummy", :placeholder => "オススメの本はこちら", :class=> "input-title input-answer", :id => "answer-title-input"}
+            %textarea{required: true, :placeholder => "ここにコメントを書いて投稿しよう", :class=> "input-answer input-question"}
+          .field.tweet.separate
+            %span.text= "Twitter"
+            %div.checkbox
+              -# = check_box_tag :is_tweet, :id =>"checkbox1", :class=>"ios-toggle"
+              = label "", "checkbox1", :class=>"checkbox-label"#, :data=>{:off=>"off" , :on=>"on"}
+        .actions-group
+          .actions
+            = submit_tag 'Twitter名で投稿', class: "btn blue btn-base", name: "normal"
+          .actions
+            = submit_tag '匿名で投稿で投稿する', class: "btn orange btn-base answer-submit", name: "anonymous"
+      -# %div.invition-qs.invite
+      -#   = link_to user_twitter_omniauth_authorize_path do
+      -#     %div.invition-qs-bg
+      -#     %div.invition-qs-txt
+      -#       = "ログインしてあなたのおすすめを教えてあげましょう！"
+
 
 
 -# = link_to 'Edit', edit_question_path(@question)

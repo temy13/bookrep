@@ -35,6 +35,11 @@ class User < ApplicationRecord
   has_many :questions
   has_many :answers
   has_many :likes
+  has_many :question_show_logs
+  has_many :title_query
+  has_many :book_click_logs
+
+
 
   # before_save :prepare_save
 

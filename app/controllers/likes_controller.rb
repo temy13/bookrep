@@ -7,6 +7,11 @@ class LikesController < ApplicationController
     if @likes.blank?
       @like = Like.new(user_id: params[:user_id], answer_id: params[:answer_id], like: true)
       @like.save
+    else
+      @likes.map{|like|
+        like.like = true
+        like.save
+      }
     end
     respond_to do |format|
       format.js {}
@@ -27,7 +32,7 @@ class LikesController < ApplicationController
   def set_vars
     # params = params[:field]
     @answer = Answer.find(params[:answer_id])
-    @likes = Like.where(user_id: params[:user_id], answer_id: params[:answer_id], like: true)
+    @likes = Like.where(user_id: params[:user_id], answer_id: params[:answer_id])
     @user = current_user
   end
   # # Never trust parameters from the scary internet, only allow the white list through.

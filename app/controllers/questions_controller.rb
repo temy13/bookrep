@@ -3,6 +3,7 @@ include Tweet
 class QuestionsController < ApplicationController
   before_action :authenticate_user!, only: [:new]
   before_action :set_question, only: [:show] #, :edit, :update, :destroy
+  before_action :create_log, only: [:show] #, :edit, :update, :destroy
   PER = 10
   TWITTER_PER=40
 
@@ -84,6 +85,11 @@ class QuestionsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_question
       @question = Question.find(params[:id])
+    end
+
+    def create_log
+      @log = QuestionShowLog.new(question_id: params[:id], user_id:current_user.try(:id))
+      @log.save
     end
 
 

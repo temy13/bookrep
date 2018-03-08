@@ -21,6 +21,8 @@ class Answer < ApplicationRecord
   belongs_to :user
   belongs_to :book, optional: true
   has_many :likes
+  has_many :book_click_logs
+
 
   validates :title, presence: true
   validates :content, presence: true

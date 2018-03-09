@@ -5,18 +5,21 @@
 $ ->
 
 
-  if ($('#question').exists())
-    html2canvas(document.querySelector('#question')).then (canvas) ->
-      #document.body.appendChild canvas
-      imageData = canvas.toDataURL('image/png')
-      id = location.href.replace(location.protocol + "//" + location.host + "/questions/", "")
-      $.ajax
-        url: location.protocol + "//" + location.host + "/questions/add_image"
-        type: 'POST'
-        data: field:
-          id: id
-          data: imageData
-        dataType: 'json'
+  # if ($('#question').exists())
+  #   # html2canvas($("#question")).then (canvas) ->
+  #   html2canvas(document.querySelector('#question')).then (canvas) ->
+  #     document.body.appendChild canvas
+  #     #console.log $("#question")).getBoundingClientRect()
+  #     console.log document.querySelector('#question').getBoundingClientRect()
+  #     imageData = canvas.toDataURL('image/png')
+  #     id = location.href.replace(location.protocol + "//" + location.host + "/questions/", "")
+  #     $.ajax
+  #       url: location.protocol + "//" + location.host + "/questions/add_image"
+  #       type: 'POST'
+  #       data: field:
+  #         id: id
+  #         data: imageData
+  #       dataType: 'json'
 
   if ($('#questions').exists())
     page = getUrlParameter("page")

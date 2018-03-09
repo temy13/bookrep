@@ -1,4 +1,5 @@
 include Tweet
+include GenerateImages
 
 class QuestionsController < ApplicationController
   before_action :authenticate_user!, only: [:new]
@@ -30,8 +31,9 @@ class QuestionsController < ApplicationController
     @question.is_anonymous = params[:anonymous].present?
     if @question.save
 #      tweet_question(@question, params[:reply]) if @question.is_tweet
+      tweet(@question)
       flash[:notice_link] = profile_path(current_user) if current_user.is_dummy_email
-      notice = flash[:notice_link].blank? ? "質問が投稿されました" : "質問が投稿されました。通知を受け取るためにはアカウントページからメール登録してください"
+      notice = flash[:notice_link].blank? ? "質問が投稿されました" : "質問が投稿されました"#"。通知を受け取るためにはアカウントページからメール登録してください"
       redirect_to @question, notice: notice
     else
        render :new
@@ -39,16 +41,16 @@ class QuestionsController < ApplicationController
   end
 
   # post from question/:id (for twitter card)
-  def add_image
-    @question = Question.find(params[:field][:id])
-    return if @question.image_url
-    @question.image_data_uri = params[:field][:data]
-    @question.save
-    tweet_question(@question) if @question.is_tweet
-    @question.requests.each do |r|
-      tweet_request(r)
-    end
-  end
+  # def add_image
+  #   @question = Question.find(params[:field][:id])
+  #   return if @question.image_url
+  #   @question.image_data_uri = params[:field][:data]
+  #   @question.save
+  #   tweet_question(@question) if @question.is_tweet
+  #   @question.requests.each do |r|
+  #    tweet_request(r)
+  #   end
+  # end
 
   def reply_options
 
@@ -83,6 +85,17 @@ class QuestionsController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
+
+    def tweet(question)
+      path = generate_image(question)
+      question.image = File.open(path)
+      question.save
+      tweet_question(question) if question.is_tweet
+      question.requests.each do |r|
+       tweet_request(r)
+      end
+    end
+
     def set_question
       @question = Question.find(params[:id])
     end

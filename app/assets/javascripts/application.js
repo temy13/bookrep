@@ -71,6 +71,29 @@ $('.owl-carousel').owlCarousel({
     }
 })
 
+exports.getBounds = function (node) {
+
+							 var rect = node.getBoundingClientRect();
+							 console.log(rect.top, rect.left);
+
+							 if (node.getBoundingClientRect) {
+									 var clientRect = node.getBoundingClientRect();
+									 var width = node.offsetWidth == null ? clientRect.width : node.offsetWidth;
+									 return {
+											 //top: clientRect.top,
+											 top: rect.top,
+											 bottom: clientRect.bottom || (clientRect.top + clientRect.height),
+											 right: clientRect.left + width,
+											 //left: clientRect.left,
+											 left: rect.left,
+											 width: width,
+											 height: node.offsetHeight == null ? clientRect.height : node.offsetHeight
+									 };
+							 }
+							 return {};
+					 };
+
+
 // input.addEventListener 'invalid', ((e) ->
 //   if input.validity.valueMissing
 // 		$('input[type=submit]').css 'opacity': 1.0

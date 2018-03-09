@@ -10,7 +10,7 @@ Rails.application.routes.draw do
 
   resources :questions, only: [:index, :new, :show, :create] do
     collection do
-      post :add_image
+      #post :add_image
       get :reply_options
     end
   end

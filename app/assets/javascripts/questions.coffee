@@ -21,15 +21,15 @@ $ ->
   #         data: imageData
   #       dataType: 'json'
 
-  if ($('#questions').exists())
-    page = getUrlParameter("page")
-    if !page
-      return
-    $('.tab-contents-item').css 'display', 'none'
-    $('.tab li').removeClass 'select'
-    if page == "page_1"
-      $('#unanswered-questions').css 'display', 'block'
-      $('#unanswered-questions-tab').addClass 'select'
-    else if page == "page_2"
-      $('#answered-questions').css 'display', 'block'
-      $('#answered-questions-tab').addClass 'select'
+  # if ($('#questions').exists())
+  #   page = getUrlParameter("page")
+  #   if !page
+  #     return
+  #   $('.tab-contents-item').css 'display', 'none'
+  #   $('.tab li').removeClass 'select'
+  #   if page == "page_1"
+  #     $('#unanswered-questions').css 'display', 'block'
+  #     $('#unanswered-questions-tab').addClass 'select'
+  #   else if page == "page_2"
+  #     $('#answered-questions').css 'display', 'block'
+  #     $('#answered-questions-tab').addClass 'select'

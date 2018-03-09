@@ -28,7 +28,7 @@ class QuestionsController < ApplicationController
 
   def create
     @question = Question.new(question_params)
-    @question.is_anonymous = params[:anonymous].present?
+    @question.is_anonymous = params[:anonymous].present? || params[:submit_type] == "anonymous"
     if @question.save
 #      tweet_question(@question, params[:reply]) if @question.is_tweet
       tweet(@question)

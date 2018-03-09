@@ -18,7 +18,7 @@ $ ->
     v = $(this).data("value")
     console.log "add click: " + v
     $(".add-option-" + v).removeClass "hide"
-    $(".add-option-" + v).addClass "show"
+    # $(".add-option-" + v).addClass "show"
     $(this).addClass "hide"
 
   setListItem = (index, user) ->

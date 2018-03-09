@@ -44,7 +44,7 @@ module Tweet extend ActiveSupport::Concern
   def tweet_request(request)
     @client = official_twitter_client
     url = ENV["SERVICE_HOST"] + "/questions/" + request.question_id.to_s
-    @client.update("@" + request.name + " リクエストが届いています！ " + url)
+    @client.update("@" + request.name + " おすすめの本を教えて欲しいとリクエストが届いています！" + url)
   end
 
 end

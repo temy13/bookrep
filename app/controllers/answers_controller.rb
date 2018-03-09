@@ -28,7 +28,7 @@ class AnswersController < ApplicationController
   #TODO: ここでtitle_dummyをtitleに変更させる
   def create
     @answer = Answer.new(answer_params)
-    @answer.is_anonymous = params[:anonymous].present?
+    @answer.is_anonymous = params[:anonymous].present? || params[:submit_type] == "anonymous"
 
     if @answer.save
        tweet_answer(@answer) if @answer.is_tweet #NOTICE: current_user.nameとやったほうがいいかも

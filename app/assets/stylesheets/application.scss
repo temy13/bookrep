@@ -261,7 +261,7 @@ nav{
   font-size: $font-size-sm;
   @include screen($breakpoint-mobile, $breakpoint-tablet) {
     padding: $ws-lg $block*2 $ws-lg $block;
-    font-size: $font-size-lg;
+    font-size: 40px;
   }
   display: flex;
 	align-items: center;
@@ -278,11 +278,19 @@ nav{
 .able{
   // padding: $ws-lg $block;
   text-align: center;
-  height: $block*10;
+  height: $block*11;
+  font-size: $font-size-sm;
+  @include screen($breakpoint-mobile, $breakpoint-tablet) {
+    font-size: 40px;
+  }
+
   .able-img{
     width: 80%;
     height: 75%;
     margin:0 auto;
+  }
+  p{
+    margin:0;
   }
   img{
     max-width: 100%;
@@ -357,10 +365,13 @@ overflow: scroll;
     color: white;
     font-size: $font-size-lg;
     border:white 4px solid;
-    background-color: rgba( 255, 255, 255, 0.20 );
+    background-color: rgba( 255, 255, 255, 0 );
     font-weight: bold;
     padding: $block*2 0;
 
+    @include screen($breakpoint-mobile, $breakpoint-tablet) {
+      font-size: $block;
+    }
 }
 
 // .top-question-show-content{
@@ -528,6 +539,12 @@ $icon-length: $block2;
   padding: $block 0;
 }
 
+.field, .form-inputs{
+  padding: 0 $ws-sm;
+  input{
+    padding: 0 $ws-sm;
+  }
+}
 
 .profile-input-field{
   width:100%;
@@ -558,6 +575,7 @@ $icon-length: $block2;
 }
 
 #fix-footer{
+  z-index:100;
   background-color:white;// $bg-color;
   position:fixed;
   width:100%;
@@ -863,34 +881,45 @@ $icon-length: $block2;
 
 .invition-qs{
   position: absolute;
-  color: $blue;
+  color: $white;
   top: 0;
   right: 0;
   left: 0;
   bottom: 0;
   margin: auto;
-  height: 80%;
-  width: 80%;
-  border: $blue 3px solid;
+  height: 40%;
+  width: 90%;
+  padding:$block;
+  // border: $blue 3px solid;
   border-radius: $block;
   text-align: center;
-  .invition-qs-bg{
-    background: white;
-    opacity: 0.3;
-    height: 100%;
-    width: 100%;
-  }
+  background-color: rgba(128,128,128,0.7);
+  // .invition-qs-bg{
+  //   background: white;
+  //   opacity: 0.3;
+  //   height: 100%;
+  //   width: 100%;
+  // }
   .invition-qs-txt{
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    margin: auto;
-    width: 80%;
-    height: 50%;
-    font-size: $font-size-lg * 2;
+    // font-size: $fon;
+    @include screen($breakpoint-mobile, $breakpoint-tablet) {
+      font-size: $block;
+    }
   }
+  .invition-buttons{
+    margin-top:10%;
+    @include screen($breakpoint-mobile, $breakpoint-tablet) {
+      margin-top:5%;
+    }
+    .blue, .orange{
+      line-height: 78px;
+      color: white;
+      a{
+        color: white;
+      }
+    }
+  }
+
 }
 
 .mt2b{

@@ -33,7 +33,7 @@ class Answer < ApplicationRecord
   # end
 
   def book_image_url
-    return self.book_id ? self.book.image_url : ""
+    return self.book_id ? self.book.image_url : "content_blank01"
   end
 
   def affiliate_url

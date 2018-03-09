@@ -118,11 +118,15 @@
             = submit_tag 'Twitter名で投稿', class: "btn blue btn-base", name: "normal"
           .actions
             = submit_tag '匿名で投稿で投稿する', class: "btn orange btn-base answer-submit", name: "anonymous"
-      -# %div.invition-qs.invite
-      -#   = link_to user_twitter_omniauth_authorize_path do
-      -#     %div.invition-qs-bg
-      -#     %div.invition-qs-txt
-      -#       = "ログインしてあなたのおすすめを教えてあげましょう！"
+      %div.invition-qs.invite
+        %div.invition-qs-txt
+          = "登録/ログインして質問に答える"
+        %div.invition-buttons
+          %div.twitter-login
+            = link_to user_twitter_omniauth_authorize_path, class: "btn blue btn-base" do
+              %i.fa.fa-twitter="Twitterで登録/ログイン"
+          %div.normal-link.mail-login-link
+            = link_to "メールアドレスでログイン", new_user_session_path, class: "btn orange btn-base"
 
 
 

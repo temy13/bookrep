@@ -47,6 +47,8 @@ $ ->
       form.attr 'action', $(this).data('action')
       if form.valid()
         $(this).css 'opacity': '.5'
+      input = $("<input>").attr("type", "hidden").attr("name", "submit_type").val($(this).attr("name"))
+      form.append(input)
       form.submit()
       return
     return

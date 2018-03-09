@@ -29,11 +29,11 @@
       -#     %i (we need your current password to confirm your changes)
       -#     %br/
       -#     = f.password_field :current_password, autocomplete: "off"
-    %div
+    %div.form-inputs
       = "プロフィール"
       = f.text_area :profile, :class=>"profile-input-field profile-input-textarea"
 
-    %div
+    %div.form-inputs
       = "Email"
       %div.tag-tooltip.email-tag-tooltip{:data => {:toggle=>"tooltip", :placement=>"top", :html=>"true", :title=>"<div class='email-tooltip'>Emailで通知を受け取るために<br>Emailを書いてください！</div>"}}
         - if resource[:provider].nil?
@@ -41,7 +41,7 @@
         - else
           = f.text_field :email, :class=>"profile-input-field", :id=>"profile-email-input"
 
-    %div.profile-checkbox
+    %div.profile-checkbox.form-inputs
       = "Emailで通知を受け取る"
       %div.checkbox
         = f.check_box :is_email_notice, :id =>"profile-checkbox-input", :class=>"ios-toggle"

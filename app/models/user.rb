@@ -94,11 +94,11 @@ class User < ApplicationRecord
   end
 
   def answers_length(current_user)
-    current_user.try(:id) == self.id ? self.answers.length : self.answers.where(is_anonymous: false).length
+    current_user.try(:id) == self.id ? self.answers.size : self.answers.where(is_anonymous: false).size
   end
 
   def questions_length(current_user)
-    current_user.try(:id) == self.id ? self.questions.length : self.questions.where(is_anonymous: false).length
+    current_user.try(:id) == self.id ? self.questions.size : self.questions.where(is_anonymous: false).size
   end
 
   def icon
@@ -110,7 +110,7 @@ class User < ApplicationRecord
   end
 
   def liked(answer)
-    Like.where(user_id: self.id, answer_id: answer.id).size > 0
+    Like.where(user_id: self.id, answer_id: answer.id, like: true).size > 0
   end
 
 

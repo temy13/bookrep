@@ -10,12 +10,25 @@
 }
 
 .answer-footer{
-  text-align: center;
+  width: 100%;
+  // text-align: center;
   font-size: $font-size-lg;
   .like:before{
-    padding: 0 8px;
+    // padding: 0 8px;
+    margin-right: $ws-sm;
     color: $red;
   }
+  .like-submit{
+    background-color: transparent;
+    border:none;
+    padding: 0;
+    text-align: left;
+    // i:before{
+    //   color:$red;
+    //   padding: 0;
+    // }
+  }
+
 }
 
 .input-answer{

@@ -1,9 +1,8 @@
-%div.col-4
-%div.col-4
+%div.col-1
+%div.col-11
   =form_with(url: likes_destroy_path) do |f|
     =f.hidden_field 'answer_id', :value => answer.id
     =f.hidden_field 'user_id', :value => current_user.id
     =button_tag :type => "submit", :class =>"col-4 like-submit" do
-      %i.fa.fa-heart=answer.like_count
+      %i.fa.fa-heart.like=answer.like_count
     -# =f.submit answer.like_count , class: 'col-4 like-submit' #, type: :submit
-%div.col-4

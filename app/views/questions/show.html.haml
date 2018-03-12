@@ -35,10 +35,9 @@
                   = image_tag answer.book_image_url
             - if current_user.blank?
               %div.answer-footer.row
-                %div.col-4
-                %div.col-4
+                %div.col-1
+                %div.col-11
                   %i.fa.fa-heart-o.like= answer.likes.size
-                %div.col-4
             - elsif current_user.liked(answer)
               %div{id:"answer-like-#{answer.id}", class: "answer-footer row"}
                 = render 'likes/todislike', answer: answer, user: current_user

@@ -33,7 +33,7 @@ $ ->
     r += "<div class='col-3'><div class='option-user-image'><image src=" + imgurl + " /></div></div>"
     r += "<div class='option-names col-7'>"
     username = user.name
-    name = if username.length < 10 then username else username.slice(0, 9) + "..."
+    name = if username.length < 8 then username else username.slice(0, 7) + "..."
     r += "<div class='option-user-name' >" + name + "</div>"
     r += "<div class='option-user-sname' >" + user.screen_name + "</div>"
     r += "<div class='option-user-uid' >" + user.uid + "</div></div>"

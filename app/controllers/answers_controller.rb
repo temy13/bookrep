@@ -31,13 +31,15 @@ class AnswersController < ApplicationController
     @answer.is_anonymous = params[:anonymous].present? || params[:submit_type] == "anonymous"
 
     if @answer.save
-       tweet_answer(@answer) if @answer.is_tweet #NOTICE: current_user.nameとやったほうがいいかも
+       tweet_answer(@answer) if @answer.is_tweet
        NotificationMailer.answer_nortification(@answer).deliver if @answer.is_send_email
        redirect_to ({controller: 'questions', action: 'show', id: @answer.question.id}), notice: '回答が投稿されました'
-    else
-      #with Error
+    elsif @answer.question.present?
       redirect_to controller: 'questions', action: 'show', id: @answer.question.id
+    else
+      redirect_to controller: 'questions', action: 'index'
     end
+
   end
 
   # # PATCH/PUT /answers/1

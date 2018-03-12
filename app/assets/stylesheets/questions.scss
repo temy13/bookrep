@@ -20,14 +20,6 @@ $block: 48px;
 $height: 48px;
 $animation: .25s ease-in-out;
 
-.like-submit{
-  background-color: transparent;
-  border:none;
-  i:before{
-    color:$red;
-    margin: $ws-sm;
-  }
-}
 
 .profile-checkbox{
   margin:$ws-lg 0 $block 0;

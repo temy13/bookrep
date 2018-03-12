@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
 
   #ログイン後のリダイレクトをログイン前のページにする場合
   def after_sign_in_path_for(resource)
-    check_except ? new_question_path : (session[:previous_url] || new_question_path)
+    check_except ? (session[:previous_url] || new_question_path) : new_question_path
   end
 
   #ログアウト後のリダイレクトをログアウト前のページにする場合
@@ -21,11 +21,11 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_up_path_for(resource)
-    check_except ? new_question_path : (session[:previous_url] || new_question_path)
+    check_except ? (session[:previous_url] || new_question_path) : new_question_path
   end
 
   def after_inactive_sign_up_path_for(resource)
-    check_except ? new_question_path : (session[:previous_url] || new_question_path)
+    check_except ? (session[:previous_url] || new_question_path) : new_question_path
   end
 
 

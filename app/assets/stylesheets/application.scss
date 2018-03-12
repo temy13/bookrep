@@ -260,7 +260,7 @@ nav{
   padding: $ws-lg $ws-sm;
   font-size: $font-size-sm;
   @include screen($breakpoint-mobile, $breakpoint-tablet) {
-    padding: $ws-lg $block*2 $ws-lg $block;
+    padding: $ws-lg $block*1.5 $ws-lg $block*1.5;
     font-size: 40px;
   }
   display: flex;
@@ -1013,4 +1013,27 @@ $icon-length: $block2;
   .question-item-footer-center{
     text-align: center;
   }
+}
+
+
+.page-box{
+  min-width: $block*1.5;
+}
+
+.page-style{
+  min-height: $block*1.5;
+  line-height: $block*1.5;
+  font-size: $font-size-sm;
+  background-color: white;
+  text-align: center;
+  border: $font-color 1px solid;
+}
+.page-text{
+  min-width: $block*2.5;
+}
+
+.page-style.current{
+    background-color: $blue;
+    border-color: white;
+    color: $white;
 }

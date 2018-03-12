@@ -257,6 +257,7 @@ nav{
 }
 
 .using{
+  max-width: 100%;
   padding: $ws-lg $ws-sm;
   font-size: $font-size-sm;
   @include screen($breakpoint-mobile, $breakpoint-tablet) {

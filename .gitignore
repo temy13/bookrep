@@ -26,3 +26,4 @@ logfile
 
 .env
 public/uploads/question/image/*
+public/assets/*

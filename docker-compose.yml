@@ -60,6 +60,7 @@ services:
       - SERVICE_HOST=${SERVICE_HOST}
       - RAILS_LOG_TO_STDOUT=${RAILS_LOG_TO_STDOUT}
       - GA_TRACKING_CODE=${GA_TRACKING_CODE}
+      - GOOGLE_ADSENCE_CODE=${GOOGLE_ADSENCE_CODE}
    #depends_on:
     #  - db
 volumes:

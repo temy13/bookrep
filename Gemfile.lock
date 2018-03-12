@@ -126,6 +126,7 @@ GEM
       actionpack (>= 3.0)
       multi_json
       request_store (>= 1.0)
+    google-analytics-rails (1.1.1)
     guard (2.14.2)
       formatador (>= 0.2.4)
       listen (>= 2.7, < 4.0)
@@ -407,6 +408,7 @@ DEPENDENCIES
   faker
   font-awesome-rails
   gon
+  google-analytics-rails
   guard-rspec
   haml-rails
   jbuilder (~> 2.5)

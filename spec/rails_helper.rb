@@ -8,6 +8,8 @@ require 'rspec/rails'
 require File.expand_path("spec/support/controller_macros.rb")
 # Add additional requires below this line. Rails is not loaded until this point!
 
+include Warden::Test::Helpers
+
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are
 # run as spec files by default. This means that files in spec/support that end
@@ -57,6 +59,23 @@ RSpec.configure do |config|
   config.include Devise::Test::ControllerHelpers, type: :controller
   config.include Devise::Test::ControllerHelpers, type: :view
   config.include ControllerMacros, type: :controller
+
+  # config.before(:each) do |example|
+  #   if example.metadata[:type] == :system
+  #     if example.metadata[:js]
+  #       driven_by :selenium_chrome_headless, screen_size: [1400, 1400]
+  #     else
+  #       driven_by :rack_test
+  #     end
+  #   end
+  # end
+  # config.before(:each) do |example|
+  #   if example.metadata[:type] == :system
+  #     driven_by :selenium_chrome_headless, screen_size: [1400, 1400]
+  #   end
+  # end
+
+  config.include Warden::Test::Helpers
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
 end

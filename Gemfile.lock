@@ -45,6 +45,8 @@ GEM
     annotate (2.7.2)
       activerecord (>= 3.2, < 6.0)
       rake (>= 10.4, < 13.0)
+    archive-zip (0.11.0)
+      io-like (~> 0.3.0)
     arel (8.0.0)
     autoprefixer-rails (7.2.3)
       execjs
@@ -73,6 +75,9 @@ GEM
       data_uri
     childprocess (0.8.0)
       ffi (~> 1.0, >= 1.0.11)
+    chromedriver-helper (1.2.0)
+      archive-zip (~> 0.10)
+      nokogiri (~> 1.8)
     coderay (1.1.2)
     coffee-rails (4.2.2)
       coffee-script (>= 2.2.0)
@@ -161,6 +166,7 @@ GEM
     http_parser.rb (0.6.0)
     i18n (0.9.3)
       concurrent-ruby (~> 1.0)
+    io-like (0.3.0)
     jbuilder (2.7.0)
       activesupport (>= 4.2.0)
       multi_json (>= 1.2)
@@ -391,6 +397,7 @@ DEPENDENCIES
   capybara
   carrierwave
   carrierwave-data-uri
+  chromedriver-helper
   coffee-rails (~> 4.2)
   database_cleaner
   devise

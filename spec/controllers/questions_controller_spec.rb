@@ -20,6 +20,9 @@ describe QuestionsController do
     it 'renders the :index template' do
       expect(response).to render_template :index
     end
+
+    it "kaminari"
+
   end
 
   describe 'GET #show' do
@@ -45,6 +48,8 @@ describe QuestionsController do
     it 'renders the :show template' do
       expect(response).to render_template :show
     end
+
+    it "kaminari"
   end
 
   describe 'GET #new with not login' do

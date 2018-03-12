@@ -33,7 +33,7 @@ class QuestionsController < ApplicationController
 #      tweet_question(@question, params[:reply]) if @question.is_tweet
       tweet(@question)
       flash[:notice_link] = profile_path(current_user) if current_user.is_dummy_email
-      notice = flash[:notice_link].blank? ? "質問が投稿されました" : "質問が投稿されました"#"。通知を受け取るためにはアカウントページからメール登録してください"
+      notice = flash[:notice_link].blank? ? "質問が投稿されました" : "質問が投稿されました。通知を受け取るためにメール登録してください"
       redirect_to @question, notice: notice
     else
        render :new

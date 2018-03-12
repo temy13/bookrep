@@ -278,8 +278,9 @@ nav{
 
 .able{
   // padding: $ws-lg $block;
+  margin-top: $block;
   text-align: center;
-  height: $block*11;
+  // height: $block*11;
   font-size: $font-size-sm;
   @include screen($breakpoint-mobile, $breakpoint-tablet) {
     font-size: 40px;
@@ -287,7 +288,7 @@ nav{
 
   .able-img{
     width: 80%;
-    height: 75%;
+    // height: 75%;
     margin:0 auto;
   }
   p{
@@ -793,6 +794,7 @@ $icon-length: $block2;
     }
     a#notice-close{
       position: absolute;
+      top: 8px;
       right: 100px;
     }
 }

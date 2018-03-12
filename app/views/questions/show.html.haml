@@ -94,12 +94,12 @@
       .actions-group
         - if current_user.provider == "twitter"
           .actions
-            = f.submit 'アカウント名で投稿', class: "btn blue btn-base", name: "normal"
+            = f.submit 'アカウント名で投稿', class: "btn blue btn-base", name: "normal",id: "post-by-account"
         - else
           .actions
-            = f.submit 'ユーザ名で投稿', class: "btn blue btn-base", name: "normal"
+            = f.submit 'ユーザ名で投稿', class: "btn blue btn-base", name: "normal",id: "post-by-account"
         .actions
-          = f.submit '匿名で投稿で投稿する', class: "btn orange btn-base answer-submit", name: "anonymous"
+          = f.submit '匿名で投稿で投稿する', class: "btn orange btn-base answer-submit", name: "anonymous", id: "post-by-anonymous"
   - else
     %div.white-back
       %div.disabled
@@ -122,10 +122,10 @@
           = "登録/ログインして質問に答える"
         %div.invition-buttons
           %div.twitter-login
-            = link_to user_twitter_omniauth_authorize_path, class: "btn blue btn-base" do
+            = link_to user_twitter_omniauth_authorize_path, class: "btn blue btn-base", id: "twitter-login" do
               %i.fa.fa-twitter="Twitterで登録/ログイン"
           %div.normal-link.mail-login-link
-            = link_to "メールアドレスでログイン", new_user_session_path, class: "btn orange btn-base"
+            = link_to "メールアドレスでログイン", new_user_session_path, class: "btn orange btn-base", id: "email-login"
 
 
 

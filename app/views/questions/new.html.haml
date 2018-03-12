@@ -32,9 +32,9 @@
           = label "", "checkbox1", :class=>"checkbox-label"#, :data=>{:off=>"off" , :on=>"on"}
 
     .field.separate.separate-bottom.row.height-block3
-      = link_to("#", class: 'show-modal col-10') do
+      = link_to("#", id: 'show-modal', class: 'show-modal col-10') do
         = "友達に回答リクエストを送る"
-      = link_to("#", class: 'show-modal-wq col-2 question-circle') do
+      = link_to("#", id: 'show-modal-wq', class: 'show-modal-wq col-2 question-circle') do
         =image_tag "question_circle.png"
     = f.fields_for :requests do |r|
       = r.hidden_field :name
@@ -45,12 +45,12 @@
   .actions-group
     - if current_user.provider == "twitter"
       .actions
-        = f.submit 'アカウント名で投稿', class: "btn blue btn-base", name: "normal"
+        = f.submit 'アカウント名で投稿', id: "post-by-account", class: "btn blue btn-base", name: "normal"
     - else
       .actions
-        = f.submit 'ユーザ名で投稿', class: "btn blue btn-base", name: "normal"
+        = f.submit 'ユーザ名で投稿', id: "post-by-account", class: "btn blue btn-base", name: "normal"
     .actions
-      = f.submit '匿名で投稿', class: "btn orange btn-base", name: "anonymous", value: "匿名で投稿"
+      = f.submit '匿名で投稿', id: "post-by-anonymous", class: "btn orange btn-base", name: "anonymous", value: "匿名で投稿"
 
 
 %div#modalwin.modalwin.hide.padding-zero-wb
@@ -86,7 +86,7 @@
           =image_tag "modal_search.png"
       %ul#option-users
 
-    %div.modal-back-button=image_tag "request_page_button.png", {:class => "modal-back-button-img"}
+    %div#modal-back-button.modal-back-button=image_tag "request_page_button.png", {:class => "modal-back-button-img"}
 
 
 -# = render 'form'

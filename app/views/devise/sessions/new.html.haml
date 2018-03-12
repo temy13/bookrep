@@ -4,8 +4,8 @@
     %div.alert.alert-danger.errors= devise_error_messages!
 
   .form-inputs
-    = f.text_field :email, required: true, placeholder: "Email", class: "login-input-field"
-    = f.password_field :password, required: true, autocomplete: "off", placeholder: "Password", class: "login-input-field"
+    = f.text_field :email, required: true, placeholder: "Email", class: "login-input-field", id: "input-email-field"
+    = f.password_field :password, required: true, autocomplete: "off", placeholder: "Password", class: "login-input-field", id: "input-password-field"
     -# = f.input :remember_me, as: :boolean if devise_mapping.rememberable?
   .form-actions
     = f.button :submit, "メールアドレスでログイン", class: "btn orange btn-base mtb"

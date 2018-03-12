@@ -3,7 +3,7 @@ FactoryBot.define do
     provider "twitter"
     uid "000000"
     name "テストくん"
-    email "test0000t@ex.com"
+    email "000000-twitter@tsuginohon.com"
   end
 
   factory :e_user, class: User do
@@ -11,7 +11,7 @@ FactoryBot.define do
     email "test0000e@ex.com"
     password "password"
   end
-  
+
   pass = Faker::Internet.password(8)
   factory :user do
     name                  Faker::Name.name

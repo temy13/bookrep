@@ -260,8 +260,9 @@ nav{
   max-width: 100%;
   padding: $ws-lg $ws-sm;
   font-size: $font-size-sm;
+  margin: 0;
   @include screen($breakpoint-mobile, $breakpoint-tablet) {
-    padding: $ws-lg $block*1.5 $ws-lg $block*1.5;
+    padding: $ws-lg $block;
     font-size: 40px;
   }
   display: flex;

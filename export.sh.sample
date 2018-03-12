@@ -12,3 +12,4 @@ export EMAIL=
 export EMAIL_PASS=
 export SERVICE_HOST=
 export RAILS_LOG_TO_STDOUT=production.log
+export GA-TRACKING-CODE=

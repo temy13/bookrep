@@ -30,7 +30,8 @@ services:
       restart: always
       volumes: 
           - "/etc/letsencrypt:/etc/letsencrypt"
-          - public-data:/app/public
+          #- public-data:/app/public
+          - ./public:/app/public
       depends_on:
         - rails
   rails:
@@ -39,12 +40,14 @@ services:
     #image: localhost:5000/temy13/bookrep:v1.17
     volumes:
     #  - .:/app
-      - public-data:/app/public
+      #- public-data:/app/public
+      - ./public:/app/public
       - tmp-data:/app/tmp
     ports:
       - "3000:${PORT:-3000}"
     environment:
       #- DATABASE_URL=postgres://${MY_APP_DATABASE_USER}:${MY_APP_DATABASE_PASSWORD}@db:5432/${MY_APP_DATABASE_NAME}
+      - DISABLE_DATABASE_ENVIRONMENT_CHECK=1
       - DATABASE_URL=postgres://${MY_APP_DATABASE_USER}:${MY_APP_DATABASE_PASSWORD}@${MY_APP_DATABASE_HOST}:5432/${MY_APP_DATABASE_NAME}
       - SECRET_KEY_BASE=${SECRET_KEY_BASE}
       - TWITTER_KEY=${TWITTER_KEY}
@@ -56,6 +59,7 @@ services:
       - EMAIL_PASS=${EMAIL_PASS}
       - SERVICE_HOST=${SERVICE_HOST}
       - RAILS_LOG_TO_STDOUT=${RAILS_LOG_TO_STDOUT}
+      - GA-TRACKING-CODE=${GA-TRACKING-CODE}
    #depends_on:
     #  - db
 volumes:

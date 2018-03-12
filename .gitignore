@@ -30,3 +30,4 @@ export.sh
 production.log
 nginx/*.key
 nginx/*.crt
+public/assets/*

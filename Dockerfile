@@ -11,7 +11,7 @@ COPY Gemfile Gemfile.lock ./
 RUN bundle install
 COPY . ./
 
-RUN bundle exec rake assets:precompile
+RUN bundle exec rake assets:precompile assets:clean
 
 CMD bundle exec rails server -b 0.0.0.0 -p ${PORT:-3000}
 #EXPOSE 3000

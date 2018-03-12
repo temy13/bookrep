@@ -30,16 +30,17 @@ services:
       restart: always
       volumes: 
           - "/etc/letsencrypt:/etc/letsencrypt"
-      #    - public-data:/app/public
+          - public-data:/app/public
       depends_on:
         - rails
   rails:
     build:
       context: .
     #image: localhost:5000/temy13/bookrep:v1.17
-    #volumes:
+    volumes:
     #  - .:/app
-    #  - public-data:/app/public
+      - public-data:/app/public
+      - tmp-data:/app/tmp
     ports:
       - "3000:${PORT:-3000}"
     environment:
@@ -57,5 +58,11 @@ services:
       - RAILS_LOG_TO_STDOUT=${RAILS_LOG_TO_STDOUT}
    #depends_on:
     #  - db
-#volumes:
-#  public-data:
+volumes:
+  tmp-data:
+  public-data:
+    driver_opts:
+      type: none
+      device: /var/lib/app_public
+    #  device: ./public
+      o: bind

@@ -1,5 +1,5 @@
-%div.col-1
-%div.col-11
+%div.col-1.col-lg-2
+%div.col-11.col-lg-10
   =form_with(url: likes_create_path) do |f|
     =f.hidden_field 'answer_id', :value => answer.id
     =f.hidden_field 'user_id', :value => current_user.id

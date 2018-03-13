@@ -22,8 +22,8 @@
             = render 'answer_header', answer: answer
             = link_to(answer.affiliate_url, class: '', target: ["_blank"], rel: "book_affiliate", data: {answer_id: answer.id, user_id: current_user.try(:id), book_id: answer.book.try(:id)}) do
               %div.answer-inner.row
-                %div.answer-item-left.col-1
-                %div.answer-item-content.col-8
+                %div.answer-item-left.col-1.col-lg-2
+                %div.answer-item-content.col-8.col-lg-7
                   %div.answer-book-info
                     %div.answer-title
                       = answer.book_title
@@ -35,8 +35,8 @@
                   = image_tag answer.book_image_url
             - if current_user.blank?
               %div.answer-footer.row
-                %div.col-1
-                %div.col-11
+                %div.col-1.col-lg-2
+                %div.col-11.col-lg-10
                   %i.fa.fa-heart-o.like= answer.likes.size
             - elsif current_user.liked(answer)
               %div{id:"answer-like-#{answer.id}", class: "answer-footer row"}

@@ -3,9 +3,6 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 $ ->
-  (adsbygoogle = window.adsbygoogle or []).push
-    google_ad_client: window.ENV.AdsenceCode
-    enable_page_level_ads: true
   #クリックしたときのファンクションをまとめて指定
   $('.tab li').click ->
     #.index()を使いクリックされたタブが何番目かを調べ、

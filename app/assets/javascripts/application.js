@@ -58,19 +58,19 @@ var getUrlParameter = function getUrlParameter(sParam) {
     }
 };
 
-$('.owl-carousel').owlCarousel({
-    loop:true,
-    margin:10,
-    // nav:true,
-    responsive:{
-        0:{
-            items:1
-        }//,
-        // 600:{
-        //     items:3
-        // },
-    }
-})
+// $('.owl-carousel').owlCarousel({
+//     loop:true,
+//     margin:10,
+//     // nav:true,
+//     responsive:{
+//         0:{
+//             items:1
+//         }//,
+//         // 600:{
+//         //     items:3
+//         // },
+//     }
+// })
 
 // exports.getBounds = function (node) {
 //

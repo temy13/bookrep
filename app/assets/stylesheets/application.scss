@@ -207,7 +207,14 @@ nav{
     overflow: hidden;
     padding: $ws-lg;
     .top-cover-text{
-      height:30%;
+      // height:30%;
+      font-size: $block;
+      @include screen($breakpoint-mobile, $breakpoint-tablet) {
+        font-size: 52px;
+      }
+      p{
+        margin:0;
+      }
     }
     .top-cover-image{
       height:60%;
@@ -262,6 +269,7 @@ nav{
   font-size: $font-size-sm;
   margin: 0;
   @include screen($breakpoint-mobile, $breakpoint-tablet) {
+    // padding: $ws-lg $block;
     padding: $ws-lg $block;
     font-size: 40px;
   }
@@ -288,7 +296,7 @@ nav{
   }
 
   .able-img{
-    width: 80%;
+    // width: 80%;
     // height: 75%;
     margin:0 auto;
   }
@@ -298,6 +306,9 @@ nav{
   img{
     max-width: 100%;
     max-height: 100%;
+    // @include screen($breakpoint-mobile, $breakpoint-tablet) {
+    //   max-width: 750px;
+    // }
   }
   .able-txt{
     margin-top: $ws-md;

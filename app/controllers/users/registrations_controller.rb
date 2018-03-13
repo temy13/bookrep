@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+require 'csv'
 
 class Users::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_sign_up_params, only: [:create]
@@ -16,7 +17,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # POST /resource
   def create
     build_resource(sign_up_params)
-
+    if resource.provider.blank? && resource.name == "クリス" #クリス is default name by DB
+      names = CSV.read('db/namelist.csv')
+      resource.name = names.sample.first
+    end
     resource.save
     yield resource if block_given?
     if resource.persisted?

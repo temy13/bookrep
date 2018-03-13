@@ -306,10 +306,10 @@ nav{
   img{
     // max-width: 100%;
     max-height: 100%;
-    max-width: 750px;
-    // @include screen($breakpoint-mobile, $breakpoint-tablet) {
-    //   max-width: 750px;
-    // }
+    max-width: 700px;
+    @include screen($breakpoint-mobile, $breakpoint-tablet) {
+      max-width: 750px;
+    }
   }
   .able-txt{
     margin-top: $ws-md;
@@ -586,6 +586,9 @@ $icon-length: $block2;
   .copyright{
     text-align: center;
     padding: $ws-sm 0;
+    p{
+      margin: 0;
+    }
   }
 }
 

@@ -20,8 +20,8 @@
  @import "questions.scss";
  @import "modal.scss";
  @import "answers.scss";
- @import "owl.carousel.min.css";
- @import "owl.theme.default.css";
+ @import "owl.carousel.min.scss";
+ @import "owl.theme.default.scss";
 //= require bootstrap
 //= require jquery-ui
 //= require jquery.tagsinput
@@ -32,6 +32,7 @@
   src: font-url('hannotate-sc-regular.otf') format('truetype');
   font-weight: normal;
   font-style: normal;
+  font-display: swap;
 }
 
 
@@ -339,20 +340,20 @@ overflow: scroll;
       line-height: 78px;
     }
   }
-  .explain{
-    font-size: 24px;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-    text-align: center;
-    .large{
-      margin-top: $ws-md;
-      font-size: $block;
-      margin-bottom: $ws-md;
-    }
-    .bottom{
-      width: 340px;
-      margin: $ws-sm auto 0;
-    }
-  }
+  // .explain{
+  //   font-size: 24px;
+  //   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  //   text-align: center;
+  //   .large{
+  //     margin-top: $ws-md;
+  //     font-size: $block;
+  //     margin-bottom: $ws-md;
+  //   }
+  //   .bottom{
+  //     width: 340px;
+  //     margin: $ws-sm auto 0;
+  //   }
+  // }
 }
 
 .question-top-image{
@@ -996,7 +997,7 @@ $icon-length: $block2;
   color: $font-color;
   //background-color: $white;
   padding: $ws-sm;
-  font-family: hannotate SC, 'Hannotate', YuGothic, 'Yu Gothic', sans-serif;
+  font-family: 'Hannotate', hannotate SC, YuGothic, 'Yu Gothic', sans-serif;
   //font-family: 'Hannotate';
   word-break: break-all;
     overflow: hidden;

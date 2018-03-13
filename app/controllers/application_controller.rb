@@ -3,6 +3,12 @@ class ApplicationController < ActionController::Base
 
   after_action :store_location
 
+  def append_info_to_payload(payload)
+    super
+    payload[:host] = request.host
+    payload[:ua] = request.user_agent
+  end
+
   def store_location
    # 今回の場合は、 /users/sign_in , /users/sign_up, /users/password にアクセスしたとき、ajaxでのやりとりはsessionには保存しない。
       if check_except

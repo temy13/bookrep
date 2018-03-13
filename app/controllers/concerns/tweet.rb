@@ -38,7 +38,7 @@ module Tweet extend ActiveSupport::Concern
   def user_search(query, count)
     #@client = twitter_client
     @client = twitter_client
-    @client.user_search(query, {:count => count})
+    @client.user_search(query, {:count => count}) #max -> 20
   end
 
   def tweet_request(request)

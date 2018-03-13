@@ -60,7 +60,7 @@ class QuestionsController < ApplicationController
         @results = response.take(TWITTER_PER)
         data ={options: @results.map{|user| user_data(user)}, cursor: @cursor}
     else
-        #TODO: なぜか20件だけ
+        #TODO: なぜか20件だけ -> maxだった
         @results = user_search(params[:query], TWITTER_PER)
         data ={options: @results.map{|user| user_data(user)}}
     end

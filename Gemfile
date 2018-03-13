@@ -94,3 +94,4 @@ gem "font-awesome-rails"
 gem 'gon'
 gem 'jquery-validation-rails'
 gem 'google-analytics-rails'
+gem 'lograge'

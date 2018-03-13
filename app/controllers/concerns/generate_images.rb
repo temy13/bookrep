@@ -20,7 +20,9 @@ LENGTH=8
     draw.fill = "#FFFFFF"
     draw.pointsize = 48
     draw.annotate(image, 420, 100, 760, 520, name)
-    path = "tmp/images/q_" + question.id.to_s + ".jpg"
+    t = Time.new
+
+    path = "tmp/images/q_" + question.id.to_s + "_" + t.strftime("%Y%m%d") + ".jpg"
     image.write(path)
     path
   end

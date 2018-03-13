@@ -148,7 +148,10 @@ $answer-header-height: $block;
 }
 
 .answer-content{
-  font-size: 40px;
+  font-size: 32px;
+  @include screen($breakpoint-mobile, $breakpoint-tablet) {
+    font-size: 40px;
+  }
   padding:$ws-sm 0;
   word-break:  break-all;
 }

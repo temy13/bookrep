@@ -1,15 +1,15 @@
 - if answer.is_anonymous
   %div.answer-header.row
-    %div.col-1
+    %div.col-1.col-lg-2
       %div.answer-icon
         = image_tag answer.user_icon
-    %div.answer-name.col-11
+    %div.answer-name.col-11.col-lg-10
       = answer.name_or_anonymous_post
 - else
   = link_to profile_path(answer.user) do
     %div.answer-header.row
-      %div.col-1
+      %div.col-1.col-lg-2
         %div.answer-icon
           = image_tag answer.user_icon
-      %div.answer-name.col-11
+      %div.answer-name.col-11.col-lg-10
         = answer.name_or_anonymous_post

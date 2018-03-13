@@ -27,6 +27,14 @@
 //= require jquery.tagsinput
 //= require_tree .
 
+@font-face {
+  font-family: 'Hannotate';
+  src: font-url('hannotate-sc-regular.otf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
 .pagination{
   text-align: center;
   a{
@@ -988,7 +996,8 @@ $icon-length: $block2;
   color: $font-color;
   //background-color: $white;
   padding: $ws-sm;
-  font-family: hannotate SC, YuGothic, 'Yu Gothic', sans-serif;
+  font-family: hannotate SC, 'Hannotate', YuGothic, 'Yu Gothic', sans-serif;
+  //font-family: 'Hannotate';
   word-break: break-all;
     overflow: hidden;
     .question-item-main-content{

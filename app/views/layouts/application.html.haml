@@ -9,7 +9,10 @@
         enable_page_level_ads: true
 
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
-    %title ブクリプ
+    %title=get_title
+    %meta{:name => "keywords", :content => get_seo_keywords}
+    %meta{:name => "description", :content => get_seo_contents}
+
     = csrf_meta_tags
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = include_gon

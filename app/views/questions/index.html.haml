@@ -10,3 +10,8 @@
 -#     = render 'share/questions_tab', questions: @questions, page_name: "page_1"
 -#   %li#answered-questions.tab-contents-item.hide
 -#     = render 'share/questions_tab', questions: @questions_answered, page_name: "page_2"
+
+:ruby
+  @page_title = "ブクリプ:質問一覧"
+  @seo_contents ="ブクリプ質問一覧ページです。おすすめの本を知りたい時は「質問ページ」から投稿することでこのページに表示されます。各質問と回答を見るにはクリックしてください。"
+  @seo_keywords = "ブクリプ, 質問一覧"

@@ -127,6 +127,10 @@
           %div.normal-link.mail-login-link
             = link_to "メールアドレスでログイン", new_user_session_path, class: "btn orange btn-base", id: "email-login"
 
+:ruby
+  @page_title = "ブクリプ:"+@question.content
+  @seo_contents ="ブクリプ回答ページです。ページ下部の入力欄に書籍タイトルとメッセージを入力すると、質問に答えることができます。"
+  @seo_keywords = "ブクリプ, 回答投稿"
 
 
 -# = link_to 'Edit', edit_question_path(@question)

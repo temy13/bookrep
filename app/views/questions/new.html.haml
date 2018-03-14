@@ -1,6 +1,6 @@
 %div.top.question-top
   =image_tag("question_top_bg.png", :class => "top-image, question-top-image")
-  %div.top-question-text
+  %h1.top-question-text
     %p= current_user.name + "さん"
     %p= "「ブクリプ」へようこそ"
     %p= "さっそく質問してみましょう"
@@ -18,20 +18,20 @@
       = f.text_area :content, required: true, :placeholder => "ここに質問を書いて投稿しよう", :class=> "input-question"
       = f.hidden_field :user_id, :value => current_user.id
     - if current_user.provider == "twitter"
-      .field.tweet.separate
+      %h2.field.tweet.separate
         %span.text= "Twitterアカウントで投稿をシェアする"
         %div.checkbox
           = f.check_box :is_tweet, :id =>"checkbox1", :class=>"ios-toggle"
           = label "", "checkbox1", :class=>"checkbox-label"#, :data=>{:off=>"off" , :on=>"on"}
     - else
-      .field.tweet.separate.disabled
+      %h2.field.tweet.separate.disabled
         -# %div.fade
         %span.text= "Twitterアカウントで投稿をシェアする"
         %div.checkbox
           = f.check_box :is_tweet, :checked=>false, :id =>"checkbox1", :class=>"ios-toggle"
           = label "", "checkbox1", :class=>"checkbox-label"#, :data=>{:off=>"off" , :on=>"on"}
 
-    .field.separate.separate-bottom.row.height-block3
+    %h2.field.separate.separate-bottom.row.height-block3
       = link_to("#", id: 'show-modal', class: 'show-modal col-10') do
         = "友達に回答リクエストを送る"
       = link_to("#", id: 'show-modal-wq', class: 'show-modal-wq col-2 question-circle') do
@@ -87,6 +87,11 @@
       %ul#option-users
 
     %div#modal-back-button.modal-back-button=image_tag "request_page_button.png", {:class => "modal-back-button-img"}
+
+:ruby
+  @page_title = "ブクリプ:質問する - 次に読む本のおすすめを聞こう！"
+  @seo_contents ="ブクリプ質問ページでは、次に読む本を選ぶための質問をアカウント名もしくは匿名で投稿できます。Twitterアカウントで投稿を簡単にシェアしたり、友達に回答をリクエストすることが可能です。"
+  @seo_keywords ="ブクリプ,質問する"
 
 
 -# = render 'form'

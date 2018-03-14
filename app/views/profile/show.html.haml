@@ -42,3 +42,8 @@
         %div.large= "まだ回答がありません"
         %div.middle= "あなたのオススメの本を教えてください！"
         = image_tag "logo_mark_blue.png"
+
+:ruby
+  @page_title = "ブクリプ:" + @user.name + "さんのプロフィール"
+  @seo_contents = @user.name + "さんのプロフィールページです"
+  @seo_keywords = "ブクリプ, プロフィール"

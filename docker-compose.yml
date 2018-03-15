@@ -42,6 +42,7 @@ services:
     #  - .:/app
       #- public-data:/app/public
       - ./public:/app/public
+      - ./log:/app/log
       - tmp-data:/app/tmp
     ports:
       - "3000:${PORT:-3000}"
@@ -63,6 +64,11 @@ services:
       - GOOGLE_ADSENCE_CODE=${GOOGLE_ADSENCE_CODE}
    #depends_on:
     #  - db
+  #notification:
+  #  build:
+  #    context: ./scripts/py/log_checker 
+  #  volumes:
+  #    - ./log:/log
 volumes:
   tmp-data:
   public-data:

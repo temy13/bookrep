@@ -29,6 +29,8 @@ $Width: 720px;
 $breakpoint-tablet: 980px;
 $breakpoint-mobile: 768px;
 
+$logo-height:609px;
+$logo-width:1784px;
 
 @mixin max-screen($break-point) {
   @media screen and (max-width: $break-point) {

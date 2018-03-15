@@ -1,6 +1,8 @@
 -# header
 - if request.path_info == new_question_path
-  = link_to image_tag('logos/header_post_question.png', { :border => '0', :alt => 'ロゴ'}), new_question_path
+  -# = link_to image_tag('logos/header_post_question.png', { :border => '0', :alt => 'ロゴ'}), new_question_path
+  = link_to new_questions_path, class: "logo-text" do
+    %h1="質問する"
 - elsif request.path_info == questions_path
   -# = link_to image_tag('logos/header_questions.png', { :border => '0', :alt => 'ロゴ'}), questions_path
   = link_to questions_path, class: "logo-text" do
@@ -10,6 +12,9 @@
     %h1="回答する"
   -# = link_to image_tag('logos/header_post_answer.png', { :border => '0', :alt => 'ロゴ'}), question_path(@question)
 - elsif request.path_info == edit_user_registration_path
-  = link_to image_tag('logos/header_setting.png', { :border => '0', :alt => 'ロゴ'}), edit_user_registration_path
+  -# = link_to image_tag('logos/header_setting.png', { :border => '0', :alt => 'ロゴ'}), edit_user_registration_path
+  = link_to edit_user_registration_path, class: "logo-text" do
+    %h1="設定"
+
 - else
   = link_to image_tag('TitleLogo_2_Blue.png', { :border => '0', :alt => 'ロゴ'}), root_path

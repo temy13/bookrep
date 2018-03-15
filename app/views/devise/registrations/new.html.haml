@@ -17,7 +17,7 @@
   -#   ="つぎのほん"
 
 %div.white-back.top-inputs
-  %div.twitter-login
+  %div.twitter-login.form-actions-margin
     = link_to "Twitterで登録/ログイン", user_twitter_omniauth_authorize_path, class: "btn blue btn-base"
   = simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
     - if flash[:error].present?
@@ -30,7 +30,7 @@
       = f.text_field :email, required: true, placeholder: "Email", class: "login-input-field"
       = f.password_field :password, autocomplete: "off", required: true, placeholder: "Password", class: "login-input-field"
       -# = f.input :remember_me, as: :boolean if devise_mapping.rememberable?
-    .form-actions
+    .form-actions.form-actions-margin
       = f.button :submit, "メールアドレスで登録", class: "btn orange btn-base"
   %div.normal-link.mail-login-link= link_to "メールアドレスでログイン", new_user_session_path
 
@@ -79,7 +79,7 @@
 
 
 %div.white-back.top-inputs
-  %div.twitter-login
+  %div.twitter-login.form-actions-margin
     = link_to "Twitterで登録/ログイン", user_twitter_omniauth_authorize_path, class: "btn blue btn-base"
   = simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { id: "user-2" }) do |f|
     - if flash[:error].present?
@@ -92,6 +92,6 @@
       = f.text_field :email, required: true, placeholder: "Email", class: "login-input-field", id: "user-email-2"
       = f.password_field :password, autocomplete: "off", required: true, placeholder: "Password", class: "login-input-field", id: "user-password-2"
       -# = f.input :remember_me, as: :boolean if devise_mapping.rememberable?
-    .form-actions
+    .form-actions.form-actions-margin
       = f.button :submit, "メールアドレスで登録", class: "btn orange btn-base"
   %div.normal-link.mail-login-link= link_to "メールアドレスでログイン", new_user_session_path

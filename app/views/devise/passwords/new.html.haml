@@ -6,7 +6,7 @@
     %div.alert.alert-danger.errors= devise_error_messages!
   .form-inputs
     = f.text_field :email, required: true, placeholder: "Email", class: "login-input-field"
-  .form-actions
+  .form-actions.form-actions-margin
     = f.button :submit, "パスワード再設定メールを送る", class: "btn black btn-base"
   -# .form-inputs
   -#   = f.input :email, required: true, autofocus: true

@@ -35,15 +35,25 @@
 //   font-display: swap;
 // }
 
-.logo-text{
+a.logo-text{
   h1{
     background-image: image-url("bookrep_logo_notext.png");
-    padding: 23px 0 32px 0;
     background-size: contain;
     background-repeat: no-repeat;
     text-align: center;
     width: 100%;
-    font-size: 52px;
+    font-weight: normal;
+    font-family: 'ヒラギノ丸ゴ Pro W4', 'Hiragino Maru Gothic Pro', hannotate SC, YuGothic, 'Yu Gothic', sans-serif;
+    //$breakpoint-tablet以上はcol-4が250で固定される
+    height: 220px * $logo-height / $logo-width;
+    line-height: 220px * $logo-height / $logo-width;
+    @include screen($breakpoint-mobile, $breakpoint-tablet) {
+      padding: 23px 0 32px 0;
+      height: auto;
+      line-height: auto;
+      font-size: 52px;
+    }
+
   }
   a:active{
     text-decoration: none;
@@ -435,8 +445,11 @@ overflow: scroll;
     font-size:$block;
   }
   .middle{
-    width:$block7;
+    // width:$block7;
     margin:0 auto;
+    p{
+      margin:0;
+    }
   }
 }
 
@@ -463,7 +476,7 @@ overflow: visible;
 
 .btn-base{
   width: 100%;
-    margin: 10px 2px $half-block 2px;
+    margin: 10px 0px $half-block 0px;
     height:$block2;
     color:white;
     font-size: $font-size-lg;
@@ -581,6 +594,10 @@ $icon-length: $block2;
   input{
     padding: 0 $ws-sm;
   }
+}
+
+.form-actions-margin{
+  margin: 0 $ws-sm;
 }
 
 .profile-input-field{
@@ -1019,6 +1036,10 @@ $icon-length: $block2;
       overflow: scroll;
       width: 100%;
       height: 100%;
+      @include screen($breakpoint-mobile, $breakpoint-tablet) {
+        font-size: 40px;
+      }
+
     }
 }
 

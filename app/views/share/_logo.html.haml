@@ -1,7 +1,7 @@
 -# header
 - if request.path_info == new_question_path
   -# = link_to image_tag('logos/header_post_question.png', { :border => '0', :alt => 'ロゴ'}), new_question_path
-  = link_to new_questions_path, class: "logo-text" do
+  = link_to new_question_path, class: "logo-text" do
     %h1="質問する"
 - elsif request.path_info == questions_path
   -# = link_to image_tag('logos/header_questions.png', { :border => '0', :alt => 'ロゴ'}), questions_path

@@ -31,7 +31,9 @@
     - else
       %div.white-back.no-answer
         %div.large= "まだ質問がありません"
-        %div.middle= "オススメの本を聞いてみましょう！"
+        %div.middle
+          %p="オススメの本を"
+          %p="聞いてみましょう！"
         = image_tag "logo_mark_blue.png"
 
   %li#profile-posts-a.tab-contents-item.hide
@@ -40,7 +42,9 @@
     - else
       %div.white-back.no-answer
         %div.large= "まだ回答がありません"
-        %div.middle= "あなたのオススメの本を教えてください！"
+        %div.middle
+          %p= "あなたのオススメの本を"
+          %p="教えてください！"
         = image_tag "logo_mark_blue.png"
 
 :ruby

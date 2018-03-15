@@ -11,12 +11,11 @@ $ ->
 
   $("#reply").on　"click", -> replyToggle()
 
-  n = 10
+  n = 6
   before_query = ""
 
   $(document).on 'click', '.option-add', ->
     v = $(this).data("value")
-    console.log "add click: " + v
     $(".add-option-" + v).removeClass "hide"
     # $(".add-option-" + v).addClass "show"
     $(this).addClass "hide"
@@ -24,9 +23,7 @@ $ ->
   setListItem = (index, user) ->
     img = user.image
     imgurl = img.scheme + "://" + img.host + img.path
-    console.log "index: " + index
-    console.log "show: " + index<10
-    if index < 10
+    if index < n
       r = "<li class='option-user-item row' >"
     else
       r = "<li class='option-user-item hide row add-option-" + Math.floor(index/n) + "' >"
@@ -58,8 +55,6 @@ $ ->
         $('ul#option-users').empty()
         $.each data["options"], (index, val) ->
           i = index/n
-          console.log "index: " + index
-          console.log "i: " + i
           if index == n
             e =  $("<li id='option-add-" + i + "' class='option-user-item option-add' data-value='" + i + "'>もっと見る</li>")
             $('ul#option-users').append e
@@ -75,9 +70,9 @@ $ ->
         return
       error : (XMLHttpRequest, textStatus, errorThrown) ->
         console.log("error");
-        console.log("XMLHttpRequest : " + XMLHttpRequest.status);
-        console.log("textStatus     : " + textStatus);
-        console.log("errorThrown    : " + errorThrown.message);
+        # console.log("XMLHttpRequest : " + XMLHttpRequest.status);
+        # console.log("textStatus     : " + textStatus);
+        # console.log("errorThrown    : " + errorThrown.message);
         return
 
 
@@ -119,7 +114,6 @@ $ ->
 
   hideModal = ->
     users = $('.option-checkbox-input:checked').map(->
-      console.log $(this)
       $(this).val()
       {"sname":$(this).context.name, "uid":$(this).val()}
     ).get()

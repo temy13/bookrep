@@ -16,7 +16,7 @@
           Currently waiting confirmation for: #{resource.unconfirmed_email}
       %div
         = f.label :password
-        %i (もし変更しないなら空のままで)
+        %i 変更しない場合は空欄のまま保存してください
         %br/
         = f.password_field :password, autocomplete: "off", :class=>"profile-input-field"
       -# %div
@@ -48,7 +48,7 @@
         = label "", "profile-checkbox-input", :class=>"checkbox-label"#, :data=>{:off=>"off" , :on=>"on"}
 
 
-    .form-actions
+    .form-actions.form-actions-margin
       = f.button :submit, "設定を保存する", :class => "btn blue btn-base"
   /
     <h3>Cancel my account</h3>

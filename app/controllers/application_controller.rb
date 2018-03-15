@@ -11,9 +11,9 @@ class ApplicationController < ActionController::Base
 
   def store_location
    # 今回の場合は、 /users/sign_in , /users/sign_up, /users/password にアクセスしたとき、ajaxでのやりとりはsessionには保存しない。
-      if check_except
-        session[:previous_url] = request.fullpath
-      end
+    if check_except
+      session[:previous_url] = request.fullpath
+    end
   end
 
   #ログイン後のリダイレクトをログイン前のページにする場合
@@ -52,6 +52,8 @@ class ApplicationController < ActionController::Base
     return (request.fullpath != "/users/sign_in" && \
         request.fullpath != "/users/sign_up" && \
         request.fullpath != "/users/password" && \
+        request.fullpath != "/users/login" && \
+        request.fullpath != "/users/logout" && \
         !request.xhr?)
   end
 

@@ -21,13 +21,13 @@ module Tweet extend ActiveSupport::Concern
   def tweet_question(question)
     @client = twitter_client
     url = ENV["SERVICE_HOST"] + "/questions/" + question.id.to_s
-    @client.update("ブクリプで質問しました! " + url)
+    @client.update("ブクリプで質問しました! #ブクリプ　" + url)
   end
 
   def tweet_answer(answer)
     @client = twitter_client
     url = ENV["SERVICE_HOST"] + "/questions/" + answer.question.id.to_s
-    @client.update("ブクリプで質問に答えました! " + url)
+    @client.update("ブクリプで質問に答えました! #ブクリプ　" + url)
   end
 
   def get_followers(cursor, count)

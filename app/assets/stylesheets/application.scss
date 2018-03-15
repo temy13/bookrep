@@ -34,8 +34,16 @@
 //   font-style: normal;
 //   font-display: swap;
 // }
+.img-base{
+  max-width: 100%;
+    max-height: 100%;
+}
 
-a.logo-text{
+.logo-text{
+  color: $blue;
+  a{
+    color: $blue;
+  }
   h1{
     background-image: image-url("bookrep_logo_notext.png");
     background-size: contain;
@@ -600,7 +608,7 @@ $icon-length: $block2;
   margin: 0 $ws-sm;
 }
 
-.profile-input-field{
+.default-input-field{
   width:100%;
   background-color: $gray;
   border-color: $gray;
@@ -609,7 +617,7 @@ $icon-length: $block2;
   border-style: inset;
   margin-top:$ws-md;
 }
-.profile-input-textarea{
+.default-input-textarea{
   height:$block*6;
 }
 
@@ -652,24 +660,24 @@ $icon-length: $block2;
   }
   .footer-icons{
     padding: $ws-md $ws-lg;
-    @include screen($breakpoint-mobile, $breakpoint-tablet) {
-      padding: $block $ws-lg;
-    }
+    // @include screen($breakpoint-mobile, $breakpoint-tablet) {
+    //   padding: $block $ws-lg;
+    // }
     // background-color: $gray;
     img{
-      height: $block;
+      height: $block*2;
       // height: $block;
     }
     .footer-item{
-      width:30%;
+      // width:30%;
       text-align: center;
     }
-    .footer-item.left{
-      text-align: left;
-    }
-    .footer-item.right{
-      text-align: right;
-    }
+    // .footer-item.left{
+    //   text-align: left;
+    // }
+    // .footer-item.right{
+    //   text-align: right;
+    // }
   }
 }
 

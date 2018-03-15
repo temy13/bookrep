@@ -9,7 +9,7 @@
         =image_tag "title_logo_1.png"
       %div.question-item-footer-center.col-4
         - if @question.answers.length > 0
-          = image_tag "communication-4.png"
+          = image_tag "communication-4.png", class: "img-base"
           = @question.answers.length
       %div.question-item-footer-right.col-4
         = render 'share/username_post', obj: @question, link: true
@@ -18,7 +18,7 @@
     %div.answers
       %ul.answer-list
         - @answers.each do |answer|
-          %li.answer-item
+          %li{class: "answer-item", id:"answer-#{answer.id}"}
             = render 'answer_header', answer: answer
             = link_to(answer.affiliate_url, class: '', target: ["_blank"], rel: "book_affiliate", data: {answer_id: answer.id, user_id: current_user.try(:id), book_id: answer.book.try(:id)}) do
               %div.answer-inner.row

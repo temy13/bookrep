@@ -1,0 +1,15 @@
+%div.white-back
+  %h1 お問い合わせ
+  %p ブクリプ運営へのお問い合わせはこちら
+  =form_tag(controller: :contacts , action: :thanks) do
+    .form-inputs
+      = "返信用Email"
+      - if current_user && current_user.normal_email
+        = text_field_tag :email, current_user.email, :class=>"default-input-field"
+      - else
+        = text_field_tag :email, "", :class=>"default-input-field"
+    .form-inputs
+      = "お問い合わせ内容"
+      = text_area_tag :content, "", required: true, :class=>"default-input-field default-input-textarea"
+    .form-actions.form-actions-margin
+      = button_tag "送信", :class => "btn black btn-base"

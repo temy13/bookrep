@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
 
+
+
+  get 'contacts/new'
+  post 'contacts/thanks'
+  get 'contacts/thanks'
+
   post 'click_logs/book_affiliate'
 
   resources :answers, only: [:create] do

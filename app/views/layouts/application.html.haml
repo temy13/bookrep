@@ -81,6 +81,7 @@
                     %i.fa.fa-twitter="公式Twitter"
                 %li= link_to "プライバシーポリシー", home_policy_path
                 %li= link_to "利用規約", home_terms_path
+                %li= link_to "お問い合わせ", contacts_new_path
                 %li.copyright
                   %p= "本との出会いに素敵な偶然を"
                   %p= "© 2018 bookrep"
@@ -94,20 +95,21 @@
           %div.row
             %div.d-lg-block.col-lg-2.d-none
             %div.col-sm-12.col-lg-8
-              %div.footer-icons.footer-center
-                %div.d-inline-block.footer-item.left
-                  - if request.fullpath == new_question_path
-                    = link_to image_tag('blue_icon_post.jpg', { :border => '0', :alt => '質問投稿'}), new_question_path
+              %div.footer-icons.footer-center.row
+                %div.footer-item.col-4
+                  - if request.path_info == new_question_path
+                    -# = link_to image_tag('blue_icon_post.png', { :border => '0', :alt => '質問投稿'}), new_question_path
+                    =image_tag('blue_icon_post.png', { :border => '0', :alt => '質問投稿'})
                   - else
-                    = link_to image_tag('icon_post.jpg', { :border => '0', :alt => '質問投稿'}), new_question_path
-                %div.d-inline-block.footer-item
-                  - if request.fullpath == questions_path
-                    = link_to image_tag('blue_icon_home.jpg', { :border => '0', :alt => '質問一覧'}), questions_path
+                    = link_to image_tag('icon_post.png', { :border => '0', :alt => '質問投稿'}), new_question_path
+                %div.footer-item.col-4
+                  - if request.path_info == questions_path
+                    -# = link_to image_tag('blue_icon_home.png', { :border => '0', :alt => '質問一覧'}), questions_path
                   - else
-                    = link_to image_tag('icon_home.jpg', { :border => '0', :alt => '質問一覧'}), questions_path
-                %div.d-inline-block.footer-item.right
-                  - if request.fullpath == profile_path(current_user)
-                    = link_to image_tag('blue_icon_profile.jpg', { :border => '0', :alt => 'プロフィール'}), profile_path(current_user)
+                    = link_to image_tag('icon_home.png', { :border => '0', :alt => '質問一覧'}), questions_path
+                %div.footer-item.col-4
+                  - if request.path_info == profile_path(current_user)
+                    -# = link_to image_tag('blue_icon_profile.png', { :border => '0', :alt => 'プロフィール'}), profile_path(current_user)
                   - else
-                    = link_to image_tag('icon_profile.jpg', { :border => '0', :alt => 'プロフィール'}), profile_path(current_user)
+                    = link_to image_tag('icon_profile.png', { :border => '0', :alt => 'プロフィール'}), profile_path(current_user)
             %div.d-lg-block.col-lg-2.d-none

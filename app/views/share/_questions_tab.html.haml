@@ -12,7 +12,7 @@
               =image_tag "title_logo_1.png"
             %div.question-item-footer-center.col-4
               - if question.answers.length > 0
-                = image_tag "communication-4.png"
+                = image_tag "communication-4.png", class: "img-base"
                 = question.answers.length
             %div.question-item-footer-right.col-4
               = render 'share/username_post', obj: question, link: false

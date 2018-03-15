@@ -15,6 +15,7 @@ class QuestionsController < ApplicationController
   end
 
   def show
+    logger.debug request.fullpath
     @answer = Answer.new
     @answers = @question.answers.includes(:likes).page(params[:page]).per(PER)
   end

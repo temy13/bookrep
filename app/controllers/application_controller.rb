@@ -6,7 +6,11 @@ class ApplicationController < ActionController::Base
   def append_info_to_payload(payload)
     super
     payload[:host] = request.host
-    payload[:ua] = request.user_agent
+    payload[:ip] = request.remote_ip
+    payload[:referer] = request.referer
+    payload[:user_agent] = request.user_agent
+
+    payload[:login_id] = current_user.try(:id)#session[:login_id]
   end
 
   def store_location

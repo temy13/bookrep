@@ -1,5 +1,6 @@
 require 'rails_helper'
 require 'support/factory_bot'
+# require 'support/capybara_modules'
 
 RSpec.describe 'Login', type: :system do
   before(:each) do
@@ -9,6 +10,7 @@ RSpec.describe 'Login', type: :system do
 
   it "login at /users/login by email" do
     visit "/users/login"
+    expect(page).to have_xpath("//img[contains(@src,'TitleLogo_2_Blue')]")
     fill_in "user[email]", with: @user.email
     fill_in "user[password]", with: @user.password
     click_button "login-submit"

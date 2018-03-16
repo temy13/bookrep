@@ -56,7 +56,7 @@
     height: 220px * $logo-height / $logo-width;
     line-height: 220px * $logo-height / $logo-width;
     @include screen($breakpoint-mobile, $breakpoint-tablet) {
-      padding: 23px 0 32px 0;
+      padding: 16px 0 32px 0;
       height: auto;
       line-height: auto;
       font-size: 52px;

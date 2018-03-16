@@ -74,7 +74,7 @@
             %div.title-tag.d-inline-block= ""
             %div#answer-title-remove.d-inline-block.btn.remove-button= "x"
           = f.hidden_field :title, :placeholder => "本のタイトルを入力", :class=> "input-title input-answer", :id => "answer-title-input-form"
-          = f.text_area :content, required: true, :placeholder => "ここにコメントを書いて投稿しよう", :class=> "input-answer input-question"
+          = f.text_area :content, required: true, :placeholder => "ここにコメントを書いて投稿しよう", :class=> "input-answer input-question", :id =>"answer-content-input"
           = f.hidden_field :user_id, :value => current_user.try(:id)
           = f.hidden_field :question_id, :value => @question.id
           = f.hidden_field :book_id, :value => nil, :id => "answer-book-id"

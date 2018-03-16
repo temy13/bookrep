@@ -18,20 +18,20 @@
       = f.text_area :content, required: true, :placeholder => "ここに質問を書いて投稿しよう", :class=> "input-question"
       = f.hidden_field :user_id, :value => current_user.id
     - if current_user.provider == "twitter"
-      %h2.field.tweet.separate
+      .field.tweet.separate
         %span.text= "Twitterアカウントで投稿をシェアする"
         %div.checkbox
           = f.check_box :is_tweet, :id =>"checkbox1", :class=>"ios-toggle"
           = label "", "checkbox1", :class=>"checkbox-label"#, :data=>{:off=>"off" , :on=>"on"}
     - else
-      %h2.field.tweet.separate.disabled
+      .field.tweet.separate.disabled
         -# %div.fade
         %span.text= "Twitterアカウントで投稿をシェアする"
         %div.checkbox
           = f.check_box :is_tweet, :checked=>false, :id =>"checkbox1", :class=>"ios-toggle"
           = label "", "checkbox1", :class=>"checkbox-label"#, :data=>{:off=>"off" , :on=>"on"}
 
-    %h2.field.separate.separate-bottom.row.height-block3
+    .field.separate.separate-bottom.row.height-block3
       = link_to("#", id: 'show-modal', class: 'show-modal col-10') do
         = "友達に回答リクエストを送る"
       = link_to("#", id: 'show-modal-wq', class: 'show-modal-wq col-2 question-circle') do

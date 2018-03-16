@@ -44,6 +44,7 @@ $ ->
       $('#answer-title-input-form').val $('#answer-title-tag').find(".title-tag").text()
       return true
     $('#answer-title-input').addClass("input-error")
+    $('input[type=submit]').css 'opacity': 1.0
     return false
 
 

@@ -11,15 +11,36 @@ RSpec.describe 'Questions', type: :system do
   it 'new question' do
     login_as(@user, :scope => :user)
     visit "/questions/new"
+    expect(page).to have_xpath("//img[contains(@src,'icon_home')]")
+    expect(page).to have_xpath("//img[contains(@src,'blue_icon_post')]")
+    expect(page).to have_xpath("//img[contains(@src,'icon_profile')]")
+    expect(page).to have_content '質問する'
+
     click_button "post-by-account"
     page.has_css?("error")
     fill_in "question_content", with: "質問の中身だよ"
     click_button "post-by-account"
     q = Question.last
+    expect(page).to have_content '回答する'
     expect(page).to have_content '質問が投稿されました'
     expect(page).to have_content q.content
     expect(page).to have_content q.user.name
     expect(q.is_anonymous).to eq false
+
+    expect(page).to have_xpath("//img[contains(@src,'icon_home')]")
+    expect(page).to have_xpath("//img[contains(@src,'icon_post')]")
+    expect(page).to have_xpath("//img[contains(@src,'icon_profile')]")
+
+  end
+
+  it 'index questions' do
+    login_as(@user, :scope => :user)
+    visit "/questions"
+    expect(page).to have_content '質問一覧'
+    expect(page).to have_xpath("//img[contains(@src,'blue_icon_home')]")
+    expect(page).to have_xpath("//img[contains(@src,'icon_post')]")
+    expect(page).to have_xpath("//img[contains(@src,'icon_profile')]")
+
   end
 
   it 'new anonymous question' do
@@ -76,6 +97,7 @@ RSpec.describe 'Questions', type: :system do
     page.has_text?(@question.content)
 
   end
+
 
 
   # it 'confirm modal & toggle', js: true do

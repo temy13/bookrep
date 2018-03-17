@@ -14,12 +14,21 @@ CSV.foreach('db/users.csv', headers: true) do |row|
 end
 
 CSV.foreach('db/books.csv', headers: true) do |row|
-  Book.create(:title => row[1], :isbn10 => row[3], :isbn13 => row[4], :google_books_id => row[5])
+  b = Book.create(:title => row[1], :isbn10 => row[3], :isbn13 => row[4], :google_books_id => row[5])
+  [7,8,9,10,11].each{|n|
+    break if row[n].blank?
+    Author.create(:name => row[n], :book_id => b.id )
+  }
 end
 
-CSV.foreach('db/authors.csv', headers: true) do |row|
-  Author.create(:name => row[1], :book_id => row[2] )
-end
+
+# CSV.foreach('db/books.csv', headers: true) do |row|
+#   Book.create(:title => row[1], :isbn10 => row[3], :isbn13 => row[4], :google_books_id => row[5])
+# end
+#
+# CSV.foreach('db/authors.csv', headers: true) do |row|
+#   Author.create(:name => row[1], :book_id => row[2] )
+# end
 
 
 CSV.foreach('db/contents.csv', headers: true) do |row|

@@ -10,6 +10,7 @@
 #  updated_at   :datetime         not null
 #  is_tweet     :boolean          default(FALSE)
 #  image        :string
+#  score        :integer          default(0)
 #
 
 require 'test_helper'

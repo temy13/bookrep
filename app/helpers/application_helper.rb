@@ -6,7 +6,7 @@ module ApplicationHelper
     @seo_keywords.blank? ? "ブクリプ,bookrep" : @seo_keywords
   end
   def get_seo_contents
-    @seo_contents.blank? ? "ブクリプは、読書好きのためのQ&Aコミュニティです。友達や読書家のおすすめ本を知りたい！新しいジャンルに挑戦したい！今の自分に合った作品を知りたい！ブクリプなら、スマホやPCで簡単に質問できます。" : @seo_contents
+    @seo_contents.blank? ? "" : @seo_contents
   end
 
 

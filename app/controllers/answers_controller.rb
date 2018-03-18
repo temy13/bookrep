@@ -70,7 +70,9 @@ class AnswersController < ApplicationController
         .map{|item|
           {
             title: item["volumeInfo"]["title"],
+            subtitle: item["volumeInfo"]["subtitle"],
             authors: item["volumeInfo"]["authors"],
+            categories: item["volumeInfo"]["categories"],
             google_books_id: item["id"],
             info: item["volumeInfo"]["industryIdentifiers"]
           }

@@ -2,14 +2,16 @@
 #
 # Table name: books
 #
-#  id              :integer          not null, primary key
-#  title           :string
-#  isbn10          :string
-#  isbn13          :string
-#  asin            :string
-#  google_books_id :string
-#  created_at      :datetime         not null
-#  updated_at      :datetime         not null
+#  id                :integer          not null, primary key
+#  title             :string
+#  isbn10            :string
+#  isbn13            :string
+#  asin              :string
+#  google_books_id   :string
+#  created_at        :datetime         not null
+#  updated_at        :datetime         not null
+#  subtitle          :string
+#  google_categories :string
 #
 
 class Book < ApplicationRecord
@@ -37,6 +39,7 @@ class Book < ApplicationRecord
       {
         id: book.id,
         title: book.title,
+        subtitle: book.subtitle,
         authors: book.authors_txt,
         imgurl: book.image_url
       }
@@ -44,7 +47,12 @@ class Book < ApplicationRecord
   end
 
   def self.new_book(m)
-    @book = Book.new(title: m[:title], google_books_id: m[:google_books_id])
+    @book = Book.new(
+      title: m[:title],
+      subtitle: m[:subtitle],
+      google_books_id: m[:google_books_id]
+    )
+    @book.google_categories = m[:categories].join(",") if m[:categories].present?
     Array(m[:info]).each do |item|
       if item["type"] == "ISBN_10"
         @book.isbn10 = item["identifier"]

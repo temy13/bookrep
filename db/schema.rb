@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180308053740) do
+ActiveRecord::Schema.define(version: 20180318055020) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(version: 20180308053740) do
     t.datetime "updated_at", null: false
     t.boolean "is_tweet", default: false
     t.boolean "is_anonymous", default: false
+    t.integer "score", default: 0
   end
 
   create_table "authors", force: :cascade do |t|
@@ -50,6 +51,8 @@ ActiveRecord::Schema.define(version: 20180308053740) do
     t.string "google_books_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "subtitle"
+    t.string "google_categories"
   end
 
   create_table "likes", force: :cascade do |t|
@@ -76,6 +79,7 @@ ActiveRecord::Schema.define(version: 20180308053740) do
     t.datetime "updated_at", null: false
     t.boolean "is_tweet", default: false
     t.string "image"
+    t.integer "score", default: 0
   end
 
   create_table "requests", force: :cascade do |t|

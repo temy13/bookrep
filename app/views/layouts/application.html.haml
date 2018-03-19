@@ -1,12 +1,20 @@
 !!!
 %html
   %head
-    %script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
-
-    :coffee
-      (adsbygoogle = window.adsbygoogle or []).push
-        google_ad_client: "ca-pub-6030595513792321"
+    %script{:type => 'text/javascript', :src => 'http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js'}
+    -# %script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
+    :javascript
+      (adsbygoogle = window.adsbygoogle || []).push({
+        google_ad_client: "ca-pub-5106796650047961",
         enable_page_level_ads: true
+      });
+
+    -# %script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
+    -#
+    -# :coffee
+    -#   (adsbygoogle = window.adsbygoogle or []).push
+    -#     google_ad_client: "ca-pub-6030595513792321"
+    -#     enable_page_level_ads: true
 
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
     %title=get_title

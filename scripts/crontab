@@ -1,0 +1,5 @@
+0 23 * * * pg_dump -U thoth --format=plain bookrep_db > ~/dbbkp/bkrpdp_dump.sql
+0 23 * * * cp ~/dbbkp/bkrpdp_dump.sql ~/keep/bkrpdb_dump.sql
+0 23 * * * pg_dump -U thoth --format=plain bookrep_db > ~/dbbkp/bkrpdp_dump_`date "+\%Y\%m\%d"`.sql
+0 * * * * ~/.pyenv/versions/3.5.0/bin/python ~/bookrep/scripts/py/disk_notice.py
+0 * * * * ~/.pyenv/versions/3.5.0/bin/python ~/bookrep/scripts/py/twitter_auto_favo.py

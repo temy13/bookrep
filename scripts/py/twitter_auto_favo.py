@@ -12,8 +12,8 @@ load_dotenv(dotenv_path)
 
 CK = os.environ.get("TWITTER_KEY")
 CS = os.environ.get("TWITTER_SECRET")
-AT = os.environ.get("ACCESS_TOKEN")
-AS = os.environ.get("ACCESS_TOKEN_SECRET")
+AT = os.environ.get("TWITTER_ACCESS")
+AS = os.environ.get("TWITTER_ACCESS_SECRET")
 twitter = OAuth1Session(CK, CS, AT, AS)
 fcount = 200 #max
 scount = 100 #max
@@ -22,7 +22,10 @@ base = "https://api.twitter.com/1.1"
 def get(url):
     try:
       r = twitter.get(url)
-      if r.status_code != 200: print (r)
+      if r.status_code != 200:
+          print (url)
+          print (r)
+          print (r.text)
       data = json.loads(r.text)
       return data
     except:
@@ -32,7 +35,10 @@ def get(url):
 def post(url, params):
     try:
       r = twitter.post(url, params)
-      if r.status_code != 200: print (r)
+      if r.status_code != 200:
+          print (url)
+          print (r)
+          print (r.text)
       data = json.loads(r.text)
       return data
     except:
@@ -64,7 +70,7 @@ def favo(query, n, favo_list, rt="mixed"):
         for tweet_id in [item["id_str"] for item in data if item["id_str"] not in favo_list]:
             posturl = base + "/favorites/create.json"
             params = {
-                id: tweet_id
+                "id": tweet_id
             }
             post(posturl, params)
             favo_list.add(tweet_id)

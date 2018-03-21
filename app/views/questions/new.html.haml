@@ -42,7 +42,7 @@
 
 
 
-  .actions-group
+  .actions-group.padding-bottom-unit
     - if current_user.provider == "twitter"
       .actions
         = f.submit 'アカウント名で投稿', id: "post-by-account", class: "btn blue btn-base", name: "normal"
@@ -87,6 +87,8 @@
       %ul#option-users
 
     %div#modal-back-button.modal-back-button=image_tag "request_page_button.png", {:class => "modal-back-button-img"}
+
+= render 'share/ad01'
 
 :ruby
   @page_title = "ブクリプ:質問する - 次に読む本のおすすめを聞こう！"

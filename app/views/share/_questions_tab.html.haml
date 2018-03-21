@@ -17,4 +17,7 @@
             %div.question-item-footer-right.col-4
               = render 'share/username_post', obj: question, link: false
 
+.margin-tb-16.text-center
+  = render 'share/ad02'
+
 = paginate questions, :param_name => page_name, :params => {:page => page_name}#, remote: true

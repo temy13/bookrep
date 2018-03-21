@@ -22,6 +22,7 @@
 #  profile                :string
 #  icon_path              :string
 #  is_email_notice        :boolean          default(FALSE)
+#  states_cd              :integer          default(0)
 #
 
 require 'securerandom'
@@ -40,6 +41,7 @@ class User < ApplicationRecord
   has_many :title_query
   has_many :book_click_logs
 
+  as_enum :states, normal: 0, dummy: 1, admin: 2
 
 
   # before_save :prepare_save

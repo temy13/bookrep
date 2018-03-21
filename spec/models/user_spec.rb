@@ -22,6 +22,7 @@
 #  profile                :string
 #  icon_path              :string
 #  is_email_notice        :boolean          default(FALSE)
+#  states_cd              :integer          default(0)
 #
 
 require 'rails_helper'

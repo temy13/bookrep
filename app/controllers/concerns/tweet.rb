@@ -18,18 +18,6 @@ module Tweet extend ActiveSupport::Concern
     end
   end
 
-  def tweet_question(question)
-    @client = twitter_client
-    url = ENV["SERVICE_HOST"] + "/questions/" + question.id.to_s
-    @client.update("ブクリプで質問しました! #ブクリプ　" + url)
-  end
-
-  def tweet_answer(answer)
-    @client = twitter_client
-    url = ENV["SERVICE_HOST"] + "/questions/" + answer.question.id.to_s
-    @client.update("ブクリプで質問に答えました! #ブクリプ　" + url)
-  end
-
   def get_followers(cursor, count)
     @client = twitter_client
     @client.followers({:cursor => cursor, :count => count})
@@ -39,12 +27,6 @@ module Tweet extend ActiveSupport::Concern
     #@client = twitter_client
     @client = twitter_client
     @client.user_search(query, {:count => count}) #max -> 20
-  end
-
-  def tweet_request(request)
-    @client = official_twitter_client
-    url = ENV["SERVICE_HOST"] + "/questions/" + request.question_id.to_s
-    @client.update("@" + request.name + " おすすめの本を教えて欲しいとリクエストが届いています！" + url)
   end
 
 end

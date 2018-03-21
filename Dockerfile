@@ -9,6 +9,10 @@ RUN mkdir /app
 WORKDIR /app
 COPY Gemfile Gemfile.lock ./
 RUN bundle install
+
+RUN echo '-------------- env ---------------'
+RUN env
+
 COPY . ./
 
 RUN bundle exec rake assets:precompile assets:clean

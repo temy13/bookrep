@@ -56,14 +56,18 @@ services:
       - TWITTER_ACCESS=${TWITTER_ACCESS}
       - TWITTER_ACCESS_SECRET=${TWITTER_ACCESS_SECRET}
       - AMAZON_ASSOCIATE_ID=${AMAZON_ASSOCIATE_ID}
-      - EMAIL=${EMAIL}
+      #- EMAIL=${EMAIL}
+      - EMAIL
       - EMAIL_PASS=${EMAIL_PASS}
       - SERVICE_HOST=${SERVICE_HOST}
       - RAILS_LOG_TO_STDOUT=${RAILS_LOG_TO_STDOUT}
       - GA_TRACKING_CODE=${GA_TRACKING_CODE}
       - GOOGLE_ADSENCE_CODE=${GOOGLE_ADSENCE_CODE}
       - SLACK_QUESTIONS=${SLACK_QUESTIONS}
-   #depends_on:
+  redis:
+    image: redis:latest  
+
+ #depends_on:
     #  - db
   #notification:
   #  build:

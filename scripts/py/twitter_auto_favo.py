@@ -23,10 +23,10 @@ base = "https://api.twitter.com/1.1"
 def get(url):
     try:
       r = twitter.get(url)
-      if r.status_code != 200:
+      #if r.status_code != 200:
       #    print (url)
-          print (r)
-          print (r.text)
+      #    print (r)
+      #    print (r.text)
       data = json.loads(r.text)
       return data
     except:
@@ -37,10 +37,10 @@ def get(url):
 def post(url, params):
     try:
       r = twitter.post(url, params)
-      if r.status_code != 200:
+      #if r.status_code != 200:
       #    print (url)
-          print (r)
-          print (r.text)
+      #    print (r)
+      #    print (r.text)
       data = json.loads(r.text)
       return data
     except:
@@ -73,7 +73,7 @@ def favo(query, n, favo_list, rt="mixed"):
         #全てのツイートに対してファボ
         #for tweet_id in [item["id_str"] for item in data if item["id_str"] not in favo_list and item["id"] not in favos]:
         for tweet_id in [item["id_str"] for item in data if item["id"] not in favos]:
-            print (tweet_id)
+            #print (tweet_id)
             posturl = base + "/favorites/create.json"
             params = {
                 "id": tweet_id
@@ -85,7 +85,7 @@ def favo(query, n, favo_list, rt="mixed"):
             break
         url = baseurl + "&max_id=" + str(data[-1]["id"])
     #print (query, rt, "done")
-    print (rt, "done")
+    #print (rt, "done")
     return favo_list
 
 def post_favo(query, n, favo_list):
@@ -96,7 +96,7 @@ def post_favo(query, n, favo_list):
 
 def main():
     favo_list = get_favo_list()
-    print (len(favo_list))
+    #print (len(favo_list))
     queries = ["読書好きの人と繋がりたい", "おすすめの本教えてください", "本好きの人と繋がりたい", "読書"]
     random.shuffle(queries)
     for q in queries:

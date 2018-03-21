@@ -24,7 +24,7 @@
 
 
 -# TODO: render
-%ul.tab-contents
+%ul.tab-contents.padding-bottom-unit
   %li#profile-posts-q.tab-contents-item
     - if @questions.present?
       = render 'share/questions_tab', questions: @questions, page_name: "page_q"
@@ -46,6 +46,8 @@
           %p= "あなたのオススメの本を"
           %p="教えてください！"
         = image_tag "logo_mark_blue.png"
+
+=render ("share/ad01")
 
 :ruby
   @page_title = "ブクリプ:" + @user.name + "さんのプロフィール"

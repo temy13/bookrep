@@ -31,7 +31,7 @@ class QuestionsController < ApplicationController
     @question = Question.new(question_params)
     @question.is_anonymous = params[:anonymous].present? || params[:submit_type] == "anonymous"
     if @question.save
-      tweet(@question)
+      do_anything(@question)
       question_slack(@question) if Rails.env.production?
       flash[:notice_link] = profile_path(current_user) if current_user.is_dummy_email
       notice = flash[:notice_link].blank? ? "質問が投稿されました" : "質問が投稿されました。通知を受け取るためにメール登録してください"
@@ -87,10 +87,12 @@ class QuestionsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
 
-    def tweet(question)
+    def do_anything(question)
+      #g question
       path = generate_image(question)
       question.image = File.open(path)
       question.save
+      # twitter
       tweet_question(question) if question.is_tweet
       question.requests.each do |r|
        tweet_request(r)

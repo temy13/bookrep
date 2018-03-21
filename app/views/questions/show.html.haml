@@ -93,7 +93,7 @@
               = f.check_box :is_tweet, :checked=>false, :id =>"checkbox1", :class=>"ios-toggle"
               = label "", "checkbox1", :class=>"checkbox-label"#, :data=>{:off=>"off" , :on=>"on"}
 
-      .actions-group
+      .actions-group.padding-bottom-unit
         - if current_user.provider == "twitter"
           .actions
             = f.submit 'アカウント名で投稿', class: "btn blue btn-base", name: "normal",id: "post-by-account"
@@ -114,7 +114,7 @@
             %div.checkbox
               -# = check_box_tag :is_tweet, :id =>"checkbox1", :class=>"ios-toggle"
               = label "", "checkbox1", :class=>"checkbox-label"#, :data=>{:off=>"off" , :on=>"on"}
-        .actions-group
+        .actions-group.padding-bottom-unit
           .actions
             = submit_tag 'Twitter名で投稿', class: "btn blue btn-base", name: "normal"
           .actions
@@ -128,6 +128,8 @@
               %i.fa.fa-twitter="Twitterで登録/ログイン"
           %div.normal-link.mail-login-link
             = link_to "メールアドレスでログイン", new_user_session_path, class: "btn orange btn-base", id: "email-login"
+
+= render("share/ad01")
 
 :ruby
   @page_title = "ブクリプ:"+@question.content

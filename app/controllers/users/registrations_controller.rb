@@ -21,6 +21,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
       names = CSV.read('db/namelist.csv')
       resource.name = names.sample.first
     end
+    resource.is_email_notice = true
     resource.save
     yield resource if block_given?
     if resource.persisted?

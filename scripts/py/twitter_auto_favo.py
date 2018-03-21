@@ -24,26 +24,28 @@ def get(url):
     try:
       r = twitter.get(url)
       if r.status_code != 200:
-          print (url)
+      #    print (url)
           print (r)
           print (r.text)
       data = json.loads(r.text)
       return data
     except:
-      print(sys.exc_info())
+      print ("error")
+      #print(sys.exc_info())
     return []
 
 def post(url, params):
     try:
       r = twitter.post(url, params)
       if r.status_code != 200:
-          print (url)
+      #    print (url)
           print (r)
           print (r.text)
       data = json.loads(r.text)
       return data
     except:
-      print(sys.exc_info())
+      print ("error")
+      #print(sys.exc_info())
     return []
 
 
@@ -79,9 +81,10 @@ def favo(query, n, favo_list, rt="mixed"):
             post(posturl, params)
             favo_list.append(tweet_id)
         if len(data) == 0:
-            print (url)
+            #print (url)
             break
         url = baseurl + "&max_id=" + str(data[-1]["id"])
+    #print (query, rt, "done")
     print (rt, "done")
     return favo_list
 

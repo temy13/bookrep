@@ -17,6 +17,7 @@ COPY . ./
 
 RUN bundle exec rake assets:precompile assets:clean
 
+CMD rm -f /app/tmp/pids/server.pid
 CMD bundle exec rails server -b 0.0.0.0 -p ${PORT:-3000}
 #EXPOSE 3000
 #CMD ["bundle", "exec", "rails", "server", "-b", "0.0.0.0"]

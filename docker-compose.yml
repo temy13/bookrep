@@ -39,8 +39,8 @@ services:
       context: .
     #image: localhost:5000/temy13/bookrep:v1.17
     volumes:
-    #  - .:/app
-      #- public-data:/app/public
+      - .:/app
+      - public-data:/app/public
       - ./public:/app/public
       - ./log:/app/log
       - tmp-data:/app/tmp
@@ -66,6 +66,12 @@ services:
       - SLACK_QUESTIONS=${SLACK_QUESTIONS}
   redis:
     image: redis:latest  
+  sidekiq:
+    build: .
+    command: bundle exec sidekiq
+    volumes:
+      - .:/app
+    env_file: .env
 
  #depends_on:
     #  - db

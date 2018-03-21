@@ -90,9 +90,13 @@ class QuestionsController < ApplicationController
 
     def do_anything(question)
       #g question
-      path = generate_image(question)
-      question.image = File.open(path)
-      question.save
+      if question.is_tweet
+        path = generate_image(question)
+        question.image = File.open(path)
+        question.save
+      else
+        ImageWorker.perform_async(question.id)
+      end
       # twitter
       TwitterQuestionWorker.perform_async(question.id, session[:access_token], session[:access_token_secret])
     end

@@ -27,7 +27,7 @@ RSpec.describe 'Login', type: :system do
     fill_in "user-login-password-1", with: @user.password
     click_button "login-submit"
     expect(page).to have_content "そのメールアドレスはすでに登録されています"
-    expect(page).to have_content "意外な一冊に出会える"
+    expect(page).to have_content "新しいジャンルに挑戦してみたい"
 
     fill_in "user-login-email-1", with: "new-email@example.com"
     fill_in "user-login-password-1", with: "パスワードだってばよ"

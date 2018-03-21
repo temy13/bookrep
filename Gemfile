@@ -99,3 +99,6 @@ gem 'slack-notifier'
 gem 'simple_enum'
 gem 'redis'
 gem 'redis-rails'
+gem 'redis-namespace'
+gem 'sidekiq'
+gem 'sinatra', require: false

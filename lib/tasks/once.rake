@@ -1,15 +1,15 @@
 namespace :once do
-  require ENV['PWD'] + "/app/controllers/concerns/generate_images"
-  include GenerateImages
-
-  task :image => :environment do
-    @questions = Question.all.select{|q| q.image.blank?}
-    @questions.each{|question|
-      path = generate_image(question)
-      question.image = File.open(path)
-      question.save
-    }
-  end
+  # require ENV['PWD'] + "/app/controllers/concerns/generate_images"
+  # include GenerateImages
+  #
+  # task :image => :environment do
+  #   @questions = Question.all.select{|q| q.image.blank?}
+  #   @questions.each{|question|
+  #     path = generate_image(question)
+  #     question.image = File.open(path)
+  #     question.save
+  #   }
+  # end
 
   task :states => :environment do
     @dummies = User.where(id: 0..22)

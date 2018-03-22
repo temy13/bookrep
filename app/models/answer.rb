@@ -58,8 +58,7 @@ class Answer < ApplicationRecord
   end
 
   def is_send_email
-    u = self.question.user
-    u.is_email_notice && u.normal_email
+    self.question.user.is_send_email
   end
 
   def authors_txt

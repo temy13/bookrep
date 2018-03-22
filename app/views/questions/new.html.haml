@@ -1,95 +1,126 @@
 %div.top.question-top
   =image_tag("question_top_bg.png", :class => "top-image, question-top-image")
   %h1.top-question-text
-    %p= current_user.name + "さん"
+    - if current_user.present?
+      %p= current_user.try(:name) + "さん"
     %p= "「ブクリプ」へようこそ"
     %p= "さっそく質問してみましょう"
 
-= form_for @question do |f|
-  %div.white-back
-    - if @question.errors.any?
-      #error_explanation
-        %h2.error= "#{pluralize(@question.errors.count, "件")} のエラーが発生しました"
-        %ul.list-group
-          - @question.errors.full_messages.each do |message|
-            %li.list-group-item.list-group-item-danger= message
+- if current_user
+  = form_for @question do |f|
+    %div.white-back
+      - if @question.errors.any?
+        #error_explanation
+          %h2.error= "#{pluralize(@question.errors.count, "件")} のエラーが発生しました"
+          %ul.list-group
+            - @question.errors.full_messages.each do |message|
+              %li.list-group-item.list-group-item-danger= message
 
-    .field
-      = f.text_area :content, required: true, :placeholder => "ここに質問を書いて投稿しよう", :class=> "input-question"
-      = f.hidden_field :user_id, :value => current_user.id
-    - if current_user.provider == "twitter"
+      .field
+        = f.text_area :content, required: true, :placeholder => "ここに質問を書いて投稿しよう", :class=> "input-question"
+        = f.hidden_field :user_id, :value => current_user.try(:id)
+      - if current_user.try(:provider) == "twitter"
+        .field.tweet.separate
+          %span.text= "Twitterアカウントで投稿をシェアする"
+          %div.checkbox
+            = f.check_box :is_tweet, :id =>"checkbox1", :class=>"ios-toggle"
+            = label "", "checkbox1", :class=>"checkbox-label"#, :data=>{:off=>"off" , :on=>"on"}
+      - else
+        .field.tweet.separate.disabled
+          -# %div.fade
+          %span.text= "Twitterアカウントで投稿をシェアする"
+          %div.checkbox
+            = f.check_box :is_tweet, :checked=>false, :id =>"checkbox1", :class=>"ios-toggle"
+            = label "", "checkbox1", :class=>"checkbox-label"#, :data=>{:off=>"off" , :on=>"on"}
+      -# .height-block3
+      .field.separate.separate-bottom.row
+        = link_to("#", id: 'show-modal', class: 'show-modal col-10') do
+          = "友達に回答リクエストを送る"
+        = link_to("#", id: 'show-modal-wq', class: 'show-modal-wq col-2 question-circle') do
+          =image_tag "question_circle.png"
+        #request-users-tags
+          -# %input{:id=>"request-users-tags-input", "data-role" => "tagsinput"}
+      -# = f.fields_for :requests do |r|
+      -#   = r.hidden_field :name
+      -#   = r.hidden_field :uid
+
+
+
+
+    .actions-group.padding-bottom-unit
+      - if current_user.try(:provider) == "twitter"
+        .actions
+          = f.submit 'アカウント名で投稿', id: "post-by-account", class: "btn blue btn-base", name: "normal"
+      - else
+        .actions
+          = f.submit 'ユーザ名で投稿', id: "post-by-account", class: "btn blue btn-base", name: "normal"
+      .actions
+        = f.submit '匿名で投稿', id: "post-by-anonymous", class: "btn orange btn-base", name: "anonymous", value: "匿名で投稿"
+
+
+  %div#modalwin.modalwin.hide.padding-zero-wb
+    %div.modal-header
+      %div.modal-close.cross= "×"
+      %div.modal-title="リクエストを送る"
+    %div.modalwin-contents
+      %div#reply.modal-border-top
+        %div.text.d-inline-block.modal-inner-title.border-bottom
+          -# ="回答リクエストとは"
+          =image_tag "logos/request_page_title01.png", {:class => "title-logo"}
+          %div.image.d-inline-block
+            = image_tag "Arrow01.jpg", {:id => "reply-arrow-img"}
+      %div#reply-input-box
+        %div.inner-content
+          %p="あなたが選んだTwitterアカウント宛に"
+          %p="Twitterのブクリプ公式アカウントが"
+          %p="「回答リクエストが届きました！」と"
+          %p="ツイートでおしらせします"
+          %p.font-sm="リクエストが届くまで時間がかかる場合や、届かない場合があります。"
+        %div.modal-inner-title.border-bottom
+          =image_tag "logos/request_page_title03.png", {:class => "title-logo"}
+          -# ="公式からTwitterへの投稿"
+        = image_tag "top_howto03.png", {:class => "reply-sample"}
+      %div.reply-search-box
+        %div.modal-inner-title.modal-border-top
+          =image_tag "logos/request_page_title02.png", {:class => "title-logo"}
+          -# ="宛先を選ぶ"
+        %div.row
+          %div.col-10
+            %input{:name => "reply-search", :placeholder => "アカウントを検索する", :class=> "input-request input-answer", :id=>"reply-search"}
+          %div#user-search-exec.col-2.option-search
+            =image_tag "modal_search.png"
+        %ul#option-users
+
+      %div#modal-back-button.modal-back-button=image_tag "request_page_button.png", {:class => "modal-back-button-img"}
+- else
+  %div.white-back
+    %div.disabled
+      .field
+        %text_area{:placeholder => "ここに質問を書いて投稿しよう", :class=> "input-question"}
       .field.tweet.separate
         %span.text= "Twitterアカウントで投稿をシェアする"
         %div.checkbox
-          = f.check_box :is_tweet, :id =>"checkbox1", :class=>"ios-toggle"
           = label "", "checkbox1", :class=>"checkbox-label"#, :data=>{:off=>"off" , :on=>"on"}
-    - else
-      .field.tweet.separate.disabled
-        -# %div.fade
-        %span.text= "Twitterアカウントで投稿をシェアする"
-        %div.checkbox
-          = f.check_box :is_tweet, :checked=>false, :id =>"checkbox1", :class=>"ios-toggle"
-          = label "", "checkbox1", :class=>"checkbox-label"#, :data=>{:off=>"off" , :on=>"on"}
-    -# .height-block3
-    .field.separate.separate-bottom.row
-      = link_to("#", id: 'show-modal', class: 'show-modal col-10') do
-        = "友達に回答リクエストを送る"
-      = link_to("#", id: 'show-modal-wq', class: 'show-modal-wq col-2 question-circle') do
-        =image_tag "question_circle.png"
-      #request-users-tags
-        -# %input{:id=>"request-users-tags-input", "data-role" => "tagsinput"}
-    = f.fields_for :requests do |r|
-      = r.hidden_field :name
-      = r.hidden_field :uid
+      .field.separate.separate-bottom.row
+        .col-10
+          = "友達に回答リクエストを送る"
+        .col-2.question-circle
+          =image_tag "question_circle.png"
+      .actions-group.padding-bottom-unit
+        .actions
+          = submit_tag 'アカウント名で投稿', class: "btn blue btn-base", name: "normal"
+        .actions
+          = submit_tag '匿名で投稿', class: "btn orange btn-base answer-submit", name: "anonymous"
 
-
-
-
-  .actions-group.padding-bottom-unit
-    - if current_user.provider == "twitter"
-      .actions
-        = f.submit 'アカウント名で投稿', id: "post-by-account", class: "btn blue btn-base", name: "normal"
-    - else
-      .actions
-        = f.submit 'ユーザ名で投稿', id: "post-by-account", class: "btn blue btn-base", name: "normal"
-    .actions
-      = f.submit '匿名で投稿', id: "post-by-anonymous", class: "btn orange btn-base", name: "anonymous", value: "匿名で投稿"
-
-
-%div#modalwin.modalwin.hide.padding-zero-wb
-  %div.modal-header
-    %div.modal-close.cross= "×"
-    %div.modal-title="リクエストを送る"
-  %div.modalwin-contents
-    %div#reply.modal-border-top
-      %div.text.d-inline-block.modal-inner-title.border-bottom
-        -# ="回答リクエストとは"
-        =image_tag "logos/request_page_title01.png", {:class => "title-logo"}
-        %div.image.d-inline-block
-          = image_tag "Arrow01.jpg", {:id => "reply-arrow-img"}
-    %div#reply-input-box
-      %div.inner-content
-        %p="あなたが選んだTwitterアカウント宛に"
-        %p="Twitterのブクリプ公式アカウントが"
-        %p="「回答リクエストが届きました！」と"
-        %p="ツイートでおしらせします"
-        %p.font-sm="リクエストが届くまで時間がかかる場合や、届かない場合があります。"
-      %div.modal-inner-title.border-bottom
-        =image_tag "logos/request_page_title03.png", {:class => "title-logo"}
-        -# ="公式からTwitterへの投稿"
-      = image_tag "top_howto03.png", {:class => "reply-sample"}
-    %div.reply-search-box
-      %div.modal-inner-title.modal-border-top
-        =image_tag "logos/request_page_title02.png", {:class => "title-logo"}
-        -# ="宛先を選ぶ"
-      %div.row
-        %div.col-10
-          %input{:name => "reply-search", :placeholder => "アカウントを検索する", :class=> "input-request input-answer", :id=>"reply-search"}
-        %div#user-search-exec.col-2.option-search
-          =image_tag "modal_search.png"
-      %ul#option-users
-
-    %div#modal-back-button.modal-back-button=image_tag "request_page_button.png", {:class => "modal-back-button-img"}
+    %div.invition-qs.invite.invition-qs-q
+      %div.invition-qs-txt
+        = "登録/ログインして質問に答える"
+      %div.invition-buttons
+        %div.twitter-login
+          = link_to user_twitter_omniauth_authorize_path, class: "btn blue btn-base", id: "twitter-login" do
+            %i.fa.fa-twitter="Twitterで登録/ログイン"
+        %div.normal-link.mail-login-link
+          = link_to "メールアドレスでログイン", new_user_session_path, class: "btn orange btn-base", id: "email-login"
 
 = render 'share/ad01'
 

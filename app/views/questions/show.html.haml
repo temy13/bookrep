@@ -105,7 +105,7 @@
           .actions
             = f.submit 'ユーザ名で投稿', class: "btn blue btn-base", name: "normal",id: "post-by-account"
         .actions
-          = f.submit '匿名で投稿で投稿する', class: "btn orange btn-base answer-submit", name: "anonymous", id: "post-by-anonymous"
+          = f.submit '匿名で投稿', class: "btn orange btn-base answer-submit", name: "anonymous", id: "post-by-anonymous"
   - else
     %div.white-back
       %div.disabled
@@ -120,10 +120,11 @@
               = label "", "checkbox1", :class=>"checkbox-label"#, :data=>{:off=>"off" , :on=>"on"}
         .actions-group.padding-bottom-unit
           .actions
-            = submit_tag 'Twitter名で投稿', class: "btn blue btn-base", name: "normal"
+            = submit_tag 'アカウント名で投稿', class: "btn blue btn-base", name: "normal"
           .actions
-            = submit_tag '匿名で投稿で投稿する', class: "btn orange btn-base answer-submit", name: "anonymous"
-      %div.invition-qs.invite
+            = submit_tag '匿名で投稿', class: "btn orange btn-base answer-submit", name: "anonymous"
+
+      %div.invition-qs.invite.invition-qs-a
         %div.invition-qs-txt
           = "登録/ログインして質問に答える"
         %div.invition-buttons

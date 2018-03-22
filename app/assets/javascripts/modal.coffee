@@ -13,6 +13,14 @@ $ ->
 
   n = 6
   before_query = ""
+  user_data = {}
+
+  $(document).on 'click', '.option-checkbox-input', ->
+    d = {"sname":$(this).context.name, "uid":$(this).val(), "name":$(this).data("name")}
+    if $(this).prop("checked")
+      user_data[d["uid"]] = d
+    else
+      delete user_data[d["uid"]]
 
   $(document).on 'click', '.option-add', ->
     v = $(this).data("value")
@@ -34,7 +42,7 @@ $ ->
     r += "<div class='option-user-name' >" + name + "</div>"
     r += "<div class='option-user-sname' >" + user.screen_name + "</div>"
     r += "<div class='option-user-uid' >" + user.uid + "</div></div>"
-    r += "<div class='col-2'><div class='option-checkbox'><label><input class='checkbox option-checkbox-input' type='checkbox' name='" + user.screen_name + "' value='" + user.uid + "'>"
+    r += "<div class='col-2'><div class='option-checkbox'><label><input class='checkbox option-checkbox-input' type='checkbox' data-name='" + user.name + "' name='" + user.screen_name + "' value='" + user.uid + "'>"
     r += "<span class='checkbox-icon'></span></label></div></div>"
     return r
 
@@ -113,23 +121,27 @@ $ ->
     return
 
   hideModal = ->
-    users = $('.option-checkbox-input:checked').map(->
-      $(this).val()
-      {"sname":$(this).context.name, "uid":$(this).val()}
-    ).get()
-    $.each users, (index, user) ->
-      $('<input>').attr({
-        type: 'hidden',
-        id: 'question_requests_attributes_' + index + '_name',
-        name: 'question[requests_attributes][' + index + '][name]'
-        value: user.sname
-      }).appendTo('#new_question');
-      $('<input>').attr({
-        type: 'hidden',
-        id: 'question_requests_attributes_' + index + '_uid',
-        name: 'question[requests_attributes][' + index + '][uid]'
-        value: user.uid
-      }).appendTo('#new_question');
+    # users = $('.option-checkbox-input:checked').map(->
+    #   $(this).val()
+    #   {"sname":$(this).context.name, "uid":$(this).val(), "name":$(this).context.name}
+    # ).get()
+    # $.each users, (index, user) ->
+      # $('<input>').attr({
+      #   type: 'hidden',
+      #   id: 'question_requests_attributes_' + index + '_name',
+      #   name: 'question[requests_attributes][' + index + '][name]'
+      #   value: user.sname
+      # }).appendTo('#new_question');
+      # $('<input>').attr({
+      #   type: 'hidden',
+      #   id: 'question_requests_attributes_' + index + '_uid',
+      #   name: 'question[requests_attributes][' + index + '][uid]'
+      #   value: user.uid
+      # }).appendTo('#new_question');
+    $('#request-users-tags').empty()
+    $.each user_data, (uid, user) ->
+      $('#request-users-tags').append('<div class="tag label" data-uid="' + user.uid + '" data-sname="' + user.sname + '" data-name="' + user.name + '">' + user.name + '<div class="tag-remove">×</div></div>')
+      # $('#request-users-tags-input').tagsinput('add', user.sname);
     $('#shade').remove()
     $('#modalwin').removeClass('show').addClass 'hide'
     $("html,body").animate({scrollTop:$('#question_content').offset().top - 20});
@@ -137,7 +149,13 @@ $ ->
 
   $('.show-modal').on 'click', showModal
   $('.show-modal-wq').on 'click', showModalWQ
+
+  $(document).on 'click', '.tag-remove', ->
+    $(this).parent().remove()
+    return
+
   return
+
 
 
 

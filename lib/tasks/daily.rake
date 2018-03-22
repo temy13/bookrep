@@ -6,5 +6,12 @@ namespace :daily do
     today_login_users = User.where(last_sign_in_at: d..now).normals.size
     today_created_questions = Question.includes(:user).where(created_at: d..now).select{|q| q.user.normal?}.size
     today_created_answers = Answer.includes(:user).where(created_at: d..now).select{|a| a.user.normal?}.size
+    today_created_logs = BookClickLog.includes(:user).where(created_at: d..now).select{|a| a.user.normal?}.size
+    p "Users: " + users.to_s
+    p "Today Users: " + today_login_users.to_s
+    p "Today Qs: " + today_created_questions.to_s
+    p "Today As: " + today_created_answers.to_s
+    p "Today ClickLogs: " + today_created_logs.to_s
+
   end
 end

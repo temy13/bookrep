@@ -22,6 +22,7 @@
 //= require jquery.validate
 //= require jquery.validate.additional-methods
 //= require bootstrap
+//= require bootstrap-tagsinput
 //= require env
 
 //= require_tree .

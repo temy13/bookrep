@@ -24,7 +24,8 @@ describe HomeController do
       expect(response).to have_http_status(302)
     end
     it 'renders the :index template' do
-      expect(response).to redirect_to("/questions/new")
+      # expect(response).to redirect_to("/questions/new")
+      expect(response).to redirect_to("/questions")
     end
 end
 

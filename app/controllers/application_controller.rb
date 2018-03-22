@@ -22,7 +22,7 @@ class ApplicationController < ActionController::Base
 
   #ログイン後のリダイレクトをログイン前のページにする場合
   def after_sign_in_path_for(resource)
-    check_except ? (session[:previous_url] || new_question_path) : new_question_path
+    check_except ? (session[:previous_url] || questions_path) : questions_path
   end
 
   #ログアウト後のリダイレクトをログアウト前のページにする場合
@@ -31,11 +31,11 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_up_path_for(resource)
-    check_except ? (session[:previous_url] || new_question_path) : new_question_path
+    check_except ? (session[:previous_url] || questions_path) : questions_path
   end
 
   def after_inactive_sign_up_path_for(resource)
-    check_except ? (session[:previous_url] || new_question_path) : new_question_path
+    check_except ? (session[:previous_url] || questions_path) : questions_path
   end
 
 
@@ -53,11 +53,11 @@ class ApplicationController < ActionController::Base
   private
 
   def check_except
-    return (request.fullpath != "/users/sign_in" && \
-        request.fullpath != "/users/sign_up" && \
-        request.fullpath != "/users/password" && \
-        request.fullpath != "/users/login" && \
-        request.fullpath != "/users/logout" && \
+    return (request.path_info != "/users/sign_in" && \
+        request.path_info != "/users/sign_up" && \
+        request.path_info != "/users/password" && \
+        request.path_info != "/users/login" && \
+        request.path_info != "/users/logout" && \
         !request.xhr?)
   end
 

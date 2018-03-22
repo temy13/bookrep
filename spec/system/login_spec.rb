@@ -15,8 +15,9 @@ RSpec.describe 'Login', type: :system do
     fill_in "user[password]", with: @user.password
     click_button "login-submit"
     expect(page).to have_content 'ログインしました'
-    expect(page).to have_content '「ブクリプ」へようこそ'
-    expect(page).to have_content @user.name
+    expect(page).to have_content '質問一覧'
+    # expect(page).to have_content '「ブクリプ」へようこそ'
+    # expect(page).to have_content @user.name
   end
 
   it "login at /questions/show by email"
@@ -33,7 +34,8 @@ RSpec.describe 'Login', type: :system do
     fill_in "user-login-password-1", with: "パスワードだってばよ"
     click_button "login-submit"
     expect(page).to have_content 'アカウント登録が完了しました'
-    expect(page).to have_content '「ブクリプ」へようこそ'
+    expect(page).to have_content '質問一覧'
+    # expect(page).to have_content '「ブクリプ」へようこそ'
   end
 
 end

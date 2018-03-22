@@ -30,16 +30,16 @@
     %link{ rel:  "stylesheet", href: "https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" }
     %script{ type: 'text/javascript', src: 'https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js'}
 
+    %meta{:name => "twitter:card", :content=>"summary_large_image"}
+    %meta{:name => "twitter:site", :content=>"@bookreptokyo"}
     %meta{:property => "og:url", :content=>ENV["SERVICE_HOST"] + request.path_info}
     - if @question.present? && @question.try(:id).present?  && @question.try(:content).present? && @question.try(:image_url).present?
-      %meta{:name => "twitter:card", :content=>"summary_large_image"}
-      %meta{:name => "twitter:site", :content=>"@bookreptokyo"}
       %meta{:property => "og:title", :content=>@question.content}
-      -# %meta{:property => "og:description", :content=>@question.content}
+      %meta{:property => "og:description", :content=>@question.content}
       %meta{:property => "og:image", :content=>ENV["SERVICE_HOST"] + @question.image.sns.url}
     - else
       %meta{:property => "og:title", :content=>get_title}
-      -# %meta{:property => "og:description", :content=>get_seo_contents}
+      %meta{:property => "og:description", :content=>get_seo_contents}
       %meta{:property => "og:image", :content=>ENV["SERVICE_HOST"] + image_path("top_image_large.png")}
 
     - if request.path_info == root_path

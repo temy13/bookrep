@@ -87,6 +87,7 @@ $answer-header-height: $block;
   border-bottom: 1px solid $dark-gray;
   .answer-title{
     font-size: $font-size-sm*1.5;
+    word-wrap: break-word;
   }
   .answer-book-authors{
     font-size: $font-size-sm;

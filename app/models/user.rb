@@ -96,6 +96,10 @@ class User < ApplicationRecord
     email == dummy_email(uid, provider)
   end
 
+  def is_send_email
+    self.is_email_notice && self.normal_email
+  end
+
   def answers_length(current_user)
     current_user.try(:id) == self.id ? self.answers.size : self.answers.where(is_anonymous: false).size
   end

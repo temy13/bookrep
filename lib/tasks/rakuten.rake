@@ -14,7 +14,7 @@ namespace :rakuten do
   end
 
   task :all_books_urls => :environment do
-    Book.all.each do |book|
+    Book.where(rakuten_affiliate_url: nil).each do |book|
       next if book.isbn13.blank?
       next if book.rakuten_affiliate_url.present?
       r = RakutenWebService::Books::Book.search(isbn: book.isbn13).first

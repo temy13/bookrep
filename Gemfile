@@ -102,3 +102,4 @@ gem 'redis-rails'
 gem 'redis-namespace'
 gem 'sidekiq'
 gem 'sinatra', require: false
+gem 'rakuten_web_service'

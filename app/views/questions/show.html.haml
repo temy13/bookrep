@@ -36,7 +36,7 @@
                     %div.answer-book-authors
                       = answer.authors_txt
                   %div.answer-content
-                    = answer.content
+                    = simple_format(answer.content)
                 %div.answer-item-image.col-3
                   = image_tag answer.book_image_url
             - if current_user.blank?

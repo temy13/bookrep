@@ -2,8 +2,26 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
-#$ ->
+$ ->
+  $('#new_question').submit ->
+    console.log "submit"
+    $.each $('#request-users-tags').children(), (index, dom) ->
+      e = $(dom)
+      user = e.data()
+      $('<input>').attr({
+        type: 'hidden',
+        id: 'question_requests_attributes_' + index + '_name',
+        name: 'question[requests_attributes][' + index + '][name]'
+        value: user.sname
+      }).appendTo('#new_question');
+      $('<input>').attr({
+        type: 'hidden',
+        id: 'question_requests_attributes_' + index + '_uid',
+        name: 'question[requests_attributes][' + index + '][uid]'
+        value: user.uid
+      }).appendTo('#new_question');
 
+    return true
 
   # if ($('#question').exists())
   #   # html2canvas($("#question")).then (canvas) ->

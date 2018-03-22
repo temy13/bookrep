@@ -32,13 +32,13 @@ class QuestionsController < ApplicationController
     @question.is_anonymous = params[:anonymous].present? || params[:submit_type] == "anonymous"
     if @question.save
       do_anything(@question)
-      #question_slack(@question) if Rails.env.production?
-      SlackQuestionWorker.perform_async(@question.id)
+      #question_slack(@question)
+      SlackQuestionWorker.perform_async(@question.id) if Rails.env.production?
       flash[:notice_link] = profile_path(current_user) if current_user.is_dummy_email
       notice = flash[:notice_link].blank? ? "質問が投稿されました" : "質問が投稿されました。通知を受け取るためにメール登録してください"
       redirect_to @question, notice: notice
     else
-       render :new
+       redirect_to action: :new
     end
   end
 

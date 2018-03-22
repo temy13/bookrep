@@ -39,12 +39,12 @@ describe Question do
   end
 
 
-  it "name_or_anonymous (not length check)" do
-    a = create(:question_u3) #not anonymous
-    expect(a.name_or_anonymous).to eq build(:user_d1).name + "さん"
-    a = create(:question_u1) #anonymous
-    expect(a.name_or_anonymous).to eq "匿名"
-  end
+  # it "name_or_anonymous (not length check)" do
+  #   a = create(:question_u3) #not anonymous
+  #   expect(a.name_or_anonymous).to eq build(:user_d1).name + "さん"
+  #   a = create(:question_u1) #anonymous
+  #   expect(a.name_or_anonymous).to eq "匿名"
+  # end
   it "name_or_anonymous_post (not length check)" do
     a = create(:question_u3) #not anonymous
     expect(a.name_or_anonymous_post).to eq build(:user_d1).name + "さん"

@@ -80,12 +80,12 @@ describe Answer do
     l.user = u
     expect { l.save!(validate: false) }.to raise_error( ActiveRecord::RecordNotUnique )
   end
-  it "name_or_anonymous (not length check)" do
-    a = create(:answer_tu_q1)
-    expect(a.name_or_anonymous).to eq build(:t_user).name + "さん"
-    a = create(:answer_anonymous_eu_q3)
-    expect(a.name_or_anonymous).to eq "匿名"
-  end
+  # it "name_or_anonymous (not length check)" do
+  #   a = create(:answer_tu_q1)
+  #   expect(a.name_or_anonymous).to eq build(:t_user).name + "さん"
+  #   a = create(:answer_anonymous_eu_q3)
+  #   expect(a.name_or_anonymous).to eq "匿名"
+  # end
   it "name_or_anonymous_post (not length check)" do
     a = create(:answer_tu_q1)
     expect(a.name_or_anonymous_post).to eq build(:t_user).name + "さん"

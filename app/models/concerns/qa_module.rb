@@ -6,7 +6,7 @@ module QAModule
   #   name.length < LENGTH ? name : name[0...LENGTH] + "..."
   # end
 
-  LENGTH = 7
+  LENGTH = 8
   ALENGTH = 20
 
   # def name_or_anonymous
@@ -16,7 +16,7 @@ module QAModule
 
   def name_or_anonymous_post(l = LENGTH)
     name = self.is_anonymous ? "匿名の投稿" : self.user.name + "さん"
-    name.length < l ? name : name[0...l] + "..."
+    name.length < l ? name : name[0...l-1] + "..."
   end
 
 

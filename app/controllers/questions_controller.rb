@@ -3,7 +3,7 @@ include Tweet
 include GenerateImages
 
 class QuestionsController < ApplicationController
-  before_action :authenticate_user!, only: [:new]
+  # before_action :authenticate_user!, only: [:new]
   before_action :set_question, only: [:show] #, :edit, :update, :destroy
   before_action :create_log, only: [:show] #, :edit, :update, :destroy
   PER = 10

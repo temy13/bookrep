@@ -90,14 +90,24 @@ RSpec.describe 'Questions', type: :system do
   it 'GET #show without login' do
     create(:e_user)
     visit "/questions/" + @question.id.to_s
-    page.has_css?("disable")
+    expect(page).to have_css 'div.disabled'
     click_link "email-login"
     fill_in "input-email-field", with: "test0000e@ex.com"
     fill_in "input-password-field", with: "password"
-    page.has_text?(@question.content)
-
+    click_button "login-submit"
+    expect(page).to have_content @question.content #質問一覧
   end
 
+  it 'GET #new without login' do
+    u = create(:e_user)
+    visit "/questions/new"
+    expect(page).to have_css 'div.disabled'
+    click_link "email-login"
+    fill_in "input-email-field", with: "test0000e@ex.com"
+    fill_in "input-password-field", with: "password"
+    click_button "login-submit"
+    expect(page).to have_content @question.content #質問一覧
+  end
 
 
   # it 'confirm modal & toggle', js: true do

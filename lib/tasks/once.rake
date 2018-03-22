@@ -22,7 +22,7 @@ namespace :once do
       u.states= :dummy
       u.save
     }
-    admins = ["__Alice0002", "__Bob0001", "Charlie0001", "sunglassed_dog", "_ymc", "temyV", "tachyon_m", "temycs", "temyv2"]
+    admins = ["__Alice0002", "__Bob0001", "Charlie0001", "sunglassed_dog", "_ymc", "temyV", "tachyon_m", "temycs", "temyv2", "bookreptokyo"]
     admins.each{|name|
       u = User.where(screen_name: name).first
       next if u.blank?

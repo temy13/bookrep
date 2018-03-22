@@ -52,15 +52,15 @@ describe QuestionsController do
     it "kaminari"
   end
 
-  describe 'GET #new with not login' do
-    before { get :new, params: {}, session: {} }
-    it 'has a 302 status code' do
-      expect(response).to have_http_status(302)
-    end
-    it 'renders the :new template' do
-      expect(response).to redirect_to("/users/login")
-    end
-  end
+  # describe 'GET #new with not login' do
+  #   before { get :new, params: {}, session: {} }
+  #   it 'has a 302 status code' do
+  #     expect(response).to have_http_status(302)
+  #   end
+  #   it 'renders the :new template' do
+  #     expect(response).to redirect_to("/users/login")
+  #   end
+  # end
 
   describe 'GET #new' do
      before do

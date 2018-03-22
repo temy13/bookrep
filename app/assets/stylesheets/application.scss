@@ -999,7 +999,6 @@ $icon-length: $block2;
   left: 0;
   bottom: 0;
   margin: auto;
-  height: 40%;
   width: 90%;
   padding:$block;
   // border: $blue 3px solid;
@@ -1032,6 +1031,13 @@ $icon-length: $block2;
     }
   }
 
+}
+
+.invition-qs-a{
+  height: 40%;
+}
+.invition-qs-q{
+  height: 60%;
 }
 
 .mt2b{

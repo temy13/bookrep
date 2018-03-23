@@ -2,7 +2,7 @@ FROM ruby
 ENV RAILS_ENV production
 
 RUN apt-get update -qq && \
-    apt-get install -y build-essential libpq-dev nodejs && \
+    apt-get install -y build-essential libpq-dev nodejs cron && \
     rm -rf /var/lib/apt/lists/*
 
 RUN mkdir /app
@@ -15,6 +15,7 @@ RUN env
 
 COPY . ./
 
+RUN bundle exec whenever --update-crontab
 RUN bundle exec rake assets:precompile assets:clean
 
 CMD rm -f /app/tmp/pids/server.pid

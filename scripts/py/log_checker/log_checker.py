@@ -45,7 +45,7 @@ class TailHandler(FileSystemEventHandler):
                 print (j["duration"], j["path"])
                 if j["exception"] or j["exception_object"]:
                     self.post("Error: " + row)
-                if float(j["duration"]) > 200 and j["format"] == "html":
+                if float(j["duration"]) > 500 and j["format"] == "html":
                     self.post("Too Slow: " + row)
         except:
             ex, ms, tb = sys.exc_info()

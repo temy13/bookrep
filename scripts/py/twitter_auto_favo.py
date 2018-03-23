@@ -30,7 +30,8 @@ def get(url):
       data = json.loads(r.text)
       return data
     except:
-      print ("error")
+      return []
+      #print ("error")
       #print(sys.exc_info())
     return []
 
@@ -44,7 +45,8 @@ def post(url, params):
       data = json.loads(r.text)
       return data
     except:
-      print ("error")
+      return []
+      #print ("error")
       #print(sys.exc_info())
     return []
 
@@ -105,4 +107,5 @@ def main():
 
 
 if __name__ == '__main__':
+    #sys.exit()
     main()

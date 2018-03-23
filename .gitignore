@@ -26,4 +26,8 @@ logfile
 
 .env
 public/uploads/question/image/*
+export.sh
+production.log
+nginx/*.key
+nginx/*.crt
 public/assets/*

@@ -1,0 +1,90 @@
+version: "3"
+
+services:
+  #https-portal:
+  #  image: steveltn/https-portal:1.0.0
+  #  ports:
+  #    - '80:80'
+  #    - '443:443'
+  #  links:
+  #    - rails
+  #  restart: always
+  #  environment:
+  #    DOMAINS: 'bookrep.tokyo -> http://rails'
+    # STAGE: 'production'
+    #     # FORCE_RENEW: 'true'
+    #
+  #db:
+  #  image: postgres:9.5
+  #  environment:
+  #    - POSTGRES_USER=${MY_APP_DATABASE_USER}
+  #    - POSTGRES_PASSWORD=${MY_APP_DATABASE_PASSWORD}
+  #    - POSTGRES_DB=${MY_APP_DATABASE_NAME}
+  #
+  nginx:
+      build: ./nginx
+      #image: localhost:5000/temy13/nginx:v1.9
+      ports:
+          - "80:80"
+          - "443:443"
+      restart: always
+      volumes: 
+          - "/etc/letsencrypt:/etc/letsencrypt"
+          #- public-data:/app/public
+          - ./public:/app/public
+      depends_on:
+        - rails
+  rails:
+    build:
+      context: .
+    #image: localhost:5000/temy13/bookrep:v1.17
+    volumes:
+      - .:/app
+      - public-data:/app/public
+      - ./public:/app/public
+      - ./log:/app/log
+      - tmp-data:/app/tmp
+    ports:
+      - "3000:${PORT:-3000}"
+    environment:
+      #- DATABASE_URL=postgres://${MY_APP_DATABASE_USER}:${MY_APP_DATABASE_PASSWORD}@db:5432/${MY_APP_DATABASE_NAME}
+      #- DISABLE_DATABASE_ENVIRONMENT_CHECK=1
+      - DATABASE_URL=postgres://${MY_APP_DATABASE_USER}:${MY_APP_DATABASE_PASSWORD}@${MY_APP_DATABASE_HOST}:5432/${MY_APP_DATABASE_NAME}
+      - SECRET_KEY_BASE=${SECRET_KEY_BASE}
+      - TWITTER_KEY=${TWITTER_KEY}
+      - TWITTER_SECRET=${TWITTER_SECRET}
+      - TWITTER_ACCESS=${TWITTER_ACCESS}
+      - TWITTER_ACCESS_SECRET=${TWITTER_ACCESS_SECRET}
+      - AMAZON_ASSOCIATE_ID=${AMAZON_ASSOCIATE_ID}
+      #- EMAIL=${EMAIL}
+      - EMAIL
+      - EMAIL_PASS=${EMAIL_PASS}
+      - SERVICE_HOST=${SERVICE_HOST}
+      - RAILS_LOG_TO_STDOUT=${RAILS_LOG_TO_STDOUT}
+      - GA_TRACKING_CODE=${GA_TRACKING_CODE}
+      - GOOGLE_ADSENCE_CODE=${GOOGLE_ADSENCE_CODE}
+      - SLACK_QUESTIONS=${SLACK_QUESTIONS}
+  redis:
+    image: redis:latest  
+  sidekiq:
+    build: .
+    command: bundle exec sidekiq
+    volumes:
+      - .:/app
+    env_file: .env
+
+ #depends_on:
+    #  - db
+  #notification:
+  #  build:
+  #    context: ./scripts/py/log_checker 
+  #  volumes:
+  #    - ./log:/log
+volumes:
+  tmp-data:
+  public-data:
+    driver_opts:
+      type: none
+      device: /var/lib/app_public
+    #  device: ./public
+      o: bind

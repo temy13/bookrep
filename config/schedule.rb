@@ -18,12 +18,24 @@
 # end
 
 # Learn more: http://github.com/javan/whenever
-set :output, 'log/crontab.log'
+#set :output, 'log/crontab.log'
+
+# Rails.rootを使用するために必要
+require File.expand_path(File.dirname(__FILE__) + "/environment")
+# cronを実行する環境変数
+rails_env = ENV['RAILS_ENV'] || :development
+# cronを実行する環境変数をセット
+set :environment, rails_env
+# cronのログの吐き出し場所
+set :output, "#{Rails.root}/log/cron.log"
+
+
 
 ENV.each { |k, v| env(k, v) }
 
-every 1.hours do
+#every 1.hours do
+every 30.minutes do
+  rake 'once:slack_test'
   rake 'rakuten:answer_book_urls'
   rake 'rakuten:all_books_urls'
-  rake 'once:slack_test'
 end

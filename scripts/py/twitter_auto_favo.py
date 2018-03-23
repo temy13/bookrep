@@ -1,11 +1,12 @@
 import os
 from os.path import join, dirname
+#from dotenv import load
 from dotenv import load_dotenv
 # import requests
 import json
 from requests_oauthlib import OAuth1Session
 import sys
-
+import random
 #.envについて: https://qiita.com/hedgehoCrow/items/2fd56ebea463e7fc0f5b
 dotenv_path = join(dirname(__file__), '../../.env')
 load_dotenv(dotenv_path)
@@ -22,27 +23,31 @@ base = "https://api.twitter.com/1.1"
 def get(url):
     try:
       r = twitter.get(url)
-      if r.status_code != 200:
-          print (url)
-          print (r)
-          print (r.text)
+      #if r.status_code != 200:
+      #    print (url)
+      #    print (r)
+      #    print (r.text)
       data = json.loads(r.text)
       return data
     except:
-      print(sys.exc_info())
+      return []
+      #print ("error")
+      #print(sys.exc_info())
     return []
 
 def post(url, params):
     try:
       r = twitter.post(url, params)
-      if r.status_code != 200:
-          print (url)
-          print (r)
-          print (r.text)
+      #if r.status_code != 200:
+      #    print (url)
+      #    print (r)
+      #    print (r.text)
       data = json.loads(r.text)
       return data
     except:
-      print(sys.exc_info())
+      return []
+      #print ("error")
+      #print(sys.exc_info())
     return []
 
 
@@ -56,41 +61,51 @@ def get_favo_list():
         favo_list.extend([item["id_str"] for item in data])
         if len(data) < fcount: break
         url = base + "/favorites/list.json?count=200&screen_name=bookreptokyo&max_id=" + str(data[-1]["id_str"])
-    return set(favo_list)
+    return favo_list
 
 
 def favo(query, n, favo_list, rt="mixed"):
     query = query.replace("#", "%23")
     baseurl = base + "/search/tweets.json?q=" + query + "&lang=ja&result_type=" + rt + "&count=" + str(scount) + "&include_entities=true"
     url = baseurl
+    favos = [int(x) for x in favo_list]
     for i in range(n):
         data = get(url)
         data = data["statuses"]
         #全てのツイートに対してファボ
-        for tweet_id in [item["id_str"] for item in data if item["id_str"] not in favo_list]:
+        #for tweet_id in [item["id_str"] for item in data if item["id_str"] not in favo_list and item["id"] not in favos]:
+        for tweet_id in [item["id_str"] for item in data if item["id"] not in favos]:
+            #print (tweet_id)
             posturl = base + "/favorites/create.json"
             params = {
                 "id": tweet_id
             }
             post(posturl, params)
-            favo_list.add(tweet_id)
+            favo_list.append(tweet_id)
         if len(data) == 0:
-            print (url)
+            #print (url)
             break
-        url = baseurl + "&max_id=" + data[-1]["id_str"]
+        url = baseurl + "&max_id=" + str(data[-1]["id"])
+    #print (query, rt, "done")
+    #print (rt, "done")
+    return favo_list
 
-
+def post_favo(query, n, favo_list):
+    favo_list = favo(query, n, favo_list, rt="mixed")
+    favo_list = favo(query, n, favo_list, rt="recent")
+    favo_list = favo(query, n, favo_list, rt="popular")
+    return favo_list
 
 def main():
     favo_list = get_favo_list()
-    favo("#読書好きな人と繋がりたい", 10, favo_list, rt="mixed")
-    favo("#おすすめの本教えてください", 10, favo_list, rt="mixed")
-    favo("#読書好きな人と繋がりたい", 10, favo_list, rt="recent")
-    favo("#おすすめの本教えてください", 10, favo_list, rt="recent")
-    favo("#読書好きな人と繋がりたい", 10, favo_list, rt="popular")
-    favo("#おすすめの本教えてください", 10, favo_list, rt="popular")
+    #print (len(favo_list))
+    queries = ["読書好きの人と繋がりたい", "おすすめの本教えてください", "本好きの人と繋がりたい", "読書"]
+    random.shuffle(queries)
+    for q in queries:
+    	favo_list = post_favo("#" + q, 5, favo_list)
 
 
 
 if __name__ == '__main__':
+    #sys.exit()
     main()

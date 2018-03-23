@@ -8,6 +8,7 @@ from watchdog.events import FileSystemEventHandler
 from watchdog.observers.polling import PollingObserver
 import json
 import requests
+import traceback,sys
 
 url = "https://hooks.slack.com/services/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"
 
@@ -33,14 +34,25 @@ class TailHandler(FileSystemEventHandler):
 
     def check(self):
         self.file.seek(self.pos)
-        # for block in iter(lambda: self.file.read(32), ''):
-        text = "".join([block for block in iter(lambda: self.file.read(256), '')])
-        j = json.loads(text)
-        if j["exception"] or j["exception_object"]:
-            self.post("Error: " + text)
-        if float(j["duration"]) > 200 and j["format"] == "html":
-            self.post("Too Slow: " + text)
-        self.pos = self.file.tell()
+        text = ""
+	# for block in iter(lambda: self.file.read(32), ''):
+        try: 
+            text = "".join([block for block in iter(lambda: self.file.read(256), '')])
+            for row in text.split("\n"):
+                if not row or row == "":
+                    continue
+                j = json.loads(row)
+                print (j["duration"], j["path"])
+                if j["exception"] or j["exception_object"]:
+                    self.post("Error: " + row)
+                if float(j["duration"]) > 500 and j["format"] == "html":
+                    self.post("Too Slow: " + row)
+        except:
+            ex, ms, tb = sys.exc_info()
+            print (ex)
+            print ("text: ", text)
+        finally:
+            self.pos = self.file.tell()
 
     def on_modified(self, event):
         if event.is_directory or self.path != event.src_path:

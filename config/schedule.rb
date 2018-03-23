@@ -18,6 +18,8 @@
 # end
 
 # Learn more: http://github.com/javan/whenever
+set :output, 'log/crontab.log'
+
 ENV.each { |k, v| env(k, v) }
 
 every 1.hours do

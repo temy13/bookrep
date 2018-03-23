@@ -40,6 +40,7 @@ class User < ApplicationRecord
   has_many :question_show_logs
   has_many :title_query
   has_many :book_click_logs
+  has_many :action_logs
 
   as_enum :states, normal: 0, dummy: 1, admin: 2
 

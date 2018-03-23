@@ -104,3 +104,5 @@ gem 'sidekiq'
 gem 'sinatra', require: false
 gem 'rakuten_web_service'
 gem 'whenever', require: false
+gem 'activeadmin'
+gem 'cancancan'

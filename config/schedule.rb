@@ -18,6 +18,7 @@
 # end
 
 # Learn more: http://github.com/javan/whenever
+ENV.each { |k, v| env(k, v) }
 
 every 1.hours do
   rake 'rakuten:answer_book_urls'

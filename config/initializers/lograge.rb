@@ -11,6 +11,7 @@ Rails.application.configure do
       params: event.payload[:params].except(*exceptions),
       login_id: event.payload[:login_id],
       ip: event.payload[:ip],
+      remote_ip: event.payload[:remote_ip],
       referer: event.payload[:referer],
       exception: event.payload[:exception],
       exception_object: event.payload[:exception_object]

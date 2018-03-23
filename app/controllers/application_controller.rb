@@ -6,7 +6,9 @@ class ApplicationController < ActionController::Base
   def append_info_to_payload(payload)
     super
     payload[:host] = request.host
-    payload[:ip] = request.remote_ip
+    payload[:ip] = request.ip
+    remote_ip = request.env["HTTP_X_FORWARDED_FOR"] || request.remote_ip
+    payload[:remote_ip] = remote_ip
     payload[:referer] = request.referer
     payload[:user_agent] = request.user_agent
 
@@ -53,7 +55,14 @@ class ApplicationController < ActionController::Base
   private
 
   def create_action_log
-    log = ActionLog.new(user: current_user, request_method: request.request_method, path_info: request.path_info)
+    remote_ip = request.env["HTTP_X_FORWARDED_FOR"] || request.remote_ip
+    log = ActionLog.new(
+      user: current_user,
+      request_method: request.request_method,
+      path_info: request.path_info,
+      ip: request.ip,
+      remote_ip: remote_ip
+    )
     log.save
   end
 

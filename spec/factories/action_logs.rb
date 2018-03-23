@@ -8,6 +8,8 @@
 #  path_info      :string
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
+#  remote_ip      :string
+#  ip             :string
 #
 
 FactoryBot.define do

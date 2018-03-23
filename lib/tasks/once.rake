@@ -38,13 +38,6 @@ namespace :once do
     }
   end
 
-  task :slack_test => :environment do
-    notifier = Slack::Notifier.new(ENV["SLACK_QUESTIONS"])
-    notifier.ping("ごめんなさいテストです　質問生成ではありません")
-    q = Question.first
-    q.score += 10
-    q.save
-  end
 
 
 end

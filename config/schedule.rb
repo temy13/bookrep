@@ -33,9 +33,7 @@ set :output, "#{Rails.root}/log/cron.log"
 
 ENV.each { |k, v| env(k, v) }
 
-#every 1.hours do
-every 30.minutes do
-  rake 'once:slack_test'
+every 1.hours do
   rake 'rakuten:answer_book_urls'
   rake 'rakuten:all_books_urls'
 end

@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
-
+  before_action :create_action_log
   after_action :store_location
 
   def append_info_to_payload(payload)
@@ -51,6 +51,11 @@ class ApplicationController < ActionController::Base
   end
 
   private
+
+  def create_action_log
+    log = ActionLog.new(user: current_user, request_method: request.request_method, path_info: request.path_info)
+    log.save
+  end
 
   def check_except
     return (request.path_info != "/users/sign_in" && \

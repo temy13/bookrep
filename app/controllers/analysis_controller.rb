@@ -31,8 +31,14 @@ class AnalysisController < ApplicationController
 
   private
   def check_admin
-    return if current_user.present? && current_user.admin?
-    raise ActionController::RoutingError.new('Not Found')
+    raise ActionController::RoutingError.new('Not Found') unless current_user.present? && current_user.admin?
+    basic
+  end
+
+  def basic
+      authenticate_or_request_with_http_basic do |user, pass|
+        user == 'user' && pass == 'admin'
+      end
   end
 
 end

@@ -118,7 +118,7 @@ $ ->
         svg = d3.select(id).append('svg').attr('width', width + margin.left + margin.right).attr('height', height + margin.top + margin.bottom).append('g').attr('transform', 'translate(' + margin.left + ',' + margin.top + ')')
         value = [0,1,2,3,4,5,6,7].map((e, index, array) ->
           {
-            "label": e
+            "label": e+1
             "value": numbers[e]
           }
         )

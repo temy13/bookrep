@@ -23,6 +23,7 @@
 //= require jquery.validate.additional-methods
 //= require bootstrap
 //= require bootstrap-tagsinput
+//= require d3.v3.min
 //= require env
 
 //= require_tree .

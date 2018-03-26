@@ -23,10 +23,10 @@
   - if @answers.present?
     %div.answers
       %ul.answer-list
-        - @answers.each do |answer|
+        - @answers.each_with_index do |answer, i|
           %li{class: "answer-item", id:"answer-#{answer.id}"}
             = render 'answer_header', answer: answer
-            = link_to(answer.affiliate_url, class: '', target: ["_blank"], rel: "book_affiliate", data: {answer_id: answer.id, user_id: current_user.try(:id), book_id: answer.book.try(:id)}) do
+            = link_to(answer.affiliate_url(i), class: '', target: ["_blank"], rel: "book_affiliate", data: {answer_id: answer.id, user_id: current_user.try(:id), book_id: answer.book.try(:id)}) do
               %div.answer-inner.row
                 %div.answer-item-left.col-1.col-lg-2
                 %div.answer-item-content.col-8.col-lg-7

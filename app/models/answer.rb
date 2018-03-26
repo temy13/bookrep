@@ -37,12 +37,12 @@ class Answer < ApplicationRecord
     return self.book_id ? self.book.image_url : "content_blank01"
   end
 
-  def affiliate_url
+  def affiliate_url(answer_index = 0)
     #@book = Book.find(self.book_id) if self.book_id.present? else nil
     @book = self.book
     associate_id = ENV["AMAZON_ASSOCIATE_ID"]
     return "https://www.amazon.co.jp/gp/search?ie=UTF8&tag=" + associate_id + "&index=books&keywords=" + self.title if @book.blank?
-    @book.affiliate_url(associate_id)
+    @book.affiliate_url(associate_id, answer_index)
   end
 
 

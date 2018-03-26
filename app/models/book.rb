@@ -76,7 +76,7 @@ class Book < ApplicationRecord
   def affiliate_url(associate_id, answer_index = 0)
     code10 = self.asin || self.isbn10
     associate_id = associate_id || ENV["AMAZON_ASSOCIATE_ID"]
-    if answer_index % 2 == 0　&& self.rakuten_affiliate_url.present?
+    if answer_index % 2 == 0 && self.rakuten_affiliate_url.present?
       return self.rakuten_affiliate_url #affiliate_idは0322でとったもので固定
     elsif code10.blank?
       return "https://www.amazon.co.jp/gp/search?ie=UTF8&tag=" + associate_id + "&index=books&keywords=" + self.title

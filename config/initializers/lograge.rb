@@ -14,7 +14,8 @@ Rails.application.configure do
       remote_ip: event.payload[:remote_ip],
       referer: event.payload[:referer],
       exception: event.payload[:exception],
-      exception_object: event.payload[:exception_object]
+      exception_object: event.payload[:exception_object],
+      exception_backtrace: event.payload[:exception_object].present? ? "" : event.payload[:exception_object].backtrace[0..6]
     }
   end
 

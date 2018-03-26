@@ -20,11 +20,12 @@ class AnalysisController < ApplicationController
       .size
     }
     gon.unique_ips = logs_array.map{|logs| logs
+        .select{ |log| log.user.blank? || log.user.normal?}
         .map{|log| log.remote_ip}
         .uniq.size
     }
     gon.unique_users = logs_array.map{|logs| logs
-        .select{ |log| log.user.present?}
+        .select{ |log| log.user.present? && log.user.normal?}
         .map{|log| log.user_id }
         .uniq.size
     }

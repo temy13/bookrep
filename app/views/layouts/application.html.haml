@@ -35,7 +35,7 @@
     %meta{:property => "og:url", :content=>ENV["SERVICE_HOST"] + request.path_info}
     %meta{:property => "og:site_name", :content=>"ブクリプ"}
     %meta{:property => "fb:app_id", :content=>"1711404418949910"}
-    %meta{:property => "article:publisher", :content=>"https://www.facebook.com/bookreptokyo/"}
+    -# %meta{:property => "article:publisher", :content=>"https://www.facebook.com/bookreptokyo/"}
 
     - if @question.present? && @question.try(:id).present?  && @question.try(:content).present? && @question.try(:image_url).present?
       %meta{:property => "og:title", :content=>@question.content}

@@ -74,13 +74,13 @@ class Book < ApplicationRecord
   end
 
   def affiliate_url(associate_id, answer_index = 0)
+    code10 = self.asin || self.isbn10
     if answer_index % 2 == 0
       return self.rakuten_affiliate_url if self.rakuten_affiliate_url.present? #affiliate_idは0322でとったもので固定
     else
-      code10 = self.asin || self.isbn10
       return "https://www.amazon.co.jp/gp/search?ie=UTF8&tag=" + associate_id + "&index=books&keywords=" + self.title if code10.blank?
     end
-    "https://www.amazon.co.jp/gp/product/" + code + "/ref=as_li_tl?ie=UTF8&creativeASIN=" + code + "&tag=" + associate_id
+    "https://www.amazon.co.jp/gp/product/" + code10 + "/ref=as_li_tl?ie=UTF8&creativeASIN=" + code10 + "&tag=" + associate_id
   end
 
   def image_url

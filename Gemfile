@@ -106,3 +106,4 @@ gem 'rakuten_web_service'
 gem 'whenever', require: false
 #gem 'activeadmin'
 #gem 'cancancan'
+gem 'amazon-ecs'

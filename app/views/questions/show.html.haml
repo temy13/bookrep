@@ -30,6 +30,7 @@
                     = answer.authors_txt
                 %div.answer-item-image.col-3
                   = image_tag answer.book_image_url
+            = link_to(answer.affiliate_url(i), class: '', target: ["_blank"], rel: "book_affiliate", data: {answer_id: answer.id, user_id: current_user.try(:id), book_id: answer.book.try(:id)}) do
               %div.answer-inner.row
                 %div.answer-item-left.col-1.col-lg-2
                 %div.answer-item-content.col-11.col-lg-10

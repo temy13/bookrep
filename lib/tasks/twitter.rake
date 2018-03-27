@@ -21,6 +21,6 @@ namespace :twitter do
     question = mins.shuffle.first
     url = ENV["SERVICE_HOST"] + "/questions/" + question.id.to_s
     p question
-    #@client.update("【注目の質問】" + question.tweet_text + " #ブクリプ　#おすすめの本　" + url)
+    @client.update("【注目の質問】" + question.tweet_text + " #ブクリプ　#おすすめの本　" + url)
   end
 end

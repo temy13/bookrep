@@ -10,7 +10,7 @@ namespace :twitter do
       question.score += ActionLog.where(path_info: "/questions/" + question.id.to_s).size * 0.1
       question.save
     }
-    s = Question.all.order("score").first.score
+    s = Question.all.order("score").limit(1).offset(5).first.score
     mins = Question.where(score: s)
     @client = Twitter::REST::Client.new do |config|
       config.consumer_key = ENV["TWITTER_KEY"]

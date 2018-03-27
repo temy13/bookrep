@@ -1,5 +1,6 @@
 namespace :twitter do
   task :score_and_tweet => :environment do
+    p "tweet test"
     #answer score
     Answer.includes(:likes, :book_click_logs).all.each{|answer|
       answer.score = answer.like_count * 2 + answer.book_click_logs.size * 5
@@ -19,7 +20,6 @@ namespace :twitter do
     question = zeros.shuffle.first
     url = ENV["SERVICE_HOST"] + "/questions/" + question.id.to_s
     @client.update("【注目の質問】" + question.tweet_text + " #ブクリプ　#おすすめの本　" + url)
-
-
+    p "tweet test done: " + url
   end
 end

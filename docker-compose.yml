@@ -28,7 +28,7 @@ services:
           - "80:80"
           - "443:443"
       restart: always
-      volumes: 
+      volumes:
           - "/etc/letsencrypt:/etc/letsencrypt"
           #- public-data:/app/public
           - ./public:/app/public
@@ -64,8 +64,9 @@ services:
       - GA_TRACKING_CODE=${GA_TRACKING_CODE}
       - GOOGLE_ADSENCE_CODE=${GOOGLE_ADSENCE_CODE}
       - SLACK_QUESTIONS=${SLACK_QUESTIONS}
+      - TZ=Japan
   redis:
-    image: redis:latest  
+    image: redis:latest
   sidekiq:
     build: .
     command: bundle exec sidekiq
@@ -77,7 +78,7 @@ services:
     #  - db
   #notification:
   #  build:
-  #    context: ./scripts/py/log_checker 
+  #    context: ./scripts/py/log_checker
   #  volumes:
   #    - ./log:/log
 volumes:

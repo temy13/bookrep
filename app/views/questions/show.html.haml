@@ -14,12 +14,6 @@
       %div.question-item-footer-right.col-4
         = render 'share/username_post', obj: @question, link: true
 
-  .twitter-share
-    = link_to("https://twitter.com/share?url=https://bookrep.tokyo" + question_path(@question) + "&via=bookreptokyo&related=bookreptokyo&hashtags=ブクリプ,おすすめの本&text=" + @question.tweet_text, target: ["_blank"], rel: "nofollow") do
-      =image_tag "article_share01.png", class: "img-base"
-    -# %a.twitter-share-button{"data-show-count" => "false", :href => "https://twitter.com/share?ref_src=twsrc%5Etfw", "data-text" => "@bookreptokyo から", "data-url" => request.path_info, "data-lang"=>"ja", "data-hashtags"=>"ブクリプ", "data-size" => "large"} ツイート
-
-
   - if @answers.present?
     %div.answers
       %ul.answer-list
@@ -27,18 +21,21 @@
           %li{class: "answer-item", id:"answer-#{answer.id}"}
             = render 'answer_header', answer: answer
             = link_to(answer.affiliate_url(i), class: '', target: ["_blank"], rel: "book_affiliate", data: {answer_id: answer.id, user_id: current_user.try(:id), book_id: answer.book.try(:id)}) do
-              %div.answer-inner.row
+              %div.answer-inner.row.answer-book-info
                 %div.answer-item-left.col-1.col-lg-2
                 %div.answer-item-content.col-8.col-lg-7
-                  %div.answer-book-info
-                    %div.answer-title
-                      = answer.book_title
-                    %div.answer-book-authors
-                      = answer.authors_txt
-                  %div.answer-content
-                    = simple_format(answer.content)
+                  %div.answer-title
+                    = answer.book_title
+                  %div.answer-book-authors
+                    = answer.authors_txt
                 %div.answer-item-image.col-3
                   = image_tag answer.book_image_url
+              %div.answer-inner.row
+                %div.answer-item-left.col-1.col-lg-2
+                %div.answer-item-content.col-11.col-lg-10
+                  %div.answer-content
+                    = simple_format(answer.content)
+
             - if current_user.blank?
               %div.answer-footer.row
                 %div.col-1.col-lg-2
@@ -134,7 +131,17 @@
           %div.normal-link.mail-login-link
             = link_to "メールアドレスでログイン", new_user_session_path, class: "btn orange btn-base", id: "email-login"
 
+.padding-tb-unit
+  .twitter-share
+    = link_to("https://twitter.com/share?url=https://bookrep.tokyo" + question_path(@question) + "&via=bookreptokyo&related=bookreptokyo&hashtags=ブクリプ,おすすめの本&text=" + @question.tweet_text, target: ["_blank"], rel: "nofollow") do
+      =image_tag "article_share01.png", class: "img-base"
+    -# %a.twitter-share-button{"data-show-count" => "false", :href => "https://twitter.com/share?ref_src=twsrc%5Etfw", "data-text" => "@bookreptokyo から", "data-url" => request.path_info, "data-lang"=>"ja", "data-hashtags"=>"ブクリプ", "data-size" => "large"} ツイート
+
+
 = render("share/ad01")
+
+
+
 
 :ruby
   @page_title = "ブクリプ:"+@question.content

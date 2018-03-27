@@ -17,9 +17,8 @@ namespace :twitter do
       config.access_token_secret = ENV["TWITTER_ACCESS_SECRET"]
     end
     question = zeros.shuffle.first
-    p question
     url = ENV["SERVICE_HOST"] + "/questions/" + question.id.to_s
-    # @client.update("【注目の質問】 " + question.tweet_text + " #ブクリプ　#おすすめの本　" + url)
+    @client.update("【注目の質問】" + question.tweet_text + " #ブクリプ　#おすすめの本　" + url)
 
 
   end

@@ -92,6 +92,24 @@ describe Answer do
     a = create(:answer_anonymous_eu_q3)
     expect(a.name_or_anonymous_post).to eq "匿名の投稿"
   end
+
+  it "affiliate_url" do
+    associate_id = ENV["AMAZON_ASSOCIATE_ID"]
+    a = create(:answer_tu_q1)
+    url = a.affiliate_url(0)
+    expect(url).to eq "https://www.amazon.co.jp/gp/search?ie=UTF8&tag=" + associate_id + "&index=books&keywords=" + a.title
+    url = a.affiliate_url(1)
+    expect(url).to eq "https://www.amazon.co.jp/gp/search?ie=UTF8&tag=" + associate_id + "&index=books&keywords=" + a.title
+    book = Book.new(
+      isbn10: "012345678",
+      rakuten_affiliate_url: "https://rakuten.com"
+    )
+    a.book = book
+    url = a.affiliate_url(0)
+    expect(url).to eq "https://www.amazon.co.jp/gp/product/" + "012345678" + "/ref=as_li_tl?ie=UTF8&creativeASIN=" + "012345678" + "&tag=" + associate_id
+    url = a.affiliate_url(1)
+    expect(url).to eq "https://rakuten.com"
+  end
   #affiliate_url
   #user_icon
   #book_title

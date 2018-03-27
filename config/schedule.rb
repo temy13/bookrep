@@ -37,3 +37,7 @@ every 1.hours do
   rake 'rakuten:answer_book_urls'
   #rake 'rakuten:all_books_urls'
 end
+
+every '0 12,21 * * *' do
+  rake 'twitter:score_and_tweet'
+end

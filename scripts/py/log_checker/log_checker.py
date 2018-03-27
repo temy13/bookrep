@@ -36,16 +36,16 @@ class TailHandler(FileSystemEventHandler):
         self.file.seek(self.pos)
         text = ""
 	# for block in iter(lambda: self.file.read(32), ''):
-        try: 
+        try:
             text = "".join([block for block in iter(lambda: self.file.read(256), '')])
             for row in text.split("\n"):
                 if not row or row == "":
                     continue
                 j = json.loads(row)
                 print (j["duration"], j["path"])
-                if j["exception"] or j["exception_object"]:
+                if "exception" in j:
                     self.post("Error: " + row)
-                if float(j["duration"]) > 500 and j["format"] == "html":
+                if float(j["duration"]) > 350 and j["format"] == "html":
                     self.post("Too Slow: " + row)
         except:
             ex, ms, tb = sys.exc_info()

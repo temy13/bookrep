@@ -81,7 +81,7 @@ class User < ApplicationRecord
     if provider.present? && params[:email].blank?
       params[:email] = dummy_email(uid, provider) #params[:email] = #User.dummy_email({"uid" => self.uid, "provider" => self.provider})
     end
-    # パスワードが空の場合
+    # DBのパスワードが空の場合
     if encrypted_password.blank?
       # パスワードがなくても更新できる
       update_attributes(params, *options)
@@ -89,6 +89,9 @@ class User < ApplicationRecord
       super
     end
   end
+
+
+
 
   def normal_email
     self.email.present? && !self.is_dummy_email

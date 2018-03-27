@@ -14,9 +14,15 @@
       - if devise_mapping.confirmable? && resource.pending_reconfirmation?
         %p
           Currently waiting confirmation for: #{resource.unconfirmed_email}
+      - if resource.encrypted_password.present?
+        %div
+          = f.label :current_password
+          %br/
+          = f.password_field :current_password, autocomplete: "off", :class=>"default-input-field"
       %div
-        = f.label :password
-        %i 変更しない場合は空欄のまま保存してください
+        = f.label "新しいパスワード"
+        %br/
+        %i (変更しない場合は空欄のまま保存してください)
         %br/
         = f.password_field :password, autocomplete: "off", :class=>"default-input-field"
       -# %div

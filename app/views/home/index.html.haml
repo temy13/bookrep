@@ -86,7 +86,7 @@
 
 
 
-%div.white-back.top-inputs.padding-bottom-unit
+%div.white-back.top-inputs
   %div.twitter-login.form-actions-margin
     = link_to "Twitterで登録/ログイン", user_twitter_omniauth_authorize_path, class: "btn blue btn-base"
   = simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { id: "user-2" }) do |f|
@@ -104,7 +104,10 @@
       = f.button :submit, "メールアドレスで登録", class: "btn orange btn-base"
   %div.normal-link.mail-login-link= link_to "メールアドレスでログイン", new_user_session_path
 
-= render("share/ad01")
+.ad
+  = render("share/ad_small")
+.ad.padding-top-80
+  = render("share/ad_large")
 
 :ruby
   @page_title = "ブクリプ:読書好きのQ&Aコミュニティ/新しい本に出会おう"

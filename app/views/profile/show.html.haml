@@ -47,7 +47,8 @@
           %p="教えてください！"
         = image_tag "logo_mark_blue.png"
 
-=render ("share/ad01")
+.ad.padding-top-unit
+  = render("share/ad_large")
 
 :ruby
   @page_title = "ブクリプ:" + @user.name + "さんのプロフィール"

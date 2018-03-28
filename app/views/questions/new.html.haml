@@ -122,7 +122,11 @@
         %div.normal-link.mail-login-link
           = link_to "メールアドレスでログイン", new_user_session_path, class: "btn orange btn-base", id: "email-login"
 
-= render 'share/ad01'
+.ad.padding-top-unit
+  = render("share/ad_small")
+.ad.padding-top-80
+  = render("share/ad_large")
+
 
 :ruby
   @page_title = "ブクリプ:質問する - 次に読む本のおすすめを聞こう！"

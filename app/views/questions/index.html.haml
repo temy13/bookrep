@@ -1,6 +1,8 @@
-.padding-bottom-5unit
-  = render 'share/questions_tab', questions: @questions, page_name: "page"
-= render 'share/ad01'
+.ad
+  = render 'share/ad_small'
+= render 'share/questions_tab', questions: @questions, page_name: "page"
+.ad.padding-top-5unit
+  = render 'share/ad_large'
 -# %ul.tab.row
 -#   %li#unanswered-questions-tab.select.col-6
 -#     = "未回答の相談"

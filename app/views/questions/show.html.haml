@@ -1,3 +1,5 @@
+.ad
+  = render 'share/ad_small'
 
 %div.question-show
   %div#question.question-item
@@ -13,6 +15,8 @@
           = @question.answers.length
       %div.question-item-footer-right.col-4
         = render 'share/username_post', obj: @question, link: true
+
+  .amazon-links
 
   - if @answers.present?
     %div.answers
@@ -132,14 +136,14 @@
           %div.normal-link.mail-login-link
             = link_to "メールアドレスでログイン", new_user_session_path, class: "btn orange btn-base", id: "email-login"
 
-.padding-tb-unit
-  .twitter-share
-    = link_to("https://twitter.com/share?url=https://bookrep.tokyo" + question_path(@question) + "&via=bookreptokyo&related=bookreptokyo&hashtags=ブクリプ,おすすめの本&text=" + @question.tweet_text, target: ["_blank"], rel: "nofollow") do
-      =image_tag "article_share01.png", class: "img-base"
-    -# %a.twitter-share-button{"data-show-count" => "false", :href => "https://twitter.com/share?ref_src=twsrc%5Etfw", "data-text" => "@bookreptokyo から", "data-url" => request.path_info, "data-lang"=>"ja", "data-hashtags"=>"ブクリプ", "data-size" => "large"} ツイート
+-# .padding-tb-unit
+.twitter-share
+  = link_to("https://twitter.com/share?url=https://bookrep.tokyo" + question_path(@question) + "&via=bookreptokyo&related=bookreptokyo&hashtags=ブクリプ,おすすめの本&text=" + @question.tweet_text, target: ["_blank"], rel: "nofollow") do
+    =image_tag "article_share01.png", class: "img-base"
+  -# %a.twitter-share-button{"data-show-count" => "false", :href => "https://twitter.com/share?ref_src=twsrc%5Etfw", "data-text" => "@bookreptokyo から", "data-url" => request.path_info, "data-lang"=>"ja", "data-hashtags"=>"ブクリプ", "data-size" => "large"} ツイート
 
-
-= render("share/ad01")
+.ad.padding-top-unit
+  = render("share/ad_large")
 
 
 

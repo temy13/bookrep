@@ -46,20 +46,20 @@
 .adsbygoogle{
   margin: 0 auto;
 }
-.ad-small{
-  width: 600px;// 12.5 * $block;
-  height: 100px;//4 * $block;
-  @include screen($breakpoint-mobile, $breakpoint-tablet) {
-    width: 375px;//8 * $block;
-  }
-}
-.ad-large{
-  width: 420px;// 8.75 * $block;
-  height: 100px;//4 * $block;
-  @include screen($breakpoint-mobile, $breakpoint-tablet) {
-    width: 375px;//8 * $block;
-  }
-}
+// .ad-small{
+//   width: 600px;// 12.5 * $block;
+//   height: 100px;//4 * $block;
+//   @include screen($breakpoint-mobile, $breakpoint-tablet) {
+//     width: 375px;//8 * $block;
+//   }
+// }
+// .ad-large{
+//   width: 420px;// 8.75 * $block;
+//   height: 100px;//4 * $block;
+//   @include screen($breakpoint-mobile, $breakpoint-tablet) {
+//     width: 375px;//8 * $block;
+//   }
+// }
 
 .padding-top-80{
   padding-top: 80px;

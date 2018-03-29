@@ -41,3 +41,7 @@ end
 every '0 12,21 * * *' do
   rake 'twitter:score_and_tweet'
 end
+
+every '1 0,12 * * *' do
+  rake 'amazon:sell'
+end

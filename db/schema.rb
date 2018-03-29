@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180323134609) do
+ActiveRecord::Schema.define(version: 20180329045919) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,14 @@ ActiveRecord::Schema.define(version: 20180323134609) do
     t.datetime "updated_at", null: false
     t.string "remote_ip"
     t.string "ip"
+  end
+
+  create_table "amazon_tmp_links", force: :cascade do |t|
+    t.string "title"
+    t.bigint "node_id"
+    t.integer "click_count", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "answers", force: :cascade do |t|

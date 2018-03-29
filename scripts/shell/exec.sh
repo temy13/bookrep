@@ -1,5 +1,5 @@
 #!/bin/sh
-
+git pull origin master
 source ./export.sh
 sudo -E docker-compose build
 sudo rm -f /var/lib/docker/volumes/bookrep_tmp-data/_data/pids/server.pid

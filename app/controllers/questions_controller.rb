@@ -18,6 +18,7 @@ class QuestionsController < ApplicationController
   def show
     @answer = Answer.new
     @answers = @question.answers.includes(:likes).page(params[:page]).per(PER)
+    @links = AmazonTmpLink.where(id: 1..3).order(:id)
   end
 
   def new

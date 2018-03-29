@@ -22,6 +22,10 @@ $animation: .25s ease-in-out;
 
 .amazon-links{
   padding: $ws-sm 0;
+  font-size: 18px;
+  @include screen($breakpoint-mobile, $breakpoint-tablet) {
+    font-size: 24px;
+  }
 }
 
 .profile-checkbox{

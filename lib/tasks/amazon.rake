@@ -26,18 +26,21 @@ namespace :amazon do
             )
         end
         # p "==========================="
-        # p item
+        p item
         # p item.get("BrowseNodeId")
         # p item.get("Name")
     end
+    p a
     a.flatten.each_with_index do |obj, i|
+        p obj
         link = AmazonTmpLink.find_or_create_by(:id => i+1)
         if link.blank?
-          link = AmazonTmpLink.new(title: obj["title"], node_id: obj["node_id"])
+          link = AmazonTmpLink.new(title: obj[:title], node_id: obj[:node_id])
         else
-          link.title = obj["title"]
-          link.node_id = obj["node_id"]
+          link.title = obj[:title]
+          link.node_id = obj[:node_id]
         end
+        p link
         link.save
     end
   end

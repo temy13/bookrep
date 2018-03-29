@@ -32,10 +32,7 @@ class QuestionsController < ApplicationController
     @question = Question.new(question_params)
     @question.is_anonymous = params[:anonymous].present? || params[:submit_type] == "anonymous"
     if @question.save
-      image(@question)
-      #TwitterQuestionWorker.perform_async(@question.id, ENV["TWITTER_ACCESS"], ENV["TWITTER_ACCESS_SECRET"])
-      TwitterQuestionWorker.perform_async(@question.id, session[:access_token], session[:access_token_secret])
-      SlackQuestionWorker.perform_async(@question.id) if Rails.env.production?
+      workers(@question)
       flash[:notice_link] = profile_path(current_user) if current_user.is_dummy_email
       notice = flash[:notice_link].blank? ? "質問が投稿されました" : "質問が投稿されました。通知を受け取るためにメール登録してください"
       redirect_to @question, notice: notice
@@ -89,6 +86,15 @@ class QuestionsController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
+
+    def workers(question)
+      image(question)
+      #TwitterQuestionWorker.perform_async(@question.id, ENV["TWITTER_ACCESS"], ENV["TWITTER_ACCESS_SECRET"])
+      TwitterQuestionWorker.perform_async(question.id, session[:access_token], session[:access_token_secret])
+      SlackQuestionWorker.perform_async(question.id) if Rails.env.production?
+      AnswerBotWorker.perform_async(question.id)
+    end
+
 
     def image(question)
       #g question

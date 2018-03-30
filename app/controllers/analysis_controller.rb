@@ -33,10 +33,10 @@ class AnalysisController < AdminBaseController
         users.uniq.size
     }
     gon.ips_d_rate = remote_ips_array.map{|remote_ips|
-        remote_ips.size == 0 ? 0 : remote_ips.select{|remote_ip| remote_ips.count(remote_ip) == 1}.size.to_f / remote_ips.size
+        remote_ips.size == 0 ? 0 : (remote_ips.select{|remote_ip| remote_ips.count(remote_ip) == 1}.size.to_f / remote_ips.size) * 100.0
     }
     gon.users_d_rate = users_array.map{|users|
-        users.size == 0 ? 0 : users.select{|user| users.count(user) == 1}.size.to_f / users.size
+        users.size == 0 ? 0 : (users.select{|user| users.count(user) == 1}.size.to_f / users.size) * 100.0
     }
 
   end

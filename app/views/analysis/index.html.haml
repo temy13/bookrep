@@ -1,5 +1,7 @@
 #analyze
-  = "基準時間: " + @t.strftime("%Y/%m/%d %H:%M:%S")
+  %p= "基準時間: " + @t.strftime("%Y/%m/%d %H:%M:%S")
+  %p= "0日前: 今~基準時間"
+  %p= "1日前: 基準時間 ~ " + @t.ago(1.days).strftime("%Y/%m/%d %H:%M:%S")
   #log-ipDRate.linechart.analyze.white-back
     %p 直帰率(1日１ページしかアクセスしていないユーザ/全訪問ユーザ)(非ログイン時のおれらの情報含む)
   #log-allGET.linechart.analyze.white-back

@@ -99,7 +99,8 @@ def post_favo(query, n, favo_list):
 def main():
     favo_list = get_favo_list()
     #print (len(favo_list))
-    queries = ["読書好きの人と繋がりたい", "おすすめの本教えてください", "本好きの人と繋がりたい", "読書", "おすすめの本"]
+    #queries = ["読書好きの人と繋がりたい", "おすすめの本教えてください", "本好きの人と繋がりたい", "読書", "おすすめの本"]
+    queries = ["読書好きの人と繋がりたい", "おすすめの本教えてください", "本好きの人と繋がりたい", "読書"]
     random.shuffle(queries)
     for q in queries:
     	favo_list = post_favo("#" + q, 5, favo_list)

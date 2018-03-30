@@ -118,7 +118,7 @@ $ ->
         svg = d3.select(id).append('svg').attr('width', width + margin.left + margin.right).attr('height', height + margin.top + margin.bottom).append('g').attr('transform', 'translate(' + margin.left + ',' + margin.top + ')')
         value = [0,1,2,3,4,5,6,7].map((e, index, array) ->
           {
-            "label": e+1
+            "label": e
             "value": numbers[e]
           }
         )
@@ -188,13 +188,18 @@ $ ->
     generate_piechart("#user-notice", datas)
 
   if ($('#log-allGET').exists())
-    generate_linechart("#allGET", gon.all_get_numbers)
+    generate_linechart("#log-allGET", gon.all_get_numbers)
 
   if ($('#log-ipGET').exists())
     generate_linechart("#log-ipGET", gon.unique_ips)
 
   if ($('#log-userGET').exists())
     generate_linechart("#log-userGET", gon.unique_users)
+
+  if ($('#log-ipDRate').exists())
+    generate_linechart("#log-ipDRate", gon.ips_d_rate)
+  if ($('#log-userDRate').exists())
+    generate_linechart("#log-userDRate", gon.users_d_rate)
 
 
 # ---

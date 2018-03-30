@@ -14,18 +14,29 @@ class AnalysisController < AdminBaseController
     logs_array =  [0,1,2,3,4,5,6,7].map{ |n|
       ActionLog.includes(:user).where(request_method: "GET", created_at: @t.ago((n+1).days)..@t.ago(n.days)).select{|l| l.user.blank? || l.user.normal?}
     }
-
-    gon.all_get_numbers = logs_array.map{|logs| logs
-      .size
-    }
-    gon.unique_ips = logs_array.map{|logs| logs
+    logs_array.unshift(ActionLog.includes(:user).where(request_method: "GET", created_at: @t..tt).select{|l| l.user.blank? || l.user.normal?})
+    remote_ips_array = logs_array.map{|logs| logs
         .map{|log| log.remote_ip}
-        .uniq.size
     }
-    gon.unique_users = logs_array.map{|logs| logs
+    users_array = logs_array.map{|logs| logs
         .select{ |log| log.user.present?}
         .map{|log| log.user_id }
-        .uniq.size
+      }
+
+    gon.all_get_numbers = logs_array.map{|logs|
+      logs.size
+    }
+    gon.unique_ips = remote_ips_array.map{|remote_ips|
+        remote_ips.uniq.size
+    }
+    gon.unique_users = users_array.map{|users|
+        users.uniq.size
+    }
+    gon.ips_d_rate = remote_ips_array.map{|remote_ips|
+        remote_ips.size == 0 ? 0 : remote_ips.select{|remote_ip| remote_ips.count(remote_ip) == 1}.size / remote_ips.size
+    }
+    gon.users_d_rate = users_array.map{|users|
+        users.size == 0 ? 0 : users.select{|user| users.count(user) == 1}.size / users.size
     }
 
   end

@@ -43,7 +43,7 @@ class User < ApplicationRecord
   has_many :book_click_logs
   has_many :action_logs
 
-  as_enum :states, normal: 0, dummy: 1, admin: 2
+  as_enum :states, normal: 0, dummy: 1, admin: 2, answer_bot: 3
 
 
   # before_save :prepare_save

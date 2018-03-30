@@ -1,14 +1,16 @@
 #analyze
   = "基準時間: " + @t.strftime("%Y/%m/%d %H:%M:%S")
+  #log-ipDRate.linechart.analyze.white-back
+    %p 直帰率(1日１ページしかアクセスしていないユーザ/全訪問ユーザ)(非ログイン時のおれらの情報含む)
+  #log-allGET.linechart.analyze.white-back
+    %p 全PV数(非ログイン時の以下略)
   #log-ipGET.linechart.analyze.white-back
     %p アクセスしたip address数(非ログイン時のおれらの情報含む)
   #log-userGET.linechart.analyze.white-back
     %p アクセスしたuser数
+  #log-userDRate.linechart.analyze.white-back
+    %p 直帰率(loginユーザ)(1日１ページしかアクセスしていないユーザ/全ログインユーザ)
   #user-type.piechart.analyze.white-back
     %p User Login Type
   #user-notice.piechart.analyze.white-back
     %p User Notice Rate
-
-  %p 全PV数の合計(非ログイン時のおれらの情報含む)
-  %p 直帰率(1日１ページしかアクセスしていないユーザ/全訪問ユーザ)(非ログイン時のおれらの情報含む)
-  %p 直帰率(loginユーザ)(1日１ページしかアクセスしていないユーザ/全ログインユーザ)

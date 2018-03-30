@@ -19,36 +19,43 @@ twitter = OAuth1Session(CK, CS, AT, AS)
 fcount = 200 #max
 scount = 100 #max
 base = "https://api.twitter.com/1.1"
+is_log = False
+# favo_list = []
+user_list = []
 
 def get(url):
     try:
       r = twitter.get(url)
-      #if r.status_code != 200:
-      #    print (url)
-      #    print (r)
-      #    print (r.text)
+      if r.status_code != 200 and is_log:
+         print (url)
+         print (r)
+         print (r.text)
       data = json.loads(r.text)
       return data
     except:
+      if is_log:
+         print ("error")
+         print(sys.exc_info())
       return []
-      #print ("error")
-      #print(sys.exc_info())
+
     return []
 
 def post(url, params):
     try:
       r = twitter.post(url, params)
-      #if r.status_code != 200:
-      #    print (url)
-      #    print (r)
-      #    print (r.text)
+      if r.status_code != 200 and is_log:
+          print (url)
+          print (r)
+          print (r.text)
       data = json.loads(r.text)
-      return data
+
+      #return data
     except:
-      return []
-      #print ("error")
-      #print(sys.exc_info())
-    return []
+      if is_log:
+         print ("error")
+         print(sys.exc_info())
+      #return []
+    #return []
 
 
 
@@ -65,6 +72,7 @@ def get_favo_list():
 
 
 def favo(query, n, favo_list, rt="mixed"):
+    global user_list
     query = query.replace("#", "%23")
     baseurl = base + "/search/tweets.json?q=" + query + "&lang=ja&result_type=" + rt + "&count=" + str(scount) + "&include_entities=true"
     url = baseurl
@@ -74,7 +82,9 @@ def favo(query, n, favo_list, rt="mixed"):
         data = data["statuses"]
         #全てのツイートに対してファボ
         #for tweet_id in [item["id_str"] for item in data if item["id_str"] not in favo_list and item["id"] not in favos]:
-        for tweet_id in [item["id_str"] for item in data if item["id"] not in favos]:
+        for tweet_id, uid in [(item["id_str"], item["user"]["id_str"]) for item in data if item["id_str"] not in favos]:
+            if uid in user_list:
+                continue
             #print (tweet_id)
             posturl = base + "/favorites/create.json"
             params = {
@@ -82,12 +92,16 @@ def favo(query, n, favo_list, rt="mixed"):
             }
             post(posturl, params)
             favo_list.append(tweet_id)
+            user_list.append(uid)
+            if is_log:
+                print (tweet_id, uid, "favoed")
         if len(data) == 0:
             #print (url)
             break
         url = baseurl + "&max_id=" + str(data[-1]["id"])
-    #print (query, rt, "done")
-    #print (rt, "done")
+    if is_log:
+      print (query, rt, "done")
+      print (rt, "done")
     return favo_list
 
 def post_favo(query, n, favo_list):
@@ -99,8 +113,8 @@ def post_favo(query, n, favo_list):
 def main():
     favo_list = get_favo_list()
     #print (len(favo_list))
-    #queries = ["読書好きの人と繋がりたい", "おすすめの本教えてください", "本好きの人と繋がりたい", "読書", "おすすめの本"]
-    queries = ["読書好きの人と繋がりたい", "おすすめの本教えてください", "本好きの人と繋がりたい", "読書"]
+    queries = ["読書好きの人と繋がりたい", "おすすめの本教えてください", "本好きの人と繋がりたい", "読書", "おすすめの本"]
+    #queries = ["読書好きの人と繋がりたい", "おすすめの本教えてください", "本好きの人と繋がりたい", "読書"]
     random.shuffle(queries)
     for q in queries:
     	favo_list = post_favo("#" + q, 5, favo_list)

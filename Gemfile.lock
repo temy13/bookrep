@@ -121,6 +121,8 @@ GEM
       railties (>= 3.0.0)
     faker (1.8.7)
       i18n (>= 0.7)
+    faraday (0.14.0)
+      multipart-post (>= 1.2, < 3)
     ffi (1.9.18)
     font-awesome-rails (4.7.0.2)
       railties (>= 3.2, < 5.2)
@@ -186,6 +188,7 @@ GEM
     jquery-ui-rails (6.0.1)
       railties (>= 3.2.16)
     jquery-validation-rails (1.16.0)
+    json (2.1.0)
     kaminari (1.1.1)
       activesupport (>= 4.1.0)
       kaminari-actionview (= 1.1.1)
@@ -201,6 +204,10 @@ GEM
       kaminari (>= 0.13.0)
       rails
     kaminari-core (1.1.1)
+    koala (3.0.0)
+      addressable
+      faraday
+      json (>= 1.8)
     launchy (2.4.3)
       addressable (~> 2.3)
     listen (3.1.5)
@@ -466,6 +473,7 @@ DEPENDENCIES
   jquery-validation-rails
   kaminari
   kaminari-bootstrap
+  koala
   launchy
   listen (>= 3.0.5, < 3.2)
   lograge

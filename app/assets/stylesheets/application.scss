@@ -709,10 +709,10 @@ $icon-length: $block2;
   background-color:white;// $bg-color;
   position:fixed;
   width:100%;
-  height:$block2;
-  @include screen($breakpoint-mobile, $breakpoint-tablet) {
-    height: $block*3;
-  }
+  height:$block  * 3;
+  // @include screen($breakpoint-mobile, $breakpoint-tablet) {
+  //   height: $block*3;
+  // }
   bottom:0;
   text-align:center;
   overflow:hidden;

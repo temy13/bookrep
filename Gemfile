@@ -107,3 +107,4 @@ gem 'whenever', require: false
 #gem 'activeadmin'
 #gem 'cancancan'
 gem 'amazon-ecs'
+gem 'koala'

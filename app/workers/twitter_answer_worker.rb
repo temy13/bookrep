@@ -13,7 +13,7 @@ class TwitterAnswerWorker include Sidekiq::Worker
     answer = Answer.find(a_id)
     @client = twitter_client(at, as)
     url = ENV["SERVICE_HOST"] + "/questions/" + answer.question.id.to_s
-    @client.update("ブクリプで質問に答えました! #ブクリプ　" + url)
+    @client.update("ブクリプで質問に答えました! " + answer.question.tweet_text + " #ブクリプ　" + url)
   end
 
 

@@ -54,9 +54,8 @@ class Question < ApplicationRecord
     joins(:answers).where('answers.user_id = ? and answers.is_anonymous = false', user_id)
   }
 
-  TWEET_LENGTH = 100
-  def tweet_text
-    return self.content.length < TWEET_LENGTH ? self.content : self.content[0...TWEET_LENGTH] + "..."
+  def tweet_text(length = 100)
+    return self.content.length < length ? self.content : self.content[0...length] + "..."
   end
 
 

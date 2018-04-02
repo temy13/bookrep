@@ -10,6 +10,8 @@
 #  updated_at  :datetime         not null
 #
 
+
+##name -> screen_name
 class Request < ApplicationRecord
   belongs_to :question
 end

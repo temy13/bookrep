@@ -92,7 +92,7 @@
           .field.tweet.separate
             %span.text= "Twitterアカウントで投稿をシェアする"
             %div.checkbox
-              = f.check_box :is_tweet, :id =>"checkbox1", :class=>"ios-toggle"
+              = f.check_box :is_tweet, :id =>"checkbox1", :class=>"ios-toggle", :checked => true
               = label "", "checkbox1", :class=>"checkbox-label"#, :data=>{:off=>"off" , :on=>"on"}
         - else
           .field.tweet.separate.disabled

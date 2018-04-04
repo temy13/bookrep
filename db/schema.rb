@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180329045919) do
+ActiveRecord::Schema.define(version: 20180404113721) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -89,6 +89,16 @@ ActiveRecord::Schema.define(version: 20180329045919) do
     t.index ["priority", "run_at"], name: "delayed_jobs_priority"
   end
 
+  create_table "hash_tweets", force: :cascade do |t|
+    t.integer "user_id"
+    t.string "uid"
+    t.string "content"
+    t.datetime "posted"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "tweet_id"
+  end
+
   create_table "likes", force: :cascade do |t|
     t.integer "answer_id"
     t.integer "user_id"
@@ -129,6 +139,31 @@ ActiveRecord::Schema.define(version: 20180329045919) do
     t.string "query"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "tweets", force: :cascade do |t|
+    t.string "uid"
+    t.string "content"
+    t.datetime "posted"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "twitter_users", force: :cascade do |t|
+    t.integer "user_id"
+    t.string "tweets"
+    t.integer "followers_count"
+    t.integer "friends_count"
+    t.integer "favolites_count"
+    t.string "description"
+    t.string "screen_name"
+    t.string "uid"
+    t.datetime "last_tweet"
+    t.boolean "get_friends", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.boolean "is_follow", default: false
+    t.integer "share_count", default: 0
   end
 
   create_table "users", force: :cascade do |t|

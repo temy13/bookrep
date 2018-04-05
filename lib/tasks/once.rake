@@ -38,6 +38,15 @@ namespace :once do
     }
   end
 
+  task :answer_bot => :environment do
+    return if User.answer_bots.present?
+    user = User.new(name:"メカリプ博士(公式)", profile:"メカリプ博士ですワン！\n\r質問を投稿してくれたら、世界中の本からオススメを探すワン！", email:"botdog@qwertyuiop.com", password:"uq8dj5y47erhsfiOHwrirwj")
+    user.icon_path = "/assets/icons/botdog"
+    user.states = User.states[:answer_bot]
+    user.save
+
+  end
+
 
 
 end

@@ -32,7 +32,8 @@ class AnswerBotWorker include Sidekiq::Worker
   def perform(q_id)
     question = Question.find(q_id)
     book = get_book(question.content)
-    p book
+    user = User.answer_bots.first
+    Answer.create(content: "そんな君におすすめなのはこれですワン！", user_id: user.id, question_id: question.id, book_id:book[:id], title: book[:title])
   end
 
 end

@@ -89,10 +89,10 @@ class QuestionsController < ApplicationController
 
     def workers(question)
       image(question)
-      #TwitterQuestionWorker.perform_async(@question.id, ENV["TWITTER_ACCESS"], ENV["TWITTER_ACCESS_SECRET"])
+      #TwitterQuestionWorker.perform_async(@question.id, ENV["TWITTER_ACCESS"], ENV["TWITTER_ACCESS_SECRET"]) #自動ツイート
       TwitterQuestionWorker.perform_async(question.id, session[:access_token], session[:access_token_secret])
       SlackQuestionWorker.perform_async(question.id) if Rails.env.production?
-      AnswerBotWorker.perform_async(question.id)
+      #AnswerBotWorker.perform_async(question.id) #Anser bot
     end
 
 

@@ -43,4 +43,14 @@ namespace :twitter do
        HashTweet.create(user_id: user.try(:id), uid:tweet.user.id ,tweet_id: tweet.id, content: tweet.full_text, posted: tweet.created_at)#twitter_id_str: tweet.id_str
      end
   end
+
+  task :collect_users => :environment do
+    sname = "bookreptokyo"
+    @client = official_twitter_client
+    p @client.user(sname)
+    p @client.follower_ids(sname).take(10000)
+    p @client.friend_ids(sname).take(10000)
+    p @client.user_timeline(sname)
+  end
+
 end

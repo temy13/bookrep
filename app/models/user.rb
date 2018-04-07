@@ -114,11 +114,11 @@ class User < ApplicationRecord
   end
 
   def icon
-    return self.icon_path if self.icon_path.present?
+    return self.icon_path.gsub("http://", "https://") if self.icon_path.present?
     path = "/assets/icons/" + rand(1..6).to_s
     self.icon_path = path
     self.save
-    self.icon_path.gsub("http://", "https://")
+    self.icon_path
   end
 
   def liked(answer)

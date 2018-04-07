@@ -11,6 +11,7 @@ class TwitterAnswerWorker include Sidekiq::Worker
 
   def perform(a_id, at, as)
     answer = Answer.find(a_id)
+    return unless answer.is_tweet
     @client = twitter_client(at, as)
     url = ENV["SERVICE_HOST"] + "/questions/" + answer.question.id.to_s
     @client.update("ブクリプで質問に答えました! " + answer.question.tweet_text + " #ブクリプ　" + url)

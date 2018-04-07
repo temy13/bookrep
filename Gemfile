@@ -108,3 +108,5 @@ gem 'whenever', require: false
 #gem 'cancancan'
 gem 'amazon-ecs'
 gem 'koala'
+gem "serviceworker-rails"
+#gem 'webpush'

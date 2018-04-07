@@ -29,7 +29,7 @@
     = analytics_init if Rails.env.production?
     %link{ rel:  "stylesheet", href: "https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" }
     %script{ type: 'text/javascript', src: 'https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js'}
-
+    %link{:href => "/manifest.json", :rel => "manifest"}
     %meta{:name => "twitter:card", :content=>"summary_large_image"}
     %meta{:name => "twitter:site", :content=>"@bookreptokyo"}
     %meta{:property => "og:url", :content=>ENV["SERVICE_HOST"] + request.path_info}

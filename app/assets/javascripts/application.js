@@ -104,3 +104,4 @@ var getUrlParameter = function getUrlParameter(sParam) {
 // 		$('input[type=submit]').css 'opacity': 1.0
 //   return
 // ), false
+//= require serviceworker-companion

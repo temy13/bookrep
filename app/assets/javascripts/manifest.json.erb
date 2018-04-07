@@ -1,0 +1,21 @@
+
+<% icon_sizes = [192]#Rails.configuration.serviceworker.icon_sizes %>
+{
+  "gcm_sender_id": <%= ENV["FIREBASE_PROJECT_NUMBER"] %>,
+  "name": "ブクリプ",
+  "short_name": "ブクリプ",
+  "start_url": "/",
+  "icons": [
+  <% icon_sizes.map { |s| "#{s}x#{s}" }.each.with_index do |dim, i| %>
+    {
+      "src": "<%= image_path "top_large.png" %>",
+      "sizes": "<%= dim %>",
+      "type": "image/png"
+    }<%= i == (icon_sizes.length - 1) ? '' : ',' %>
+  <% end %>
+  ],
+  "theme_color": "#000000",
+  "background_color": "#FFFFFF",
+  "display": "fullscreen",
+  "orientation": "portrait"
+}

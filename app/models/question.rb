@@ -58,6 +58,10 @@ class Question < ApplicationRecord
     return self.content.length < length ? self.content : self.content[0...length] + "..."
   end
 
+  def page_url
+    ENV["SERVICE_HOST"] + "/questions/" + id.to_s
+  end
+
 
 
 

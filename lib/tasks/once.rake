@@ -47,6 +47,13 @@ namespace :once do
 
   end
 
+  task :vapid do
+    # One-time, on the server
+    vapid_key = Webpush.generate_key
 
+    p vapid_key.public_key
+    p vapid_key.private_key
+
+  end
 
 end

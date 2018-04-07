@@ -2,6 +2,11 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :create_action_log
   after_action :store_location
+  helper_method :vapid_public_key
+
+  def vapid_public_key
+    @decoded_vapid_public_key ||= Base64.urlsafe_decode64(ENV['VAPID_PUBLIC_KEY']).bytes
+  end
 
   def append_info_to_payload(payload)
     super

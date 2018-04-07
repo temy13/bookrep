@@ -33,7 +33,13 @@ class AnswerBotWorker include Sidekiq::Worker
     question = Question.find(q_id)
     book = get_book(question.content)
     user = User.answer_bots.first
-    Answer.create(content: "そんな君におすすめなのはこれですワン！", user_id: user.id, question_id: question.id, book_id:book[:id], title: book[:title])
+    return if user.blank?
+    comments = [
+      "そんな君におすすめなのはこれワン！",
+      "質問を投稿してくれたから、世界中の本からオススメを探してきたワン！\n\rこの本はどうワン？",
+      "この本をチェックしてみて欲しいワン！\n\r" + user.name + "の最近のお気に入りでもあるワン。"
+    ]
+    Answer.create(content: comments.sample, user_id: user.id, question_id: question.id, book_id:book[:id], title: book[:title])
   end
 
 end

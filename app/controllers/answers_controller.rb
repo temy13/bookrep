@@ -31,6 +31,7 @@ class AnswersController < ApplicationController
     @answer.is_anonymous = params[:anonymous].present? || params[:submit_type] == "anonymous"
 
     if @answer.save
+      logger.debug @answer
        TwitterAnswerWorker.perform_async(@answer.id, session[:access_token], session[:access_token_secret]) if @answer.is_tweet
        NotificationMailerWorker.perform_async(@answer.id) if @answer.is_send_email
        redirect_to ({controller: 'questions', action: 'show', id: @answer.question.id}), notice: '回答が投稿されました'

@@ -118,7 +118,7 @@ class User < ApplicationRecord
     path = "/assets/icons/" + rand(1..6).to_s
     self.icon_path = path
     self.save
-    self.icon_path
+    self.icon_path.gsub("http://", "https://")
   end
 
   def liked(answer)

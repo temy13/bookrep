@@ -82,7 +82,7 @@ class Book < ApplicationRecord
   end
 
   def image_url
-    "http://books.google.com/books/content?id=" + self.google_books_id + "&printsec=frontcover&img=1&zoom=1&source=gbs_api"
+    "https://books.google.com/books/content?id=" + self.google_books_id + "&printsec=frontcover&img=1&zoom=1&source=gbs_api"
   end
 
   def authors_txt

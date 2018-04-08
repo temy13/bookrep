@@ -11,6 +11,8 @@ Rails.application.routes.draw do
 
   post 'click_logs/book_affiliate'
 
+  resources :push_notifications, only: [:create]
+
   resources :answers, only: [:create] do
     collection do
       get :auto_complete

@@ -42,6 +42,7 @@ class User < ApplicationRecord
   has_many :title_query
   has_many :book_click_logs
   has_many :action_logs
+  has_one :push_notification
 
   as_enum :states, normal: 0, dummy: 1, admin: 2, answer_bot: 3
 

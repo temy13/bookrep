@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180404113721) do
+ActiveRecord::Schema.define(version: 20180408041324) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -106,6 +106,17 @@ ActiveRecord::Schema.define(version: 20180404113721) do
     t.datetime "updated_at", null: false
     t.boolean "like", default: false, null: false
     t.index ["user_id", "answer_id"], name: "index_likes_on_user_id_and_answer_id", unique: true
+  end
+
+  create_table "push_notifications", force: :cascade do |t|
+    t.integer "user_id"
+    t.boolean "is_notice", default: true
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "endpoint"
+    t.string "p256dh"
+    t.string "auth"
+    t.string "firebase_token"
   end
 
   create_table "question_show_logs", force: :cascade do |t|

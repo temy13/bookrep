@@ -1,8 +1,8 @@
-var CACHE_VERSION = 'v1.1';
+var CACHE_VERSION = 'v1.15';
 var CACHE_NAME = CACHE_VERSION + ':sw-cache-';
 
 function onInstall(event) {
-  console.log('[Serviceworker]', "Installing!", event);
+  //console.log('[Serviceworker]', "Installing!", event);
   event.waitUntil(
     caches.open(CACHE_NAME).then(function prefill(cache) {
       return cache.addAll([
@@ -21,7 +21,7 @@ function onInstall(event) {
 }
 
 function onActivate(event) {
-  console.log('[Serviceworker]', "Activating!", event);
+  //console.log('[Serviceworker]', "Activating!", event);
   event.waitUntil(
     caches.keys().then(function(cacheNames) {
       return Promise.all(
@@ -51,7 +51,7 @@ function onFetch(event) {
         // if not found in cache, return default offline content for navigate requests
         if (event.request.mode === 'navigate' ||
           (event.request.method === 'GET' && event.request.headers.get('accept').includes('text/html'))) {
-          console.log('[Serviceworker]', "Fetching offline content", event);
+          //console.log('[Serviceworker]', "Fetching offline content", event);
           return caches.match('/offline.html');
         }
       })
@@ -61,34 +61,56 @@ function onFetch(event) {
 
 
 function onPush(event){
+    let json = event.data.json();
+    baseURL = json.data.url;
 
     event.waitUntil(
-      self.registration.pushManager.getSubscription()
-        .then(function(subscription) {
-          if (subscription) {
-            return subscription.endpoint
-          }
-          throw new Error('User not subscribed')
-      })
-      .then(function(res) {
-        return fetch('/sample.json')
-      })
-      .then(function(res) {
-        if (res.status === 200) {
-          return res.json()
-        }
-        throw new Error('notification api response error')
-      })
-      .then(function(res) {
-        return self.registration.showNotification(res.title, {
-          icon: '/images/top_large.png',
-          body: res.body
+        self.registration.showNotification(json.notification.title, {
+            'body': json.notification.body,
+            //'tag': 'request',
+            'icon':'/images/top_large.png',
+            // 'data': {
+            //   'url': baseURL
+            // }
+           //'actions': JSON.parse(json.data.action)
         })
-      })
     );
+    // event.waitUntil(
+    //   self.registration.pushManager.getSubscription()
+    //     .then(function(subscription) {
+    //       if (subscription) {
+    //         return subscription.endpoint
+    //       }
+    //       throw new Error('User not subscribed')
+    //   })
+    //   // .then(function(res) {
+    //   //   return fetch('/sample.json')
+    //   // })
+    //   .then(function(res) {
+    //     if (res.status === 200) {
+    //       return res.json()
+    //     }
+    //     throw new Error(res.status)
+    //   })
+    //   .then(function(res) {
+    //     return self.registration.showNotification(
+    //       //event.data.json().notification.title, {
+    //       res.title, {
+    //       icon: '/images/top_large.png',
+    //       //body: event.data.json().notification.body
+    //       body: res.body
+    //     })
+    //   })
+    // );
 }
 
 self.addEventListener('install', onInstall);
 self.addEventListener('activate', onActivate);
 self.addEventListener('fetch', onFetch);
 self.addEventListener("push", onPush);
+
+self.addEventListener('notificationclick', event => {
+  console.log(event)
+    self.clients.openWindow(baseURL);
+    event.notification.close();
+});

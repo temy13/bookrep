@@ -30,7 +30,7 @@ $ ->
 
   setListItem = (index, user) ->
     img = user.image
-    imgurl = img.scheme + "://" + img.host + img.path
+    imgurl = "https://" + img.host + img.path
     if index < n
       r = "<li class='option-user-item row' >"
     else

@@ -57,7 +57,7 @@
   %body
     - if notice
       - if flash[:notice_link]
-        %div.notice.bg-blue.slide-slow
+        %div.notice.bg-blue.notice-big.slide-slow
           = link_to notice, flash[:notice_link]
           -# = notice
           %a#notice-close= "×"
@@ -67,7 +67,7 @@
           %a#notice-close= "×"
     - if alert
       - if flash[:notice_link]
-        %div.notice.bg-red.slide-slow
+        %div.notice.bg-red.notice-big.slide-slow
           = link_to alert, flash[:notice_link]
       - else
         %div.notice.bg-red.slide-normal

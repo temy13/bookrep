@@ -927,6 +927,11 @@ $icon-length: $block2;
     }
 }
 
+.notice.notice-big{
+  font-size: 32px;
+  line-height: 6.0;
+}
+
 .slide-normal{
   -webkit-animation: slideUp 3.5s 0s 1 ease-in forwards;
   -moz-animation:    slideUp 3.5s 0s 1 ease-in forwards;

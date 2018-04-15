@@ -3,6 +3,6 @@ class ContactsController < ApplicationController
   end
 
   def thanks
-    ContactMailerWorker.perform_async(params[:email], params[:content]) if params.present?
+    ContactMailerWorker.perform_async(params[:email], params[:content]) if params[:content].present?
   end
 end

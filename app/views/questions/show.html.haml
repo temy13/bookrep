@@ -16,10 +16,8 @@
       %div.question-item-footer-right.col-4
         = render 'share/username_post', obj: @question, link: true
 
-  .amazon-links
-    - @links.each do |link|
-      .display-block.text-center
-        = link_to link.title, link.url, class: "amazon-links-link"
+  .ad
+    = render 'share/ad_large'
 
   - if @answers.present?
     %div.answers
@@ -64,6 +62,11 @@
         %p= "あなたのオススメの本を"
         %p= "教えてください！"
       = image_tag "logo_mark_blue.png"
+
+  .amazon-links
+    - @links.each do |link|
+      .display-block.text-center
+        = link_to link.title, link.url, class: "amazon-links-link"
 
 
   - if current_user

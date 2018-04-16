@@ -117,7 +117,7 @@
 
     %div#fix-footer
       %div.container
-        %div.row
+        %div.row.bg-white
           %div.d-lg-block.col-lg-2.d-none
           %div.col-sm-12.col-lg-8
             %div.footer-icons.footer-center.row
@@ -141,6 +141,7 @@
                   - else
                     = link_to image_tag('icon_profile.png', { :border => '0', :alt => 'プロフィール'}), profile_path(current_user)
           %div.d-lg-block.col-lg-2.d-none
-
+        %div.ad
+          = render 'share/ad_normal'
 -#  :javascript
 -#    (adsbygoogle = window.adsbygoogle || []).push({});

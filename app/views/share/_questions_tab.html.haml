@@ -1,6 +1,10 @@
 %div.questions
   %ul.question-list
-    - questions.each do |question|
+    - questions.each_with_index do |question, i|
+      - if i == 2
+        .ad
+          = render 'share/ad_large'
+
       %li.question-item.question-item-li
         = link_to(question_path(question), class: '') do
           -# = image_tag "OG_pattern01.jpg", {:class => "question-bg"}

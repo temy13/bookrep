@@ -117,9 +117,9 @@
 
     %div#fix-footer
       %div.container
-        %div.row.bg-white
+        %div.row
           %div.d-lg-block.col-lg-2.d-none
-          %div.col-sm-12.col-lg-8
+          %div.col-sm-12.col-lg-8.bg-white
             %div.footer-icons.footer-center.row
               %div.footer-item.col-4
                 - if request.path_info == new_question_path
@@ -140,8 +140,12 @@
                     =image_tag('blue_icon_profile.png', { :border => '0', :alt => '質問投稿'})
                   - else
                     = link_to image_tag('icon_profile.png', { :border => '0', :alt => 'プロフィール'}), profile_path(current_user)
-          %div.d-lg-block.col-lg-2.d-none
+
         %div.ad
-          = render 'share/ad_normal'
+          %div.d-lg-block.col-lg-2.d-none
+          %div.col-sm-12.col-lg-8.bg-white
+            = render 'share/ad_normal'
+          %div.d-lg-block.col-lg-2.d-none
+
 -#  :javascript
 -#    (adsbygoogle = window.adsbygoogle || []).push({});

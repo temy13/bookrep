@@ -4,11 +4,14 @@ class FacebookWorker include Sidekiq::Worker
   def perform(q_id)
 
     question = Question.find(q_id)
-    5.times do
-      break unless question.image.blank?
-      sleep 10
-    end
-    return if question.image.blank?
+    logger.debug "fb worker..."
+    # 100.times do
+    #   break unless question.image.blank?
+    #   logger.debug "fb worker sleeping..."
+    #   sleep 10
+    # end
+    # return if question.image.blank?
+    logger.debug "fb worker posts..."
     @api = Koala::Facebook::API.new(ENV["FACEBOOK_PAGE_TOKEN"])
     @api.put_wall_post(question.content, {
       # "name" => "投稿ページへのリンクです",

@@ -33,7 +33,7 @@ class TwitterQuestionWorker include Sidekiq::Worker
     #   @client.update(names.join(" ") + " おすすめの本を教えて欲しいとリクエストが届いています！" + url)
     # end
     question.requests.each do |request|
-      @client.update("@" + request.name + " おすすめの本を教えて欲しいとリクエストが届いています！ " + question.tweet_text(80) + " #ブクリプ " + url)
+      @client.update("@" + request.name + "　さん宛におすすめの本を教えて欲しいとリクエストが届いています！タップで回答ができます。　" + question.tweet_text(80) + " #ブクリプ " + url)
     end
 
   end

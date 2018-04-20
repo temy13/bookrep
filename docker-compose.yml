@@ -73,6 +73,8 @@ services:
     volumes:
       - .:/app
     env_file: .env
+  elasticsearch:
+    image: elasticsearch:latest
 
  #depends_on:
     #  - db

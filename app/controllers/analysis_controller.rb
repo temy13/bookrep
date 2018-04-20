@@ -1,5 +1,6 @@
 class AnalysisController < AdminBaseController
 
+  #force_ssl except: [:index]
 
   def index
     gon.mail_user_size = User.where(provider: nil, states_cd: User.states[:normal]).size

@@ -86,7 +86,7 @@
             %div.title-tag.d-inline-block= ""
             %div#answer-title-remove.d-inline-block.btn.remove-button= "x"
           = f.hidden_field :title, :placeholder => "本のタイトルを入力", :class=> "input-title input-answer", :id => "answer-title-input-form"
-          = f.text_area :content, required: true, :placeholder => "ここにコメントを書いて投稿しよう", :class=> "input-answer input-question", :id =>"answer-content-input"
+          = f.text_area :content, required: true, :placeholder => "一番のおすすめ作品です！ 主人公の一生懸命な姿に惹かれる作品で、何よりラストシーンが鳥肌ものなのでぜひ読んで見てください", :class=> "input-answer input-question", :id =>"answer-content-input"
           = f.hidden_field :user_id, :value => current_user.try(:id)
           = f.hidden_field :question_id, :value => @question.id
           = f.hidden_field :book_id, :value => nil, :id => "answer-book-id"
@@ -120,7 +120,7 @@
         .field
           %div#answer-title-dummy-input
             %input{:name => "title_dummy", :placeholder => "オススメの本はこちら", :class=> "input-title input-answer", :id => "answer-title-input"}
-            %textarea{required: true, :placeholder => "ここにコメントを書いて投稿しよう", :class=> "input-answer input-question"}
+            %textarea{required: true, :placeholder => "一番のおすすめ作品です！ 主人公の一生懸命な姿に惹かれる作品で、何よりラストシーンが鳥肌ものなのでぜひ読んで見てください", :class=> "input-answer input-question"}
           .field.tweet.separate
             %span.text= "Twitter"
             %div.checkbox

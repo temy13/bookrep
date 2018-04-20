@@ -17,7 +17,7 @@
               %li.list-group-item.list-group-item-danger= message
 
       .field
-        = f.text_area :content, required: true, :placeholder => "ここに質問を書いて投稿しよう", :class=> "input-question"
+        = f.text_area :content, required: true, :placeholder => "東野圭吾さんが好きです。感動したい時におすすめのミステリー、教えてください！", :class=> "input-question"
         = f.hidden_field :user_id, :value => current_user.try(:id)
       - if current_user.try(:provider) == "twitter"
         .field.tweet.separate
@@ -96,7 +96,7 @@
   %div.white-back
     %div.disabled
       .field
-        %textarea{:placeholder => "ここに質問を書いて投稿しよう", :class=> "input-question"}
+        %textarea{:placeholder => "東野圭吾さんが好きです。感動したい時におすすめのミステリー、教えてください！", :class=> "input-question"}
       .field.tweet.separate
         %span.text= "Twitterアカウントで投稿をシェアする"
         %div.checkbox

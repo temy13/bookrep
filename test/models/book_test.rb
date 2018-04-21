@@ -13,6 +13,8 @@
 #  subtitle              :string
 #  google_categories     :string
 #  rakuten_affiliate_url :string
+#  google_description    :string
+#  vector_json           :string
 #
 
 require 'test_helper'

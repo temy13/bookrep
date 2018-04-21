@@ -35,6 +35,7 @@ ENV.each { |k, v| env(k, v) }
 
 every 1.hours do
   rake 'rakuten:answer_book_urls'
+  rake 'book_add_info:book'
   #rake 'rakuten:all_books_urls'
 end
 
